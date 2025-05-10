@@ -36,7 +36,7 @@ const Contact = () => {
       toast({
         title: "Message Sent Successfully!",
         description: "We'll get back to you within 24 hours.",
-        variant: "success"
+        variant: "default" // Changed from "success" to "default" as only "default" or "destructive" are valid
       });
       setFormState({ name: '', email: '', message: '' });
       setFormScore(0);
