@@ -1,13 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Services = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-tunnels-black to-tunnels-darkgray">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-tunnels-black to-tunnels-darkgray relative overflow-hidden">
+      {/* Light gradient orbs in background for visual interest */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-tunnels-green/10 blur-[150px]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-tunnels-red/10 blur-[150px]"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">
             Our <span className="text-tunnels-green">Services</span>
@@ -23,14 +31,18 @@ const Services = () => {
               key={service.title}
               index={index + 1}
               {...service}
+              isActive={activeIndex === index}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
             />
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg" className="border-tunnels-green text-tunnels-green hover:bg-tunnels-green/10">
-            <Link to="/services">
-              View All Services <ArrowRight className="ml-2 h-4 w-4" />
+          <Button asChild variant="outline" size="lg" className="border-tunnels-green text-tunnels-green hover:bg-tunnels-green/10 group">
+            <Link to="/services" className="flex items-center">
+              View All Services 
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
@@ -45,23 +57,38 @@ interface ServiceCardProps {
   description: string;
   icon: string;
   link: string;
+  isActive: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
-const ServiceCard = ({ index, title, description, icon, link }: ServiceCardProps) => {
+const ServiceCard = ({ 
+  index, title, description, icon, link, isActive, onMouseEnter, onMouseLeave 
+}: ServiceCardProps) => {
   return (
-    <div className="bg-tunnels-gray/10 backdrop-blur-sm rounded-lg border border-tunnels-gray/20 overflow-hidden card-hover animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+    <div 
+      className={`bg-tunnels-gray/10 backdrop-blur-sm rounded-lg border ${isActive ? 'border-tunnels-green/40' : 'border-tunnels-gray/20'} overflow-hidden transition-all duration-300 transform ${isActive ? 'scale-105 shadow-lg shadow-tunnels-green/20' : 'card-hover'} animate-fade-in`}
+      style={{ animationDelay: `${index * 100}ms` }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div className="p-6">
-        <div className="w-12 h-12 bg-tunnels-green/10 rounded-md flex items-center justify-center mb-4">
-          <span className="text-tunnels-green text-2xl" dangerouslySetInnerHTML={{ __html: icon }}></span>
+        <div className={`w-12 h-12 rounded-md flex items-center justify-center mb-4 transition-all duration-300 ${isActive ? 'bg-tunnels-green text-black' : 'bg-tunnels-green/10 text-tunnels-green'}`}>
+          <span className="text-2xl" dangerouslySetInnerHTML={{ __html: icon }}></span>
         </div>
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-gray-300 mb-4">{description}</p>
         <Link 
           to={link} 
-          className="inline-flex items-center text-tunnels-green hover:text-tunnels-green/80 transition-colors"
+          className="inline-flex items-center text-tunnels-green hover:text-tunnels-green/80 transition-colors group"
         >
-          Learn more <ArrowRight className="ml-1 h-4 w-4" />
+          Learn more <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
+        
+        {/* Progress indicator that appears on hover */}
+        <div className={`mt-4 h-1 bg-tunnels-gray/20 rounded overflow-hidden transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="h-full bg-tunnels-green" style={{width: `${30 + Math.floor(Math.random() * 70)}%`}}></div>
+        </div>
       </div>
     </div>
   );
