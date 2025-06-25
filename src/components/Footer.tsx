@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -10,9 +11,9 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
+          <div className='col-span-2'>
             <img
-              src="/lovable-uploads/59fdfd70-be89-4e91-83b2-37e14d512a53.png"
+              src="/assets/Tunnels-Logo-White.png"
               alt="TunnelsNG Logo"
               className="h-12 mb-4"
             />
@@ -64,7 +65,7 @@ const Footer = () => {
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-tunnels-red transition-colors">Services</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/case-studies" className="text-gray-300 hover:text-tunnels-red transition-colors">Case Studies</Link>
               </li>
               <li>
@@ -72,12 +73,15 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/careers" className="text-gray-300 hover:text-tunnels-red transition-colors">Careers</Link>
+              </li> */}
+              <li>
+                <Link to="/contact" className="text-gray-300 hover:text-tunnels-red transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h3 className="font-bold text-white text-lg mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
@@ -87,7 +91,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/services/build-now" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  Build-Now, Grow-Later
+                  Strategic Partnership
                 </Link>
               </li>
               <li>
@@ -106,7 +110,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Info */}
           <div>
@@ -127,9 +131,12 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <Button className="mt-4 bg-tunnels-red hover:bg-tunnels-red/80 text-white">
+            <NavLink
+              to="/contact"
+              className="inline-block mt-6 px-6 py-3 bg-tunnels-red hover:bg-tunnels-red/80 text-white font-semibold rounded-lg transition-colors"
+            >
               Get In Touch
-            </Button>
+            </NavLink>
           </div>
         </div>
 

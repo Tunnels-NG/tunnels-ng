@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -28,9 +27,9 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Case Studies', path: '/case-studies' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Careers', path: '/careers' },
+    // { name: 'Case Studies', path: '/case-studies' },
+    // { name: 'Blog', path: '/blog' },
+    // { name: 'Careers', path: '/careers' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -42,11 +41,11 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/" className="flex items-center h-16">
           <img 
-            src="/lovable-uploads/59fdfd70-be89-4e91-83b2-37e14d512a53.png" 
+            src="/assets/Tunnels-Logo-White.png" 
             alt="TunnelsNG Logo" 
-            className="h-10"
+            className="h-full w-auto object-contain scale-125"
           />
         </NavLink>
 
@@ -66,9 +65,14 @@ const Navbar = () => {
               {item.name}
             </NavLink>
           ))}
-          <Button className="bg-tunnels-red hover:bg-tunnels-red/80 text-white">
-            Get Started
-          </Button>
+          <NavLink
+            to="/contact"
+            className="text-white hover:text-tunnels-red transition-colors"
+          >
+            <Button className="bg-tunnels-red hover:bg-tunnels-red/80 text-white">
+              Get Started
+            </Button>
+          </NavLink>
         </div>
 
         {/* Mobile Toggle Button */}
