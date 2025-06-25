@@ -15,7 +15,7 @@ const Footer = () => {
             <img
               src="/assets/Tunnels-Logo-White.png"
               alt="TunnelsNG Logo"
-              className="h-12 mb-4"
+              className="h-32"
             />
             <p className="text-gray-300 mb-4">
               Empowering innovation and automating growth for startups and enterprises with

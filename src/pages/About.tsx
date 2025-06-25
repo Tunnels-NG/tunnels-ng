@@ -143,7 +143,7 @@ const About = () => {
 
   return (
     <div className="bg-black text-white overflow-hidden">
-      <style jsx>{`
+      <style>{`
         .animate-fade-in {
           animation: fadeIn 0.8s ease-out forwards;
         }

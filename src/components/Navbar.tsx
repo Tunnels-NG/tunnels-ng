@@ -45,7 +45,7 @@ const Navbar = () => {
           <img 
             src="/assets/Tunnels-Logo-White.png" 
             alt="TunnelsNG Logo" 
-            className="h-full w-auto object-contain scale-125"
+            className="h-32 w-auto object-contain scale-125"
           />
         </NavLink>
 
