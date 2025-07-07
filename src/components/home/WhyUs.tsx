@@ -30,7 +30,7 @@ const WhyUs = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden mt-16">
+    <section className="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden mt-12">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
@@ -47,7 +47,7 @@ const WhyUs = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4">
           {features.map((feature, index) => (
             <div
               key={index}

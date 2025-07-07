@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ArrowRight, Check, Award, Rocket, Target, Globe, Users, Code, Layers, ChevronDown, Zap, Shield, TrendingUp, Building, Eye, Heart, Star, Calendar, DollarSign, HandHeart } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -9,6 +9,36 @@ const About = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [activeValue, setActiveValue] = useState(null);
   const [activeTeamMember, setActiveTeamMember] = useState(null);
+  
+  // Partners section states
+  const [partnersMousePos, setPartnersMousePos] = useState({ x: 0, y: 0 });
+  const [isUserInteractingPartners, setIsUserInteractingPartners] = useState(false);
+  const [autoFocusIndex, setAutoFocusIndex] = useState(0);
+  const [hoveredLogo, setHoveredLogo] = useState(null);
+  const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
+  const partnersContainerRef = useRef(null);
+  const interactionTimeoutRef = useRef(null);
+
+  const logos = [
+    { name: 'Jaycolinks', src: '/assets/Jayco.png' },
+    { name: 'Ndonu', src: '/assets/Ndonu.png' },
+    { name: 'Rendezvouscare', src: '/assets/Rendezvouscare.png' },
+    { name: 'Symbi', src: '/assets/symbi.png' },
+    { name: 'Taskpadi', src: '/assets/Taskpadi.jpg' },
+    { name: 'Listdem', src: '/assets/Listdem.jpg' },
+    { name: 'Payrendr', src: '/assets/Payrendr.png' },
+    { name: 'AWS', src: '/assets/AWS.png' },
+    { name: 'GCP', src: '/assets/GCP.png' },
+    { name: 'Azure', src: '/assets/Azure.png' },
+    { name: 'Google', src: '/assets/Google.png' },
+    { name: 'Oracle', src: '/assets/Oracle.png' },
+    { name: 'Jetbrain', src: '/assets/JetBrains.png' },
+    { name: 'Okaneats', src: '/assets/OkanEats.png' },
+    { name: 'Educential', src: '/assets/Educential.png' },
+    { name: 'Fenypay', src: '/assets/Fenypay.jpg' },
+    { name: 'Jayrify', src: '/assets/Jayrify.png' },
+    { name: 'VTB', src: '/assets/VTB.png' }
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -37,6 +67,132 @@ const About = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Partners section logic
+  const getGridLayout = () => {
+    const width = containerDimensions.width || 800;
+    
+    if (width < 480) {
+      return { cols: 4, rows: 5, logoSize: 40, spacing: 60 };
+    } else if (width < 768) {
+      return { cols: 5, rows: 4, logoSize: 48, spacing: 70 };
+    } else if (width < 1024) {
+      return { cols: 6, rows: 4, logoSize: 52, spacing: 80 };
+    } else {
+      return { cols: 8, rows: 3, logoSize: 56, spacing: 90 };
+    }
+  };
+
+  const gridLayout = getGridLayout();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isUserInteractingPartners) {
+        setAutoFocusIndex(prev => (prev + 1) % logos.length);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isUserInteractingPartners, logos.length]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (partnersContainerRef.current) {
+        const rect = partnersContainerRef.current.getBoundingClientRect();
+        setContainerDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handlePartnersMouseMove = (e) => {
+    if (!partnersContainerRef.current) return;
+    
+    const rect = partnersContainerRef.current.getBoundingClientRect();
+    const newMousePos = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+    
+    setPartnersMousePos(newMousePos);
+    setIsUserInteractingPartners(true);
+
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+    
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsUserInteractingPartners(false);
+      setPartnersMousePos({ x: 0, y: 0 });
+    }, 3000);
+  };
+
+  const handlePartnersMouseLeave = () => {
+    setIsUserInteractingPartners(false);
+    setPartnersMousePos({ x: 0, y: 0 });
+    setHoveredLogo(null);
+    
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+  };
+
+  const getLogoPosition = (index) => {
+    const col = index % gridLayout.cols;
+    const row = Math.floor(index / gridLayout.cols);
+    
+    const containerWidth = containerDimensions.width || 800;
+    const containerHeight = gridLayout.rows * gridLayout.spacing;
+    
+    const gridWidth = (gridLayout.cols - 1) * gridLayout.spacing;
+    const gridHeight = (gridLayout.rows - 1) * gridLayout.spacing;
+    
+    const offsetX = (containerWidth - gridWidth) / 2;
+    const offsetY = (containerHeight - gridHeight) / 2;
+    
+    return {
+      x: offsetX + col * gridLayout.spacing,
+      y: offsetY + row * gridLayout.spacing
+    };
+  };
+
+  const calculateLogoTransform = (index) => {
+    const basePos = getLogoPosition(index);
+    let x = basePos.x;
+    let y = basePos.y;
+    let scale = 1;
+    let zIndex = 1;
+    let glow = false;
+
+    if (isUserInteractingPartners && partnersMousePos.x > 0) {
+      const distance = Math.sqrt(Math.pow(partnersMousePos.x - x, 2) + Math.pow(partnersMousePos.y - y, 2));
+      const magneticForce = Math.max(0, 100 - distance) * 0.4;
+      const angle = Math.atan2(partnersMousePos.y - y, partnersMousePos.x - x);
+      
+      x += Math.cos(angle) * magneticForce;
+      y += Math.sin(angle) * magneticForce;
+      
+      if (distance < 80) {
+        scale = 1.4;
+        zIndex = 10;
+        glow = true;
+      } else if (distance < 120) {
+        scale = 1.2;
+        zIndex = 5;
+      }
+    } else {
+      if (index === autoFocusIndex) {
+        scale = 1.3;
+        zIndex = 10;
+        glow = true;
+      }
+    }
+
+    return { x, y, scale, zIndex, glow };
+  };
 
   const services = [
     {
@@ -73,30 +229,6 @@ const About = () => {
     { icon: <Globe className="w-6 h-6" />, label: "Countries Served", value: "15+" }
   ];
 
-  const timeline = [
-    {
-      year: "Year 1",
-      title: "Foundation & Positioning",
-      revenue: "$75,000",
-      clients: "5-7 Clients",
-      focus: "Building core team and establishing market presence"
-    },
-    {
-      year: "Year 2", 
-      title: "Scaling Partnerships",
-      revenue: "$250,000",
-      clients: "10-15 Clients",
-      focus: "Global expansion and strategic partnerships"
-    },
-    {
-      year: "Year 3",
-      title: "Recurring Revenue & SaaS",
-      revenue: "$600,000", 
-      clients: "20+ Clients",
-      focus: "Sustainable growth and product diversification"
-    }
-  ];
-
   const values = [
     {
       title: 'Innovation',
@@ -117,27 +249,6 @@ const About = () => {
       title: 'Impact',
       description: 'We measure success by the transformative impact our solutions create for businesses and communities.',
       icon: '🚀'
-    }
-  ];
-
-  const team = [
-    {
-      name: 'John Smith',
-      position: 'Founder & CEO',
-      bio: 'Tech visionary with 15+ years of experience in software development and digital transformation.',
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-    },
-    {
-      name: 'Sarah Johnson',
-      position: 'Head of Engineering',
-      bio: 'Expert in cloud architecture and scalable systems with a passion for building high-performance teams.',
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80"
-    },
-    {
-      name: 'Michael Chen',
-      position: 'Chief Strategy Officer',
-      bio: 'Former startup founder with extensive experience in product strategy and market positioning.',
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
     }
   ];
 
@@ -221,11 +332,6 @@ const About = () => {
 
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              {/* <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white mb-8 animate-fade-in border border-white/20">
-                <Globe className="w-4 h-4 mr-2 text-red-500" />
-                Lagos-based, globally focused
-              </div> */}
-              
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                 <span className="block animate-slide-up">About</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 animate-slide-up" style={{animationDelay: '0.2s'}}>
@@ -234,7 +340,7 @@ const About = () => {
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 animate-fade-in leading-relaxed" style={{animationDelay: '0.4s'}}>
-                A Lagos-based, innovation-driven technology company with a global outlook. 
+                An innovation-driven technology company with a global outlook. 
                 We don't just build software—we architect digital empires.
               </p>
 
@@ -369,6 +475,136 @@ const About = () => {
           </div>
         </section>
 
+        {/* Partners Section - Updated with Magnetic Interaction */}
+        <section 
+          id="partners"
+          data-section
+          className={`py-12 md:py-20 bg-gradient-to-b from-black to-gray-900 transition-all duration-1000 ${
+            visibleSections.has('partners') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            {/* Header */}
+            <div className="text-center mb-8 md:mb-16">
+              <div className="inline-flex items-center px-3 md:px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-xs md:text-sm text-white mb-4 md:mb-6 border border-red-500/20">
+                <Users className="w-3 h-3 md:w-4 md:h-4 mr-2 text-red-500" />
+                Trusted Partners
+              </div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
+                Powering Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Together</span>
+              </h2>
+              {/* <p className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+                Our partners
+              </p> */}
+            </div>
+
+            {/* Interactive Logo Container */}
+            <div className="max-w-6xl mx-auto">
+              <div 
+                ref={partnersContainerRef}
+                className="relative rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden"
+                style={{ 
+                  height: `${gridLayout.rows * gridLayout.spacing + 60}px`,
+                  minHeight: '240px'
+                }}
+                onMouseMove={handlePartnersMouseMove}
+                onMouseLeave={handlePartnersMouseLeave}
+              >
+                {/* Background grid pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                    backgroundSize: `${gridLayout.spacing}px ${gridLayout.spacing}px`,
+                    backgroundPosition: `${(containerDimensions.width - (gridLayout.cols - 1) * gridLayout.spacing) / 2}px ${gridLayout.spacing / 2}px`
+                  }}></div>
+                </div>
+
+                {/* Status indicator */}
+                {/* <div className="absolute top-4 right-4 z-20">
+                  <div className={`w-2 h-2 rounded-full ${isUserInteractingPartners ? 'bg-green-400' : 'bg-blue-400'} animate-pulse`}></div>
+                  <div className="text-xs text-white/60 mt-1 hidden md:block">
+                    {isUserInteractingPartners ? 'Interactive' : 'Auto-Focus'}
+                  </div>
+                </div> */}
+
+                {/* Partner Logos */}
+                {logos.map((logo, index) => {
+                  const transform = calculateLogoTransform(index);
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="absolute transition-all duration-300 ease-out cursor-pointer"
+                      style={{
+                        left: transform.x - gridLayout.logoSize / 2,
+                        top: transform.y - gridLayout.logoSize / 2,
+                        transform: `scale(${transform.scale})`,
+                        zIndex: transform.zIndex,
+                        width: gridLayout.logoSize,
+                        height: gridLayout.logoSize
+                      }}
+                      onMouseEnter={() => setHoveredLogo(logo.name)}
+                      onMouseLeave={() => setHoveredLogo(null)}
+                    >
+                      {/* Glow effect */}
+                      {transform.glow && (
+                        <div className="absolute inset-0 bg-red-500/30 rounded-xl blur-lg animate-pulse"></div>
+                      )}
+                      
+                      {/* Logo container */}
+                      <div className="relative w-full h-full bg-white/90 rounded-xl flex items-center justify-center shadow-lg overflow-hidden group">
+                        <img 
+                          src={logo.src} 
+                          alt={logo.name}
+                          className={`max-w-full max-h-full object-contain p-2 transition-all duration-300 ${
+                            transform.glow ? 'filter-none' : 'filter grayscale group-hover:grayscale-0'
+                          }`}
+                          style={{ padding: `${gridLayout.logoSize * 0.05}px` }}
+                        />
+                        
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                      </div>
+                      
+                      {/* Tooltip */}
+                      {hoveredLogo === logo.name && (
+                        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-3 py-1 rounded-lg whitespace-nowrap z-30">
+                          {logo.name}
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* Auto-focus indicator */}
+                {!isUserInteractingPartners && (
+                  <div
+                    className="absolute w-20 h-20 border-2 border-red-500/60 rounded-full animate-pulse pointer-events-none"
+                    style={{
+                      left: getLogoPosition(autoFocusIndex).x - 40,
+                      top: getLogoPosition(autoFocusIndex).y - 40,
+                      transition: 'all 0.8s ease-in-out'
+                    }}
+                  >
+                    <div className="absolute inset-2 border border-red-500/40 rounded-full animate-ping"></div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Bottom text */}
+            <div className="text-center mt-8 md:mt-16">
+              <p className="text-sm md:text-lg text-gray-400">
+                Powering innovation with <span className="text-white font-semibold">our strategic partners</span> worldwide
+              </p>
+              {/* <p className="text-xs md:text-sm text-gray-500 mt-2">
+                {isUserInteractingPartners ? 'Move your mouse to interact with logos' : 'Auto-focusing through partners - hover to take control'}
+              </p> */}
+            </div>
+          </div>
+        </section>
+        
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-red-500 to-pink-500 relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>

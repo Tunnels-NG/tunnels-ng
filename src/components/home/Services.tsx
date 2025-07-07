@@ -69,7 +69,7 @@ const Services = () => {
 
   return (
     <>
-      <section className="py-20 md:py-32 bg-gradient-to-b from-gray-900 to-black relative">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black relative">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">

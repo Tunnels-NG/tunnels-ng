@@ -29,7 +29,7 @@ const Navbar = () => {
     { name: 'Services', path: '/services' },
     // { name: 'Case Studies', path: '/case-studies' },
     // { name: 'Blog', path: '/blog' },
-    // { name: 'Careers', path: '/careers' },
+    { name: 'Careers', path: '/careers' },
     { name: 'Contact', path: '/contact' },
   ];
 

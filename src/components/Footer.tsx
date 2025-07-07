@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -9,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-tunnels-black border-t border-tunnels-gray/20">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
           {/* Company Info */}
           <div className='col-span-2'>
             <img
@@ -70,10 +69,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/blog" className="text-gray-300 hover:text-tunnels-red transition-colors">Blog</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/careers" className="text-gray-300 hover:text-tunnels-red transition-colors">Careers</Link>
-              </li> */}
+              </li> 
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-tunnels-red transition-colors">Contact</Link>
               </li>
@@ -122,7 +121,12 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-tunnels-red shrink-0" />
-                <span className="text-gray-300">+234 800 TUNNELS</span>
+                <a
+                  href="tel:+2347089118412"
+                  className="text-gray-300 hover:text-tunnels-red transition-colors"
+                >
+                  +234 800 TUNNELS
+                </a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-tunnels-red shrink-0" />
@@ -149,3 +153,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

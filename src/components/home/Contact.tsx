@@ -25,7 +25,7 @@ const HomeContactSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
               { icon: <Mail className="w-6 h-6" />, label: 'Email Us', value: 'hello@tunnelsng.tech', href: 'mailto:hello@tunnelsng.tech' },
-              { icon: <Phone className="w-6 h-6" />, label: 'Call Us', value: '+234 800 TUNNELS', href: 'tel:+2348008866357' },
+              { icon: <Phone className="w-6 h-6" />, label: 'Call Us', value: '+234 800 TUNNELS', href: 'tel:+2347089118412' },
               { icon: <MessageSquare className="w-6 h-6" />, label: 'Live Chat', value: 'Available 24/7', href: '#' }
             ].map((item, i) => (
               <a

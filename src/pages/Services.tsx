@@ -32,7 +32,7 @@ const ServicesPage = () => {
         'Improve process speed and consistency',
         'Real-time visibility into operations'
       ],
-      technologies: ['Python', 'Node.js', 'AWS Lambda', 'Azure Functions', 'Zapier', 'Custom APIs'],
+    //   technologies: ['Python', 'Node.js', 'AWS Lambda', 'Azure Functions', 'Zapier', 'Custom APIs'],
       color: 'from-blue-600 to-blue-400'
     },
     {
@@ -162,13 +162,13 @@ const ServicesPage = () => {
         'Database Design & Implementation',
         'DevOps & Deployment Automation'
       ],
-      technologies: [
-        'Frontend: React, Next.js, Vue.js, React Native',
-        'Backend: Node.js, Python, .NET, Java',
-        'Databases: PostgreSQL, MongoDB, Redis',
-        'Cloud: AWS, Azure, Google Cloud',
-        'DevOps: Docker, Kubernetes, CI/CD'
-      ],
+    //   technologies: [
+    //     'Frontend: React, Next.js, Vue.js, React Native',
+    //     'Backend: Node.js, Python, .NET, Java',
+    //     'Databases: PostgreSQL, MongoDB, Redis',
+    //     'Cloud: AWS, Azure, Google Cloud',
+    //     'DevOps: Docker, Kubernetes, CI/CD'
+    //   ],
       benefits: [
         'Tailored to your exact requirements',
         'Scalable and maintainable code',
@@ -341,7 +341,7 @@ const ServicesPage = () => {
                     </div>
                   </div>
 
-                  {selectedServiceData.technologies && (
+                  {/* {selectedServiceData.technologies && (
                     <div className="mb-8">
                       <h4 className="text-xl font-bold text-white mb-4">Technologies We Use</h4>
                       <div className="flex flex-wrap gap-2">
@@ -352,7 +352,7 @@ const ServicesPage = () => {
                         ))}
                       </div>
                     </div>
-                  )}
+                  )} */}
 
                   {selectedServiceData.timeline && (
                     <div className="mb-8">
@@ -421,7 +421,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
+      {/* <section className="py-16 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Service Packages</h2>
@@ -459,7 +459,7 @@ const ServicesPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Section */}
       {/* <section className="py-16 bg-gradient-to-r from-red-900/20 to-purple-900/20">

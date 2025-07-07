@@ -73,7 +73,7 @@ const ContactPage = () => {
                   <div className="space-y-6">
                     {[
                       { icon: <Mail className="w-6 h-6" />, label: 'Email', value: 'hello@tunnelsng.tech', href: 'mailto:hello@tunnelsng.tech' },
-                      { icon: <Phone className="w-6 h-6" />, label: 'Phone', value: '+234 800 TUNNELS', href: 'tel:+2348008866357' },
+                      { icon: <Phone className="w-6 h-6" />, label: 'Phone', value: '+234 800 TUNNELS', href: 'tel:+2347089118412' },
                       { icon: <MessageSquare className="w-6 h-6" />, label: 'Live Chat', value: 'Available 24/7', href: '#' }
                     ].map((item, i) => (
                       <a
@@ -207,7 +207,7 @@ const ContactPage = () => {
                 { icon: <Award className="w-8 h-8" />, value: '5★', label: 'Rating' }
               ].map((item, i) => (
                 <div key={i} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center text-white mx-auto mb-4">
+                  <div className="w-16 h-16 md:w-28 md:h-28 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center text-white mx-auto mb-4">
                     {item.icon}
                   </div>
                   <div className="text-3xl font-bold text-white mb-1">{item.value}</div>
