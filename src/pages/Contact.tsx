@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check, Award, Rocket, Mail, Phone, MessageSquare, Send, Star, Zap, Shield, Target, Globe, Users, Code, Layers, ChevronDown, Play, X, Settings, TrendingUp, FileText, Lightbulb, BarChart3, Menu, Clock } from 'lucide-react';
+import { ArrowRight, Check, Award, Rocket, Mail, Phone, MessageSquare, Send, Star, Zap, Shield, Target, Globe, Users, Code, Layers, ChevronDown, Play, X, Settings, TrendingUp, FileText, Lightbulb, BarChart3, Menu, Clock, MapPin, Briefcase } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', project: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formProgress, setFormProgress] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedProjectType, setSelectedProjectType] = useState('');
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,9 +17,26 @@ const ContactPage = () => {
     // Calculate progress
     const newData = { ...formData, [name]: value };
     let progress = 0;
-    if (newData.name.length > 2) progress += 33;
-    if (newData.email.includes('@') && newData.email.includes('.')) progress += 33;
-    if (newData.message.length > 10) progress += 34;
+    if (newData.name.length > 2) progress += 20;
+    if (newData.email.includes('@') && newData.email.includes('.')) progress += 20;
+    if (newData.company.length > 1) progress += 20;
+    if (newData.project.length > 1) progress += 20;
+    if (newData.message.length > 10) progress += 20;
+    setFormProgress(progress);
+  };
+
+  const handleProjectTypeSelect = (type) => {
+    setSelectedProjectType(type);
+    setFormData(prev => ({ ...prev, project: type }));
+    
+    // Recalculate progress
+    const newData = { ...formData, project: type };
+    let progress = 0;
+    if (newData.name.length > 2) progress += 20;
+    if (newData.email.includes('@') && newData.email.includes('.')) progress += 20;
+    if (newData.company.length > 1) progress += 20;
+    if (newData.project.length > 1) progress += 20;
+    if (newData.message.length > 10) progress += 20;
     setFormProgress(progress);
   };
   
@@ -29,130 +46,272 @@ const ContactPage = () => {
     
     setTimeout(() => {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', company: '', project: '', message: '' });
+      setSelectedProjectType('');
       setFormProgress(0);
-      alert('Message sent successfully!');
+      alert('Message sent successfully! We\'ll respond within 2 hours.');
     }, 2000);
   };
+
+  const projectTypes = [
+    { id: 'automation', label: 'Business Automation', icon: <Settings className="w-5 h-5" /> },
+    { id: 'mvp', label: 'MVP Development', icon: <Rocket className="w-5 h-5" /> },
+    { id: 'audit', label: 'System Audit', icon: <TrendingUp className="w-5 h-5" /> },
+    { id: 'consultancy', label: 'IT Consultancy', icon: <BarChart3 className="w-5 h-5" /> },
+    { id: 'development', label: 'Custom Development', icon: <Code className="w-5 h-5" /> },
+    { id: 'partnership', label: 'Strategic Partnership', icon: <Users className="w-5 h-5" /> }
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
       
-      {/* Main Content */}
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
-          {/* Background Effects */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-          </div>
-          
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-blue-500">Connect</span>
-              </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Ready to transform your business? Let's discuss your project and build something extraordinary together.
-              </p>
-            </div>
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Team collaboration"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-black/85 to-gray-900/90"></div>
+        </div>
 
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Contact Info */}
-                <div className="space-y-8">
-                  <div>
-                    <h2 className="text-2xl font-bold text-white mb-6">Get in Touch</h2>
-                    <p className="text-gray-300 mb-8">
-                      Ready to revolutionize your business? Our team responds within 2 hours.
-                    </p>
+        {/* Background Effects */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-red-500/20">
+              <MessageSquare className="w-4 h-4 mr-2 text-red-500" />
+              Let's Connect
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+              <span className="block">Let's Build</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Something Amazing</span>
+            </h1>
+            
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Ready to transform your business? Let's discuss your project and create solutions that drive real results.
+            </p>
+            
+            {/* Quick Contact Options */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <a href="mailto:hello@tunnelsng.tech" className="flex items-center text-gray-300 hover:text-white transition-colors">
+                <Mail className="w-5 h-5 mr-2 text-red-500" />
+                hello@tunnelsng.tech
+              </a>
+              <a href="tel:+2347089118412" className="flex items-center text-gray-300 hover:text-white transition-colors">
+                <Phone className="w-5 h-5 mr-2 text-red-500" />
+                +234 708 911 8412
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Contact Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+              {/* Contact Information */}
+              <div className="lg:col-span-2 space-y-8">
+                <div>
+                  <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-blue-500/20">
+                    <Target className="w-4 h-4 mr-2 text-blue-500" />
+                    Get in Touch
                   </div>
-                  
-                  <div className="space-y-6">
-                    {[
-                      { icon: <Mail className="w-6 h-6" />, label: 'Email', value: 'hello@tunnelsng.tech', href: 'mailto:hello@tunnelsng.tech' },
-                      { icon: <Phone className="w-6 h-6" />, label: 'Phone', value: '+234 800 TUNNELS', href: 'tel:+2347089118412' },
-                      { icon: <MessageSquare className="w-6 h-6" />, label: 'Live Chat', value: 'Available 24/7', href: '#' }
-                    ].map((item, i) => (
-                      <a
-                        key={i}
-                        href={item.href}
-                        className="group flex items-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
-                      >
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white mr-4 group-hover:scale-110 transition-transform">
-                          {item.icon}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-white">{item.label}</div>
-                          <div className="text-gray-300">{item.value}</div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                  
-                  {/* Progress Indicator */}
-                  {formProgress > 0 && (
-                    <div className="p-6 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-xl border border-green-500/20">
-                      <div className="flex items-center mb-3">
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                          {formProgress}%
-                        </div>
-                        <div>
-                          <div className="font-semibold text-white">Form Progress</div>
-                          <div className="text-gray-300 text-sm">
-                            {formProgress === 100 ? 'Ready to send!' : 'Keep going...'}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-green-500 to-blue-500 transition-all duration-500 ease-out"
-                          style={{ width: `${formProgress}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  )}
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Transform</span> Your Business?
+                  </h2>
+                  <p className="text-gray-300 text-lg mb-8">
+                    Our team of experts is ready to discuss your project and provide tailored solutions that drive real results.
+                  </p>
                 </div>
                 
-                {/* Contact Form */}
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                {/* Contact Methods */}
+                <div className="space-y-6">
+                  {[
+                    { 
+                      icon: <Mail className="w-6 h-6" />, 
+                      label: 'Email Us', 
+                      value: 'hello@tunnelsng.tech', 
+                      description: 'Send us a detailed message',
+                      href: 'mailto:hello@tunnelsng.tech',
+                      color: 'from-blue-500 to-cyan-500'
+                    },
+                    { 
+                      icon: <Phone className="w-6 h-6" />, 
+                      label: 'Call Us', 
+                      value: '+234 708 911 8412', 
+                      description: 'Speak directly with our team',
+                      href: 'tel:+2347089118412',
+                      color: 'from-green-500 to-emerald-500'
+                    },
+                    { 
+                      icon: <MessageSquare className="w-6 h-6" />, 
+                      label: 'Schedule Call',
+                      value: 'Book a consultation', 
+                      description: '30-minute strategy session',
+                      href: '#',
+                      color: 'from-purple-500 to-pink-500'
+                    }
+                  ].map((item, i) => (
+                    <a
+                      key={i}
+                      href={item.href}
+                      className="group block p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
+                    >
+                      <div className="flex items-start space-x-4">
+                        <div className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
+                          {item.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-white mb-1">{item.label}</h3>
+                          <p className="text-red-400 font-medium mb-1">{item.value}</p>
+                          <p className="text-gray-400 text-sm">{item.description}</p>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+                
+                {/* Progress Indicator */}
+                {formProgress > 0 && (
+                  <div className="p-6 bg-gradient-to-r from-red-500/10 to-pink-500/10 rounded-xl border border-red-500/20">
+                    <div className="flex items-center mb-3">
+                      <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        {formProgress}%
+                      </div>
+                      <div>
+                        <div className="font-semibold text-white">Form Progress</div>
+                        <div className="text-gray-300 text-sm">
+                          {formProgress === 100 ? 'Ready to send!' : 'Keep going...'}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-red-500 to-pink-500 transition-all duration-500 ease-out"
+                        style={{ width: `${formProgress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Trust Indicators */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: <Shield className="w-5 h-5" />, label: '100% Confidential' },
+                    { icon: <Clock className="w-5 h-5" />, label: '2hr Response' },
+                    { icon: <Award className="w-5 h-5" />, label: 'Quality Guaranteed' },
+                    { icon: <Globe className="w-5 h-5" />, label: 'Global Support' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-2 text-gray-300">
+                      <div className="text-red-500">{item.icon}</div>
+                      <span className="text-sm">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Contact Form */}
+              <div className="lg:col-span-3">
+                <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">Start Your Project</h3>
+                    <p className="text-gray-300">Tell us about your project and we'll get back to you within 2 hours.</p>
+                  </div>
+
                   <div className="space-y-6">
+                    {/* Name and Email Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-white font-semibold mb-2">Name *</label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField(null)}
+                          className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 ${
+                            focusedField === 'name' ? 'border-red-500 ring-red-500/20' : 'border-white/20'
+                          }`}
+                          placeholder="Your full name"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-white font-semibold mb-2">Email *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          onFocus={() => setFocusedField('email')}
+                          onBlur={() => setFocusedField(null)}
+                          className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 ${
+                            focusedField === 'email' ? 'border-red-500 ring-red-500/20' : 'border-white/20'
+                          }`}
+                          placeholder="your@email.com"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Company */}
                     <div>
-                      <label className="block text-white font-semibold mb-2">Name</label>
+                      <label className="block text-white font-semibold mb-2">Company</label>
                       <input
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="company"
+                        value={formData.company}
                         onChange={handleInputChange}
-                        onFocus={() => setFocusedField('name')}
+                        onFocus={() => setFocusedField('company')}
                         onBlur={() => setFocusedField(null)}
                         className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 ${
-                          focusedField === 'name' ? 'border-blue-500 ring-blue-500/20' : 'border-white/20'
+                          focusedField === 'company' ? 'border-red-500 ring-red-500/20' : 'border-white/20'
                         }`}
-                        placeholder="Your full name"
+                        placeholder="Your company name"
                       />
                     </div>
-                    
+
+                    {/* Project Type Selection */}
                     <div>
-                      <label className="block text-white font-semibold mb-2">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField('email')}
-                        onBlur={() => setFocusedField(null)}
-                        className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 ${
-                          focusedField === 'email' ? 'border-blue-500 ring-blue-500/20' : 'border-white/20'
-                        }`}
-                        placeholder="your@email.com"
-                      />
+                      <label className="block text-white font-semibold mb-4">Project Type *</label>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {projectTypes.map((type) => (
+                          <button
+                            key={type.id}
+                            type="button"
+                            onClick={() => handleProjectTypeSelect(type.label)}
+                            className={`p-3 rounded-lg border transition-all duration-300 text-left ${
+                              selectedProjectType === type.label
+                                ? 'bg-gradient-to-r from-red-500 to-pink-500 border-red-500 text-white'
+                                : 'bg-white/5 border-white/20 text-gray-300 hover:border-white/40 hover:bg-white/10'
+                            }`}
+                          >
+                            <div className="flex items-center space-x-2">
+                              {type.icon}
+                              <span className="text-sm font-medium">{type.label}</span>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                     
+                    {/* Message */}
                     <div>
-                      <label className="block text-white font-semibold mb-2">Message</label>
+                      <label className="block text-white font-semibold mb-2">Project Details *</label>
                       <textarea
                         name="message"
                         value={formData.message}
@@ -161,9 +320,10 @@ const ContactPage = () => {
                         onBlur={() => setFocusedField(null)}
                         rows={5}
                         className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 resize-none ${
-                          focusedField === 'message' ? 'border-blue-500 ring-blue-500/20' : 'border-white/20'
+                          focusedField === 'message' ? 'border-red-500 ring-red-500/20' : 'border-white/20'
                         }`}
-                        placeholder="Tell us about your project..."
+                        placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+                        required
                       />
                     </div>
                     
@@ -172,7 +332,7 @@ const ContactPage = () => {
                       disabled={isSubmitting || formProgress < 100}
                       className={`w-full p-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
                         formProgress === 100 && !isSubmitting
-                          ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25'
+                          ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white hover:scale-105 hover:shadow-xl hover:shadow-red-500/25'
                           : 'bg-gray-600 text-gray-300 cursor-not-allowed'
                       }`}
                     >
@@ -187,37 +347,61 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Trust Section */}
-        <section className="py-16 bg-gray-900">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Why Choose TunnelsNG?</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                We're committed to delivering exceptional results and building lasting partnerships.
-              </p>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-red-900/30 to-purple-900/30 relative overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Team ready to help"
+            className="w-full h-full object-cover opacity-15"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/50 to-purple-900/50"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Not Ready to Start Yet?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            That's okay! Learn more about our services or connect with us when you're ready.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <a
+              href="/services"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-full hover:bg-white/20 transition-all duration-300 flex items-center justify-center"
+            >
+              View Our Services
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+            <a
+              href="/about"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-full hover:bg-white/20 transition-all duration-300 flex items-center justify-center"
+            >
+              Learn About Us
+            </a>
+          </div>
+          
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>Affordable Consultation</span>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: <Clock className="w-8 h-8" />, value: '2hr', label: 'Response Time' },
-                { icon: <Shield className="w-8 h-8" />, value: '24/7', label: 'Support' },
-                { icon: <Target className="w-8 h-8" />, value: '100%', label: 'Confidential' },
-                { icon: <Award className="w-8 h-8" />, value: '5★', label: 'Rating' }
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className="w-16 h-16 md:w-28 md:h-28 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center text-white mx-auto mb-4">
-                    {item.icon}
-                  </div>
-                  <div className="text-3xl font-bold text-white mb-1">{item.value}</div>
-                  <div className="text-gray-400 text-sm">{item.label}</div>
-                </div>
-              ))}
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>No Obligation</span>
+            </div>
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>Quick Response</span>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -3,7 +3,6 @@ import { ArrowRight, Award, Rocket, Star, Zap, Shield, Users } from 'lucide-reac
 
 const WhyUs = () => {
   const [activeCard, setActiveCard] = useState(null);
-  const [progress, setProgress] = useState({ automation: 0, startups: 0, scaling: 0 });
   
   const features = [
     {
@@ -11,21 +10,39 @@ const WhyUs = () => {
       title: 'Business Process Automation',
       description: 'Eliminate bottlenecks by automating repetitive tasks with intelligent software and AI.',
       color: 'from-blue-500 to-cyan-500',
-      stats: '95% efficiency boost'
+      stats: '95% efficiency boost',
+      testimonial: {
+        text: "TunnelsNG automated our entire workflow, saving us 20 hours per week.",
+        author: "Sarah Chen",
+        role: "Operations Director",
+        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     },
     {
       icon: <Rocket className="w-8 h-8" />,
       title: 'Rapid MVP Launch',
       description: 'From concept to market in weeks, not months. We build MVPs that scale from day one.',
       color: 'from-purple-500 to-pink-500',
-      stats: '3x faster delivery'
+      stats: '3x faster delivery',
+      testimonial: {
+        text: "They launched our MVP in 3 weeks. Our competitors are still planning.",
+        author: "Michael Rodriguez",
+        role: "Founder",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: 'Future-Proof Scalability',
       description: 'Audit, optimize, and migrate your stack for seamless growth and rock-solid performance.',
       color: 'from-green-500 to-emerald-500',
-      stats: '99.9% uptime'
+      stats: '99.9% uptime',
+      testimonial: {
+        text: "Our platform now handles 10x the traffic without breaking a sweat.",
+        author: "David Kim",
+        role: "CTO",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     }
   ];
 
@@ -39,11 +56,15 @@ const WhyUs = () => {
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-red-500/20">
+            <Award className="w-4 h-4 mr-2 text-red-500" />
+            Why Choose Us
+          </div>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-tunnels-red to-pink-500">TunnelsNG</span>?
+            Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">TunnelsNG</span>?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We believe technology should adapt to your vision—not the other way around. Whether you’re freeing your team from manual busywork, accelerating an idea to market, or architecting for tomorrow’s scale, we craft bespoke solutions that deliver impact without hidden strings.
+            We believe technology should adapt to your vision—not the other way around. Whether you're freeing your team from manual busywork, accelerating an idea to market, or architecting for tomorrow's scale, we craft bespoke solutions that deliver impact without hidden strings.
           </p>
         </div>
 
@@ -51,55 +72,82 @@ const WhyUs = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`group relative p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm transition-all duration-500 hover:scale-105 cursor-pointer ${
+              className={`group relative p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden ${
                 activeCard === index ? 'ring-2 ring-red-500/50' : ''
               }`}
               onMouseEnter={() => setActiveCard(index)}
               onMouseLeave={() => setActiveCard(null)}
             >
-              <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.color} p-4 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <div className="text-white">{feature.icon}</div>
-              </div>
+              {/* Background Gradient on Hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
               
-              <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-              <p className="text-gray-300 mb-4">{feature.description}</p>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-green-400">{feature.stats}</span>
-                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
-              </div>
-              
-              {/* Progress Bar */}
-              <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  className={`h-full bg-gradient-to-r ${feature.color} transition-all duration-1000 ${
-                    activeCard === index ? 'translate-x-0' : '-translate-x-full'
-                  }`}
-                ></div>
+              <div className="relative z-10">
+                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.color} p-4 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="text-white">{feature.icon}</div>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                <p className="text-gray-300 mb-4">{feature.description}</p>
+                
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-sm font-semibold text-green-400">{feature.stats}</span>
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+                </div>
+                
+                {/* Client Testimonial */}
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <div className="flex items-start space-x-3">
+                    <img 
+                      src={feature.testimonial.avatar}
+                      alt={feature.testimonial.author}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div className="flex-1">
+                      <p className="text-gray-300 text-sm italic mb-2">"{feature.testimonial.text}"</p>
+                      <div className="text-xs">
+                        <span className="text-white font-semibold">{feature.testimonial.author}</span>
+                        <span className="text-gray-400">, {feature.testimonial.role}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Progress Bar */}
+                <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full bg-gradient-to-r ${feature.color} transition-all duration-1000 ${
+                      activeCard === index ? 'translate-x-0' : '-translate-x-full'
+                    }`}
+                  ></div>
+                </div>
               </div>
             </div>
           ))}
         </div>
         
-        {/* Interactive Achievement System */}
-        {/* <div className="text-center">
-          <div className="inline-flex items-center space-x-6 p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-            <div className="flex items-center space-x-2">
-              <Star className="w-6 h-6 text-yellow-400 fill-current" />
-              <span className="text-white font-semibold">4.9/5 Client Rating</span>
-            </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center space-x-2">
-              <Award className="w-6 h-6 text-purple-400" />
-              <span className="text-white font-semibold">Industry Recognition</span>
-            </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center space-x-2">
-              <Users className="w-6 h-6 text-blue-400" />
-              <span className="text-white font-semibold">500+ Projects</span>
+        {/* Success Metrics */}
+        <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">250%</div>
+                <div className="text-gray-400 text-sm">Average Revenue Growth</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">6 Weeks</div>
+                <div className="text-gray-400 text-sm">From Idea to Launch</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">24/7</div>
+                <div className="text-gray-400 text-sm">Support Coverage</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">99.9%</div>
+                <div className="text-gray-400 text-sm">Uptime Guarantee</div>
+              </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   );

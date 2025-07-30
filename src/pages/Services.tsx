@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { ArrowRight, Check, Star, Users, Globe, Zap, Code, Settings, TrendingUp, Rocket, BarChart3, Shield, ChevronDown, ChevronUp, Phone, Mail, MessageSquare, ExternalLink } from 'lucide-react';
+import { ArrowRight, Check, Star, Users, Globe, Zap, Code, Settings, TrendingUp, Rocket, BarChart3, Shield, Clock, Award, Lightbulb, Target } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState('automation');
-  const [selectedPackage, setSelectedPackage] = useState('startup');
 
   const services = [
     {
@@ -16,254 +13,225 @@ const ServicesPage = () => {
       title: 'Business Process Automation',
       tagline: 'Streamline. Optimize. Scale.',
       description: 'Transform your business operations with intelligent automation solutions that eliminate repetitive tasks and boost productivity.',
-      longDescription: 'Our automation experts analyze your current workflows and design custom solutions that integrate seamlessly with your existing systems. Using cutting-edge AI and cloud-native tools, we create automated processes that reduce operational costs by up to 60% while improving accuracy and speed.',
-      features: [
-        'Custom Workflow Design & Implementation',
-        'AI-Powered Process Intelligence',
-        'Cloud-Native Automation Tools',
-        'Legacy System Integration',
-        'Real-time Analytics & Monitoring',
-        'Scalable Architecture Design'
-      ],
-      benefits: [
+      longDescription: 'We analyze your current workflows and design custom solutions that seamlessly integrate with your existing systems. Our automation experts use cutting-edge technologies to create processes that significantly reduce operational costs while improving accuracy and speed.',
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
         'Reduce operational costs by 40-60%',
         'Eliminate human error in repetitive tasks',
         'Free up team resources for strategic work',
-        'Improve process speed and consistency',
-        'Real-time visibility into operations'
+        'Improve process speed and consistency'
       ],
-    //   technologies: ['Python', 'Node.js', 'AWS Lambda', 'Azure Functions', 'Zapier', 'Custom APIs'],
+      solutions: [
+        'Custom Workflow Solutions',
+        'Intelligent Process Design',
+        'System Integration',
+        'Performance Monitoring'
+      ],
       color: 'from-blue-600 to-blue-400'
     },
     {
       id: 'partnership',
       icon: <Users className="w-8 h-8" />,
-      title: 'Strategic Partnership',
+      title: 'Growth-Aligned Partnerships',
       tagline: 'Build Now. Grow Together.',
-      description: 'Flexible engagement models designed to match your pace, resources, and ambition through equity partnerships and deferred payments.',
-      longDescription: 'Our Build-Now, Grow-Later model removes the upfront cost barrier for startups and early-stage companies. We invest in your vision by providing world-class development services in exchange for equity or deferred payments, allowing you to focus on growth while we handle the technical infrastructure.',
-      features: [
-        'Equity-Based Development Partnerships',
-        'Deferred Payment Options',
-        'Flexible Engagement Terms',
-        'Long-term Strategic Planning',
-        'Technical Advisory Services',
-        'Growth-Oriented Roadmaps'
+      description: 'Innovative engagement models designed to match your pace, resources, and ambition—removing traditional barriers to world-class development.',
+      longDescription: 'We offer unique partnership models that align our success with yours. Instead of traditional upfront payments, we work with you to create flexible arrangements that allow you to access enterprise-level development services while focusing on growth.',
+      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
+        'Access to experienced technical teams',
+        'Aligned incentives for mutual success',
+        'Flexible engagement structures',
+        'Long-term strategic partnership'
       ],
-      benefits: [
-        'Zero upfront development costs',
-        'Access to experienced technical team',
-        'Aligned incentives for success',
-        'Flexible payment structures',
-        'Long-term partnership approach'
+      solutions: [
+        'Innovative Engagement Models',
+        'Strategic Technical Advisory',
+        'Growth-Oriented Planning',
+        'Flexible Partnership Terms'
       ],
-      idealFor: ['Early-stage startups', 'Bootstrapped companies', 'Innovative business models', 'Scalable tech ventures'],
+      idealFor: ['Early-stage startups', 'Bootstrapped companies', 'Innovative business models', 'High-growth ventures'],
       color: 'from-yellow-600 to-yellow-400'
     },
     {
       id: 'audit',
       icon: <TrendingUp className="w-8 h-8" />,
-      title: 'System Audit & Scalability',
+      title: 'System Optimization & Scaling',
       tagline: 'Diagnose. Optimize. Scale.',
-      description: 'Comprehensive evaluation of your existing systems to identify bottlenecks, security vulnerabilities, and scalability opportunities.',
-      longDescription: 'Our expert engineers conduct thorough audits of your current infrastructure, identifying performance bottlenecks, security vulnerabilities, and architectural limitations. We provide detailed reports with actionable recommendations and implement solutions that prepare your systems for exponential growth.',
-      features: [
-        'Comprehensive Infrastructure Assessment',
-        'Performance Bottleneck Analysis',
-        'Security Vulnerability Scanning',
-        'Database Optimization',
-        'Architecture Redesign',
-        'Cloud Migration Strategy'
-      ],
-      benefits: [
+      description: 'Comprehensive evaluation of your existing systems to unlock performance improvements and prepare for exponential growth.',
+      longDescription: 'Our expert engineers conduct thorough assessments of your current infrastructure, identifying opportunities for improvement and implementing solutions that prepare your systems for scale. We focus on performance, security, and cost optimization.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
         'Improve system performance by 3-10x',
-        'Identify and fix security vulnerabilities',
+        'Identify and resolve critical issues',
         'Reduce infrastructure costs',
-        'Prepare for high-traffic scenarios',
-        'Optimize database performance'
+        'Prepare for high-traffic scenarios'
       ],
-      deliverables: ['Detailed Audit Report', 'Security Assessment', 'Performance Metrics', 'Optimization Roadmap', 'Implementation Plan'],
+      solutions: [
+        'Infrastructure Assessment',
+        'Performance Optimization',
+        'Security Enhancement',
+        'Scalability Planning'
+      ],
+      deliverables: ['Comprehensive Assessment Report', 'Optimization Roadmap', 'Implementation Strategy'],
       color: 'from-green-600 to-green-400'
     },
     {
       id: 'mvp',
       icon: <Rocket className="w-8 h-8" />,
-      title: 'MVP Launch Services',
+      title: 'Rapid MVP Development',
       tagline: 'Idea to Market in Record Time.',
-      description: 'Transform your ideas into deployable MVPs using lean, agile processes that ensure speed without sacrificing quality.',
-      longDescription: 'Our streamlined MVP development process gets your product to market faster than traditional development approaches. Using proven frameworks and lean methodologies, we build functional prototypes that allow you to test, validate, and iterate quickly, giving you a competitive edge.',
-      features: [
-        'Rapid Prototype Development',
-        'Market Validation Testing',
-        'Lean Development Methodology',
-        'User Experience Optimization',
-        'Analytics Integration',
-        'Iterative Improvement Process'
-      ],
-      timeline: [
-        'Week 1-2: Requirements & Planning',
-        'Week 3-6: Core Development',
-        'Week 7-8: Testing & Refinement',
-        'Week 9-10: Launch & Optimization'
-      ],
-      benefits: [
-        'Time to market in 6-10 weeks',
+      description: 'Transform your ideas into market-ready products using proven methodologies that ensure speed without sacrificing quality.',
+      longDescription: 'Our streamlined development process gets your product to market faster than traditional approaches. We use proven frameworks and lean methodologies to build functional products that allow you to test, validate, and iterate quickly.',
+      image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
+        'Fast time to market',
         'Validate ideas before full investment',
-        'Attract investors with working prototype',
-        'Gather real user feedback early',
-        'Reduce development risks'
+        'Attract investors with working products',
+        'Gather real user feedback early'
+      ],
+      solutions: [
+        'Rapid Prototyping',
+        'Market Validation',
+        'User Experience Design',
+        'Iterative Development'
       ],
       color: 'from-purple-600 to-purple-400'
     },
     {
       id: 'consultancy',
       icon: <BarChart3 className="w-8 h-8" />,
-      title: 'IT Consultancy & Strategy',
-      tagline: 'Strategic Technology Leadership.',
-      description: 'Expert guidance on technology roadmaps, architecture decisions, and digital transformation strategies.',
-      longDescription: 'Our senior technology consultants provide strategic guidance to help you make informed decisions about technology investments. We develop comprehensive IT strategies, create roadmaps aligned with your business objectives, and ensure your technology choices support long-term growth.',
-      features: [
-        'Technology Roadmap Development',
-        'Architecture Planning & Design',
-        'Digital Transformation Strategy',
-        'Cybersecurity Planning',
-        'Cloud Strategy & Migration',
-        'Team Training & Knowledge Transfer'
-      ],
-      expertise: [
-        'Cloud Architecture (AWS, Azure, GCP)',
-        'DevOps & CI/CD Implementation',
-        'Microservices Architecture',
-        'Security & Compliance',
-        'Database Design & Optimization',
-        'API Strategy & Design'
-      ],
-      benefits: [
+      title: 'Strategic Technology Leadership',
+      tagline: 'Expert Guidance. Smart Decisions.',
+      description: 'Strategic technology guidance to help you make informed decisions about your tech investments and digital transformation.',
+      longDescription: 'Our senior technology experts provide strategic guidance to help you navigate complex technology decisions. We develop comprehensive strategies that align with your business objectives and ensure your technology choices support long-term growth.',
+      image: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
         'Make informed technology decisions',
         'Avoid costly architectural mistakes',
         'Align IT strategy with business goals',
-        'Optimize technology investments',
-        'Reduce technical debt'
+        'Optimize technology investments'
+      ],
+      solutions: [
+        'Technology Strategy Development',
+        'Architecture Planning',
+        'Digital Transformation',
+        'Risk Assessment'
       ],
       color: 'from-red-600 to-red-400'
     },
     {
       id: 'development',
       icon: <Code className="w-8 h-8" />,
-      title: 'Custom Software Development',
+      title: 'Custom Software Solutions',
       tagline: 'Bespoke Solutions, Infinite Scale.',
-      description: 'End-to-end custom software development using cutting-edge technologies and best practices.',
-      longDescription: 'From web applications to mobile apps and enterprise systems, we build custom software solutions that are robust, scalable, and perfectly aligned with your business requirements. Our full-stack development team uses modern technologies and follows industry best practices to deliver high-quality solutions.',
-      features: [
-        'Full-Stack Web Development',
-        'Mobile App Development (iOS/Android)',
-        'Enterprise Software Solutions',
-        'API Development & Integration',
-        'Database Design & Implementation',
-        'DevOps & Deployment Automation'
-      ],
-    //   technologies: [
-    //     'Frontend: React, Next.js, Vue.js, React Native',
-    //     'Backend: Node.js, Python, .NET, Java',
-    //     'Databases: PostgreSQL, MongoDB, Redis',
-    //     'Cloud: AWS, Azure, Google Cloud',
-    //     'DevOps: Docker, Kubernetes, CI/CD'
-    //   ],
-      benefits: [
+      description: 'End-to-end custom software development that perfectly aligns with your business requirements and scales with your growth.',
+      longDescription: 'From web applications to mobile apps and enterprise systems, we build custom software solutions that are robust, scalable, and perfectly aligned with your business requirements. Our development team uses modern technologies and industry best practices.',
+      image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      outcomes: [
         'Tailored to your exact requirements',
-        'Scalable and maintainable code',
-        'Modern, responsive user interfaces',
-        'Secure and performant architecture',
-        'Ongoing support and maintenance'
+        'Scalable and maintainable solutions',
+        'Modern, responsive interfaces',
+        'Secure and performant architecture'
+      ],
+      solutions: [
+        'Full-Stack Development',
+        'Mobile Applications',
+        'Enterprise Solutions',
+        'API Development'
       ],
       color: 'from-indigo-600 to-indigo-400'
     }
   ];
 
-  const packages = {
-    startup: {
-      name: 'Startup Package',
-      price: '$15,000 - $50,000',
-      description: 'Perfect for early-stage startups and MVP development',
-      features: [
-        'MVP Development (6-10 weeks)',
-        'Basic automation setup',
-        'Strategic partnership options',
-        'Technical advisory sessions',
-        'Cloud deployment',
-        '3 months support'
-      ]
-    },
-    growth: {
-      name: 'Growth Package',
-      price: '$50,000 - $150,000',
-      description: 'For scaling businesses ready to optimize and expand',
-      features: [
-        'Full system audit & optimization',
-        'Advanced automation implementation',
-        'Custom software development',
-        'Security & compliance review',
-        'Team training & knowledge transfer',
-        '6 months support'
-      ]
-    },
-    enterprise: {
-      name: 'Enterprise Package',
-      price: '$150,000+',
-      description: 'Comprehensive solutions for established organizations',
-      features: [
-        'Complete digital transformation',
-        'Enterprise-grade custom development',
-        'Advanced security implementation',
-        'Multi-system integration',
-        'Dedicated technical team',
-        '12 months support & maintenance'
-      ]
-    }
-  };
-
   const selectedServiceData = services.find(service => service.id === selectedService);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
-        <Navbar />
-          {/* Hero Section */}
+      <Navbar />
+      {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 to-purple-900/20"></div>
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Technology solutions"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/30 to-purple-900/30"></div>
+        </div>
+        
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Services</span>
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
-              Comprehensive technology solutions that transform businesses, streamline operations, and drive sustainable growth.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base">
-              <div className="flex items-center text-gray-300">
-                <Check className="w-5 h-5 text-green-400 mr-2" />
-                <span>Global Outlook</span>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-red-500/20">
+                <Award className="w-4 h-4 mr-2 text-red-500" />
+                World-Class Solutions
               </div>
-              <div className="flex items-center text-gray-300">
-                <Check className="w-5 h-5 text-green-400 mr-2" />
-                <span>Innovation-Driven Solutions</span>
+              
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
+                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Services</span>
+              </h1>
+              
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
+                Comprehensive technology solutions that transform businesses, streamline operations, and drive sustainable growth.
+              </p>
+              
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-sm sm:text-base mb-8">
+                <div className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-green-400 mr-2" />
+                  <span>Innovation-Driven Solutions</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-green-400 mr-2" />
+                  <span>Value-Driven Partnerships</span>
+                </div>
               </div>
-              <div className="flex items-center text-gray-300">
-                <Check className="w-5 h-5 text-green-400 mr-2" />
-                <span>Value-Driven Partnerships</span>
+              
+              <a
+                href="#services"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-full hover:scale-105 transition-transform duration-300"
+              >
+                Explore Services
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+            </div>
+            
+            {/* Hero Visual */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1739302750702-e26a61113758?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Professional team delivering solutions"
+                  className="w-full h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Detail Section */}
-      <section className="py-16">
+      {/* Services Section */}
+      <section id="services" className="py-16">
         <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-blue-500/20">
+              <Lightbulb className="w-4 h-4 mr-2 text-blue-500" />
+              What We Deliver
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Solutions That <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Transform</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Every solution we deliver is designed to solve real business problems and drive measurable results.
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Services Navigation */}
             <div className="lg:col-span-4">
               <div className="sticky top-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Our Services</h3>
                 <div className="space-y-3">
                   {services.map((service) => (
                     <button
@@ -271,8 +239,8 @@ const ServicesPage = () => {
                       onClick={() => setSelectedService(service.id)}
                       className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${
                         selectedService === service.id
-                          ? `bg-gradient-to-r ${service.color} text-white shadow-lg`
-                          : 'bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10'
+                          ? `bg-gradient-to-r ${service.color} text-white shadow-lg transform scale-105`
+                          : 'bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 hover:scale-102'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -295,123 +263,101 @@ const ServicesPage = () => {
             {/* Service Details */}
             <div className="lg:col-span-8">
               {selectedServiceData && (
-                <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${selectedServiceData.color} p-4 flex items-center justify-center`}>
-                      <div className="text-white">{selectedServiceData.icon}</div>
-                    </div>
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{selectedServiceData.title}</h2>
-                      <p className="text-red-400 font-semibold text-lg">{selectedServiceData.tagline}</p>
+                <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+                  {/* Service Image Header */}
+                  <div className="relative h-64">
+                    <img 
+                      src={selectedServiceData.image}
+                      alt={selectedServiceData.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6">
+                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${selectedServiceData.color} p-3 mb-3`}>
+                        <div className="text-white">{selectedServiceData.icon}</div>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-bold text-white">{selectedServiceData.title}</h2>
+                      <p className="text-red-400 font-semibold">{selectedServiceData.tagline}</p>
                     </div>
                   </div>
+                  
+                  <div className="p-6 sm:p-8">
+                    <p className="text-gray-300 text-lg mb-6">{selectedServiceData.description}</p>
+                    <p className="text-gray-300 mb-8 leading-relaxed">{selectedServiceData.longDescription}</p>
 
-                  <p className="text-gray-300 text-lg mb-6">{selectedServiceData.description}</p>
-                  <p className="text-gray-300 mb-8 leading-relaxed">{selectedServiceData.longDescription}</p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <Check className="w-5 h-5 text-green-400 mr-2" />
-                        Key Features
-                      </h4>
-                      <div className="space-y-3">
-                        {selectedServiceData.features.map((feature, i) => (
-                          <div key={i} className="flex items-start text-gray-300">
-                            <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <span className="text-sm sm:text-base">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <Star className="w-5 h-5 text-yellow-400 mr-2" />
-                        Benefits
-                      </h4>
-                      <div className="space-y-3">
-                        {selectedServiceData.benefits.map((benefit, i) => (
-                          <div key={i} className="flex items-start text-gray-300">
-                            <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <span className="text-sm sm:text-base">{benefit}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* {selectedServiceData.technologies && (
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-white mb-4">Technologies We Use</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedServiceData.technologies.map((tech, i) => (
-                          <span key={i} className="px-3 py-1 bg-white/10 text-gray-300 rounded-full text-sm">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )} */}
-
-                  {selectedServiceData.timeline && (
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-white mb-4">Development Timeline</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {selectedServiceData.timeline.map((phase, i) => (
-                          <div key={i} className="flex items-center text-gray-300 text-sm">
-                            <div className="w-6 h-6 rounded-full bg-purple-500 text-white text-xs flex items-center justify-center mr-3 flex-shrink-0">
-                              {i + 1}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                      <div>
+                        <h4 className="text-xl font-bold text-white mb-4 flex items-center">
+                          <Target className="w-5 h-5 text-green-400 mr-2" />
+                          Outcomes You'll See
+                        </h4>
+                        <div className="space-y-3">
+                          {selectedServiceData.outcomes.map((outcome, i) => (
+                            <div key={i} className="flex items-start text-gray-300">
+                              <Check className="w-5 h-5 text-green-400 mt-0.5 mr-3 flex-shrink-0" />
+                              <span className="text-sm sm:text-base">{outcome}</span>
                             </div>
-                            {phase}
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-white mb-4 flex items-center">
+                          <Star className="w-5 h-5 text-yellow-400 mr-2" />
+                          What We Deliver
+                        </h4>
+                        <div className="space-y-3">
+                          {selectedServiceData.solutions.map((solution, i) => (
+                            <div key={i} className="flex items-start text-gray-300">
+                              <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                              <span className="text-sm sm:text-base">{solution}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  )}
 
-                  {selectedServiceData.expertise && (
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-white mb-4">Our Expertise</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {selectedServiceData.expertise.map((skill, i) => (
-                          <div key={i} className="flex items-center text-gray-300 text-sm">
-                            <Shield className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                            {skill}
-                          </div>
-                        ))}
+                    {selectedServiceData.idealFor && (
+                      <div className="mb-8">
+                        <h4 className="text-lg font-bold text-white mb-4">Perfect For</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedServiceData.idealFor.map((target, i) => (
+                            <span key={i} className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">
+                              {target}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {selectedServiceData.idealFor && (
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-white mb-4">Ideal For</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedServiceData.idealFor.map((target, i) => (
-                          <span key={i} className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">
-                            {target}
-                          </span>
-                        ))}
+                    {selectedServiceData.deliverables && (
+                      <div className="mb-8">
+                        <h4 className="text-lg font-bold text-white mb-4">Key Deliverables</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedServiceData.deliverables.map((deliverable, i) => (
+                            <span key={i} className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                              {deliverable}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <NavLink
-                      to='/contact' 
-                        className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg hover:scale-105 transition-transform flex items-center justify-center"    
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </NavLink>
-                    <NavLink
-                      to='/contact' 
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <a
+                        href="/contact"
+                        className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg hover:scale-105 transition-transform flex items-center justify-center"
+                      >
+                        Get Started
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </a>
+                      <a
+                        href="/contact"
                         className="px-6 py-3 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-colors flex items-center justify-center"
-                    >
-                      Schedule Consultation
-                      <ExternalLink className="w-4 h-4 ml-2" /> 
-                    </NavLink>
+                      >
+                        Schedule Consultation
+                      </a>
+                    </div>
                   </div>
                 </div>
               )}
@@ -420,225 +366,95 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Packages Section */}
-      {/* <section className="py-16 bg-gradient-to-b from-black to-gray-900">
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Service Packages</h2>
-            <p className="text-lg sm:text-xl text-gray-300">Choose the package that fits your business stage and requirements</p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">TunnelsNG</span>?
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              We don't just deliver solutions—we deliver results that transform your business.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {Object.entries(packages).map(([key, pkg]) => (
-              <div 
-                key={key}
-                className={`p-6 sm:p-8 rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
-                  selectedPackage === key 
-                    ? 'border-red-500 bg-gradient-to-br from-red-900/20 to-purple-900/20' 
-                    : 'border-white/10 bg-gradient-to-br from-white/5 to-white/10 hover:border-white/20'
-                }`}
-                onClick={() => setSelectedPackage(key)}
-              >
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{pkg.name}</h3>
-                <div className="text-2xl sm:text-3xl font-bold text-red-400 mb-4">{pkg.price}</div>
-                <p className="text-gray-300 mb-6 text-sm sm:text-base">{pkg.description}</p>
-                
-                <div className="space-y-3">
-                  {pkg.features.map((feature, i) => (
-                    <div key={i} className="flex items-center text-gray-300 text-sm sm:text-base">
-                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 mr-3 flex-shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <button className="w-full mt-8 px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg hover:scale-105 transition-transform text-sm sm:text-base">
-                  Choose This Package
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Contact Section */}
-      {/* <section className="py-16 bg-gradient-to-r from-red-900/20 to-purple-900/20">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's discuss how our services can drive your business forward. Schedule a free consultation today.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-full hover:scale-105 transition-transform duration-300 text-sm sm:text-base">
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Schedule Call
-            </button>
-            <button className="flex items-center px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 transition-colors">
-              <Mail className="w-5 h-5 mr-2" />
-              Send Email
-            </button>
-            <button className="flex items-center px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 transition-colors">
-              <MessageSquare className="w-5 h-5 mr-2" />
-              Start Chat
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Global Reach</h3>
-              <p className="text-gray-300">Lagos-based with international clients and partnerships</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Fast Delivery</h3>
-              <p className="text-gray-300">MVP in 6-10 weeks, rapid prototyping and deployment</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Proven Results</h3>
-              <p className="text-gray-300">Track record of successful projects and satisfied clients</p>
+              <h3 className="text-xl font-bold text-white mb-3">Quality Guaranteed</h3>
+              <p className="text-gray-300 leading-relaxed">Every solution goes through rigorous testing and quality assurance. We don't just meet expectations—we exceed them.</p>
             </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Why Choose TunnelsNg Section */}
-      {/* <section className="py-16 bg-black">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Why Choose TunnelsNg?</h2>
-            <p className="text-xl text-gray-300">Our unique approach to technology partnerships sets us apart</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 flex items-center justify-center mx-auto mb-6">
-                <Users className="w-10 h-10 text-white" />
+            
+            <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Partnership Approach</h3>
-              <p className="text-gray-300">We're not just vendors – we're invested in your success through equity partnerships and long-term relationships.</p>
+              <p className="text-gray-300 leading-relaxed">We're not just vendors—we're strategic partners invested in your success. Your growth is our growth.</p>
             </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-green-600 to-green-400 flex items-center justify-center mx-auto mb-6">
-                <Rocket className="w-10 h-10 text-white" />
+            
+            <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Rapid Innovation</h3>
-              <p className="text-gray-300">From idea to market in record time using lean methodologies and cutting-edge technologies.</p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 flex items-center justify-center mx-auto mb-6">
-                <TrendingUp className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Scalable Solutions</h3>
-              <p className="text-gray-300">Every solution we build is designed to scale with your business growth and evolving needs.</p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-red-600 to-red-400 flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Security First</h3>
-              <p className="text-gray-300">Enterprise-grade security and compliance built into every solution from day one.</p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-yellow-600 to-yellow-400 flex items-center justify-center mx-auto mb-6">
-                <Globe className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Global Standards</h3>
-              <p className="text-gray-300">International quality standards with local market understanding and competitive pricing.</p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-400 flex items-center justify-center mx-auto mb-6">
-                <Code className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Modern Technology</h3>
-              <p className="text-gray-300">Latest technologies and best practices ensure your solutions are future-ready and maintainable.</p>
+              <h3 className="text-xl font-bold text-white mb-3">Results-Driven</h3>
+              <p className="text-gray-300 leading-relaxed">Every project starts with understanding your business goals. We measure our success by your success.</p>
             </div>
           </div>
         </div>
-      </section> */}
-
-      {/* Process Section */}
-      {/* <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Our Process</h2>
-            <p className="text-xl text-gray-300">How we turn your vision into reality</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Discovery</h3>
-              <p className="text-gray-300">We understand your business, challenges, and goals through detailed consultation.</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Strategy</h3>
-              <p className="text-gray-300">We develop a comprehensive strategy and roadmap tailored to your requirements.</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Execution</h3>
-              <p className="text-gray-300">Our expert team implements the solution using agile methodologies and best practices.</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                4
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Growth</h3>
-              <p className="text-gray-300">We provide ongoing support and optimization to ensure continued success.</p>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-red-900/30 to-purple-900/30">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-5xl font-bold text-white mb-6">
-            Let's Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Amazing</span> Together
+      <section className="py-20 bg-gradient-to-r from-red-900/30 to-purple-900/30 relative overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Team collaboration"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/50 to-purple-900/50"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Transform <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Your Business</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Whether you're a startup with a bold vision or an enterprise ready to transform, we're here to turn your ideas into reality.
+            Whether you're a startup with a bold vision or an enterprise ready to scale, we're here to turn your ideas into reality.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <NavLink
-              to='/contact' 
-                className="px-10 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white text-lg font-semibold rounded-full hover:scale-105 transition-transform duration-300 flex items-center justify-center"
+            <a
+              href="/contact"
+              className="px-10 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white text-lg font-semibold rounded-full hover:scale-105 transition-transform duration-300 flex items-center justify-center"
             >
               Start Your Project
-            </NavLink>
-            <NavLink
-              to='/contact' 
-                className="px-10 py-4 border-2 border-white/20 text-white text-lg font-semibold rounded-full hover:bg-white/5 transition-colors flex items-center justify-center"
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+            <a
+              href="/contact"
+              className="px-10 py-4 border-2 border-white/20 text-white text-lg font-semibold rounded-full hover:bg-white/5 transition-colors flex items-center justify-center"
             >
               Schedule Consultation
-            </NavLink>
+            </a>
+          </div>
+          
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>Affordable Consultation</span>
+            </div>
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>Flexible Engagement</span>
+            </div>
+            <div className="flex items-center">
+              <Check className="w-5 h-5 mr-2" />
+              <span>Global Delivery</span>
+            </div>
           </div>
         </div>
       </section>
