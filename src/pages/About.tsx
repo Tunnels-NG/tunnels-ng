@@ -277,7 +277,7 @@ const About = () => {
                   
                   <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
                     <p>
-                      In 2020, we started TunnelsNG with a simple but powerful belief: <strong className="text-white">every business deserves technology that works for them, not against them.</strong> While others were building generic solutions, we focused on understanding the real problems that keep business owners awake at night.
+                      In 2018, we started TunnelsNG with a simple but powerful belief: <strong className="text-white">every business deserves technology that works for them, not against them.</strong> While others were building generic solutions, we focused on understanding the real problems that keep business owners awake at night.
                     </p>
                     
                     <p>
@@ -310,7 +310,7 @@ const About = () => {
                       <div className="absolute bottom-6 left-6 right-6">
                         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
                           <div className="text-white font-bold text-base mb-1">500+ Projects Delivered</div>
-                          <div className="text-gray-300 text-sm">Transforming businesses since 2020</div>
+                          <div className="text-gray-300 text-sm">Transforming businesses since 2018</div>
                         </div>
                       </div>
                     </div>
@@ -387,7 +387,7 @@ const About = () => {
                     <h2 className="text-4xl md:text-5xl font-bold text-white">Our Mission</h2>
                   </div>
                   <p className="text-xl text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
-                    To streamline business operations, empower emerging businesses, and deliver technology solutions that drive long-term growth and impact across Africa and beyond.
+                    To streamline business operations, empower emerging businesses, and deliver technology solutions that drive long-term growth and impact globally.
                   </p>
                 </div>
 

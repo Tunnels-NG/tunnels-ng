@@ -29,12 +29,12 @@ const Partners = () => {
         
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-blue-500/20">
-            <Building className="w-4 h-4 mr-2 text-blue-500" />
+          <div className="inline-flex items-center px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-red-500/20">
+            <Building className="w-4 h-4 mr-2 text-red-500" />
             Our Partners
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Industry Leaders</span>
+            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Industry Leaders</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Powering innovation with our strategic partners worldwide

@@ -67,7 +67,7 @@ const Navbar = () => {
           ))}
           <NavLink
             to="/contact"
-            className="text-white hover:text-tunnels-red transition-colors"
+            className="text-white hover:text-tunnels-red transition-colors lg:!ml-16"
           >
             <Button className="bg-tunnels-red hover:bg-tunnels-red/80 text-white">
               Get Started

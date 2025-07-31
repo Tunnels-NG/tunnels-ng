@@ -55,7 +55,7 @@ const ServicesPage = () => {
     {
       id: 'audit',
       icon: <TrendingUp className="w-8 h-8" />,
-      title: 'System Optimization & Scaling',
+      title: 'System Audit & Optimization',
       tagline: 'Diagnose. Optimize. Scale.',
       description: 'Comprehensive evaluation of your existing systems to unlock performance improvements and prepare for exponential growth.',
       longDescription: 'Our expert engineers conduct thorough assessments of your current infrastructure, identifying opportunities for improvement and implementing solutions that prepare your systems for scale. We focus on performance, security, and cost optimization.',
@@ -80,7 +80,7 @@ const ServicesPage = () => {
       icon: <Rocket className="w-8 h-8" />,
       title: 'Rapid MVP Development',
       tagline: 'Idea to Market in Record Time.',
-      description: 'Transform your ideas into market-ready products using proven methodologies that ensure speed without sacrificing quality.',
+      description: 'Transform your ideas into market-ready products using proven acceleration methodologies that ensure speed without sacrificing quality.',
       longDescription: 'Our streamlined development process gets your product to market faster than traditional approaches. We use proven frameworks and lean methodologies to build functional products that allow you to test, validate, and iterate quickly.',
       image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       outcomes: [
@@ -100,7 +100,7 @@ const ServicesPage = () => {
     {
       id: 'consultancy',
       icon: <BarChart3 className="w-8 h-8" />,
-      title: 'Strategic Technology Leadership',
+      title: 'IT Consultancy & Strategic Advisory',
       tagline: 'Expert Guidance. Smart Decisions.',
       description: 'Strategic technology guidance to help you make informed decisions about your tech investments and digital transformation.',
       longDescription: 'Our senior technology experts provide strategic guidance to help you navigate complex technology decisions. We develop comprehensive strategies that align with your business objectives and ensure your technology choices support long-term growth.',
@@ -112,10 +112,11 @@ const ServicesPage = () => {
         'Optimize technology investments'
       ],
       solutions: [
+        'IT Consultation Services',
         'Technology Strategy Development',
-        'Architecture Planning',
+        'Architecture Planning', 
         'Digital Transformation',
-        'Risk Assessment'
+        'Expert Advisory & Consultation'
       ],
       color: 'from-red-600 to-red-400'
     },
@@ -135,9 +136,10 @@ const ServicesPage = () => {
       ],
       solutions: [
         'Full-Stack Development',
-        'Mobile Applications',
+        'Mobile Applications', 
         'Enterprise Solutions',
-        'API Development'
+        'API Development',
+        'Security & Compliance Systems'
       ],
       color: 'from-indigo-600 to-indigo-400'
     }
@@ -348,15 +350,15 @@ const ServicesPage = () => {
                         href="/contact"
                         className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg hover:scale-105 transition-transform flex items-center justify-center"
                       >
-                        Get Started
+                        Schedule Consultation
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </a>
-                      <a
+                      {/* <a
                         href="/contact"
                         className="px-6 py-3 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-colors flex items-center justify-center"
                       >
                         Schedule Consultation
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
@@ -431,15 +433,15 @@ const ServicesPage = () => {
               href="/contact"
               className="px-10 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white text-lg font-semibold rounded-full hover:scale-105 transition-transform duration-300 flex items-center justify-center"
             >
-              Start Your Project
+              Schedule Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
-            <a
+            {/* <a
               href="/contact"
               className="px-10 py-4 border-2 border-white/20 text-white text-lg font-semibold rounded-full hover:bg-white/5 transition-colors flex items-center justify-center"
             >
               Schedule Consultation
-            </a>
+            </a> */}
           </div>
           
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Mail, MapPin, Clock, Heart, Zap, Users, Code, Target, Globe, Coffee, Lightbulb, Shield, TrendingUp, Award, BookOpen, Headphones, Gamepad2, Palette, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, Clock, Heart, Zap, Users, Code, Target, Globe, Coffee, Lightbulb, Shield, TrendingUp, Award, BookOpen, Headphones, Gamepad2, Palette, ChevronDown, DollarSign, Gift, Briefcase } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -71,6 +71,13 @@ const Careers = () => {
       icon: <Headphones className="w-12 h-12" />,
       color: "from-orange-500 to-amber-500"
     }
+  ];
+
+  const compensationHighlights = [
+    { icon: <DollarSign />, title: "Competitive Base Salary", description: "Market-leading compensation benchmarked against top tech companies" },
+    { icon: <TrendingUp />, title: "Performance Bonuses", description: "Quarterly bonuses based on individual and company performance" },
+    { icon: <Shield />, title: "Health & Wellness", description: "Comprehensive health insurance and wellness stipends" },
+    { icon: <Gift />, title: "Annual Raises", description: "Meaningful salary increases during performance reviews" }
   ];
 
   const perks = [
@@ -181,15 +188,12 @@ const Careers = () => {
 
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
-                <span className="block animate-slide-up">Build</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 animate-slide-up" style={{animationDelay: '0.2s'}}>
-                  Legacy
-                </span>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-slide-up">
+                Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Legacy</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 animate-fade-in leading-relaxed" style={{animationDelay: '0.4s'}}>
-                We're building the future of technology in Africa and beyond. Join a remote-first team of makers, 
+                We're building the future of technology across the world. Join a remote-first team of makers, 
                 thinkers, and innovators who believe great work happens when people have the freedom to do their best.
               </p>
 
@@ -304,25 +308,49 @@ const Careers = () => {
           </div>
         </section>
 
-        {/* Perks Section */}
+        {/* Compensation Section */}
         <section 
-          id="perks"
+          id="compensation"
           data-section
           className={`py-20 bg-gradient-to-b from-black to-gray-900 transition-all duration-1000 ${
-            visibleSections.has('perks') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            visibleSections.has('compensation') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Beyond <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Salary</span>
+                Juicy Compensation & <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Epic Perks</span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                We invest in your happiness, growth, and well-being because great people deserve great experiences.
+                We pay well because talent deserves it. Competitive salaries and benefits that actually matter to your life and career.
               </p>
             </div>
 
+            {/* Compensation Highlights */}
+            <div className="max-w-5xl mx-auto mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {compensationHighlights.map((item, index) => (
+                  <div 
+                    key={item.title}
+                    className="bg-gradient-to-br from-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 text-center card-hover"
+                  >
+                    <div className="w-14 h-14 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      {React.cloneElement(item.icon, { className: "w-7 h-7 text-white" })}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Additional Perks */}
             <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold text-white mb-4">Plus These Amazing Perks</h3>
+                <p className="text-gray-300">Because great people deserve great experiences</p>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {perks.map((perk, index) => (
                   <div 
@@ -382,10 +410,10 @@ const Careers = () => {
                   </div>
                 </div>
                 
-                <a href="mailto:careers@tunnelsng.com" className="group">
+                <a href="mailto:hello@tunnelsng.tech" className="group">
                   <button className="bg-red-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-red-600 transition-all duration-300 hover:scale-105 flex items-center mx-auto">
                     <Mail className="mr-3 w-5 h-5" />
-                    careers@tunnelsng.com
+                    hello@tunnelsng.tech
                   </button>
                 </a>
               </div>

@@ -103,12 +103,12 @@ const Contact = () => {
                 >
                   Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
-                <a
+                {/* <a
                   href="mailto:hello@tunnelsng.tech"
                   className="px-10 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center justify-center"
                 >
                   Send Quick Message
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', project: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', budget: '', project: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formProgress, setFormProgress] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
@@ -17,12 +17,13 @@ const ContactPage = () => {
     // Calculate progress
     const newData = { ...formData, [name]: value };
     let progress = 0;
-    if (newData.name.length > 2) progress += 20;
-    if (newData.email.includes('@') && newData.email.includes('.')) progress += 20;
-    if (newData.company.length > 1) progress += 20;
-    if (newData.project.length > 1) progress += 20;
-    if (newData.message.length > 10) progress += 20;
-    setFormProgress(progress);
+    if (newData.name.length > 2) progress += 16.67;
+    if (newData.email.includes('@') && newData.email.includes('.')) progress += 16.67;
+    if (newData.company.length > 1) progress += 16.66;
+    if (newData.budget.length > 0) progress += 16.67;
+    if (newData.project.length > 1) progress += 16.67;
+    if (newData.message.length > 10) progress += 16.66;
+    setFormProgress(Math.round(progress));
   };
 
   const handleProjectTypeSelect = (type) => {
@@ -32,12 +33,13 @@ const ContactPage = () => {
     // Recalculate progress
     const newData = { ...formData, project: type };
     let progress = 0;
-    if (newData.name.length > 2) progress += 20;
-    if (newData.email.includes('@') && newData.email.includes('.')) progress += 20;
-    if (newData.company.length > 1) progress += 20;
-    if (newData.project.length > 1) progress += 20;
-    if (newData.message.length > 10) progress += 20;
-    setFormProgress(progress);
+    if (newData.name.length > 2) progress += 16.67;
+    if (newData.email.includes('@') && newData.email.includes('.')) progress += 16.67;
+    if (newData.company.length > 1) progress += 16.66;
+    if (newData.budget.length > 0) progress += 16.67;
+    if (newData.project.length > 1) progress += 16.67;
+    if (newData.message.length > 10) progress += 16.66;
+    setFormProgress(Math.round(progress));
   };
   
   const handleSubmit = (e) => {
@@ -46,7 +48,7 @@ const ContactPage = () => {
     
     setTimeout(() => {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', company: '', project: '', message: '' });
+      setFormData({ name: '', email: '', company: '', budget: '', project: '', message: '' });
       setSelectedProjectType('');
       setFormProgress(0);
       alert('Message sent successfully! We\'ll respond within 2 hours.');
@@ -100,17 +102,6 @@ const ContactPage = () => {
               Ready to transform your business? Let's discuss your project and create solutions that drive real results.
             </p>
             
-            {/* Quick Contact Options */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <a href="mailto:hello@tunnelsng.tech" className="flex items-center text-gray-300 hover:text-white transition-colors">
-                <Mail className="w-5 h-5 mr-2 text-red-500" />
-                hello@tunnelsng.tech
-              </a>
-              <a href="tel:+2347089118412" className="flex items-center text-gray-300 hover:text-white transition-colors">
-                <Phone className="w-5 h-5 mr-2 text-red-500" />
-                +234 708 911 8412
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -158,7 +149,7 @@ const ContactPage = () => {
                       icon: <MessageSquare className="w-6 h-6" />, 
                       label: 'Schedule Call',
                       value: 'Book a consultation', 
-                      description: '30-minute strategy session',
+                      description: 'Free 30-minute strategy session',
                       href: '#',
                       color: 'from-purple-500 to-pink-500'
                     }
@@ -285,6 +276,23 @@ const ContactPage = () => {
                       />
                     </div>
 
+                    {/* Budget */}
+                    <div>
+                      <label className="block text-white font-semibold mb-2">Project Budget (USD)</label>
+                      <input
+                        type="text"
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleInputChange}
+                        onFocus={() => setFocusedField('budget')}
+                        onBlur={() => setFocusedField(null)}
+                        className={`w-full p-4 bg-white/10 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 ${
+                          focusedField === 'budget' ? 'border-red-500 ring-red-500/20' : 'border-white/20'
+                        }`}
+                        placeholder="e.g. $50,000 - $100,000"
+                      />
+                    </div>
+
                     {/* Project Type Selection */}
                     <div>
                       <label className="block text-white font-semibold mb-4">Project Type *</label>
@@ -389,7 +397,7 @@ const ContactPage = () => {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">
             <div className="flex items-center">
               <Check className="w-5 h-5 mr-2" />
-              <span>Affordable Consultation</span>
+              <span>Free Consultation</span>
             </div>
             <div className="flex items-center">
               <Check className="w-5 h-5 mr-2" />
