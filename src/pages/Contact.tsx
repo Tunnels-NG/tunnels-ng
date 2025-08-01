@@ -150,13 +150,16 @@ const ContactPage = () => {
                       label: 'Schedule Call',
                       value: 'Book a consultation', 
                       description: 'Free 30-minute strategy session',
-                      href: '#',
+                      href: 'https://calendly.com/tunnelsnig',
+                      target: '_blank',
                       color: 'from-purple-500 to-pink-500'
                     }
                   ].map((item, i) => (
                     <a
                       key={i}
                       href={item.href}
+                      target={item.target}
+                      rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                       className="group block p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
                     >
                       <div className="flex items-start space-x-4">
