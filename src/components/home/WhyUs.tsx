@@ -12,10 +12,9 @@ const WhyUs = () => {
       color: 'from-blue-500 to-cyan-500',
       stats: '95% efficiency boost',
       testimonial: {
-        text: "TunnelsNG automated our entire workflow, saving us 20 hours per week.",
-        author: "Sarah Chen",
-        role: "Operations Director",
-        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+        text: "TunnelsNG automated our entire remote workflow system. As a people-driven company, this freed our team to focus on creativity and innovation instead of repetitive tasks.",
+        author: "Emmanuel Bountiful",
+        role: "Founder & CEO - Symbi Technologies",
       }
     },
     {
@@ -25,10 +24,9 @@ const WhyUs = () => {
       color: 'from-purple-500 to-pink-500',
       stats: '3x faster delivery',
       testimonial: {
-        text: "They launched our MVP in 3 weeks. Our competitors are still planning.",
-        author: "Michael Rodriguez",
-        role: "Founder",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+        text: "They built our MVP in just 3 weeks, connecting skilled professionals with clients seamlessly. Now we're the go-to platform for task solutions.",
+        author: "Taskpadi",
+        role: "CEO - Taskpadi",
       }
     },
     {
@@ -38,12 +36,11 @@ const WhyUs = () => {
       color: 'from-green-500 to-emerald-500',
       stats: '99.9% uptime',
       testimonial: {
-        text: "Our platform now handles 10x the traffic without breaking a sweat.",
-        author: "David Kim",
-        role: "CTO",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+        text: "Our website and app couldn't handle our growing customer base. TunnelsNG rebuilt and scaled our platforms to process 10x more orders seamlessly.",
+        author: "Okan Jessica",
+        role: "Chef & Owner - Okan Eats"
       }
-    }
+    },
   ];
 
   return (
@@ -97,11 +94,11 @@ const WhyUs = () => {
                 {/* Client Testimonial */}
                 <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
                   <div className="flex items-start space-x-3">
-                    <img 
+                    {/* <img 
                       src={feature.testimonial.avatar}
                       alt={feature.testimonial.author}
                       className="w-10 h-10 rounded-full object-cover"
-                    />
+                    /> */}
                     <div className="flex-1">
                       <p className="text-gray-300 text-sm italic mb-2">"{feature.testimonial.text}"</p>
                       <div className="text-xs">
