@@ -93,7 +93,7 @@ const About = () => {
 
   return (
     <div className="bg-black text-white overflow-hidden">
-      <style jsx>{`
+      <style>{`
         .animate-fade-in {
           animation: fadeIn 0.8s ease-out forwards;
         }
@@ -205,7 +205,7 @@ const About = () => {
                 
                 <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-8 animate-fade-in leading-relaxed" style={{animationDelay: '0.4s'}}>
                   An innovation-driven technology company with a global outlook. 
-                  We don't just build software—we architect digital empires that transform businesses.
+                  We don't just build software, we architect digital empires that transform businesses.
                 </p>
 
                 {/* Key highlights */}
@@ -281,7 +281,7 @@ const About = () => {
                     </p>
                     
                     <p>
-                      Today, after <strong className="text-white">500+ successful projects across 15+ countries</strong>, we've proven that our approach works. We don't just code—we solve business problems. We don't just deliver—we transform operations. We don't just build—we create digital empires that scale.
+                      Today, after <strong className="text-white">500+ successful projects across 15+ countries</strong>, we've proven that our approach works. We don't just code, we solve business problems. We don't just deliver, we transform operations. We don't just build, we create digital empires that scale.
                     </p>
                     
                     <p>
@@ -289,7 +289,7 @@ const About = () => {
                     </p>
                     
                     <p>
-                      Our clients don't come to us for ordinary solutions—they come to us when they need <strong className="text-white">extraordinary results.</strong> When their current systems are holding them back. When they need to launch fast without cutting corners. When they need a technology partner who thinks like a business owner, not just a vendor.
+                      Our clients don't come to us for ordinary solutions. They come to us when they need <strong className="text-white">extraordinary results.</strong> When their current systems are holding them back. When they need to launch fast without cutting corners. When they need a technology partner who thinks like a business owner, not just a vendor.
                     </p>
                   </div>
                 </div>
@@ -344,7 +344,7 @@ const About = () => {
                     <Shield className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">Quality Guaranteed</h3>
-                  <p className="text-gray-300 leading-relaxed">Every solution we deliver goes through rigorous testing and quality assurance. We don't just meet expectations—we exceed them.</p>
+                  <p className="text-gray-300 leading-relaxed">Every solution we deliver goes through rigorous testing and quality assurance. We don't just meet expectations, we exceed them.</p>
                 </div>
                 
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
@@ -352,7 +352,7 @@ const About = () => {
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">Partnership Approach</h3>
-                  <p className="text-gray-300 leading-relaxed">We're not just vendors—we're strategic partners invested in your success. Your growth is our growth.</p>
+                  <p className="text-gray-300 leading-relaxed">We're not just vendors! We're strategic partners invested in your success. Your growth is our growth.</p>
                 </div>
                 
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
@@ -399,7 +399,7 @@ const About = () => {
                     <h2 className="text-4xl md:text-5xl font-bold text-white">Our Vision</h2>
                   </div>
                   <p className="text-xl text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
-                    To be the most trusted global technology partner—enabling innovation, automation, and digital transformation at scale for businesses worldwide.
+                    To be the most trusted global technology partner, enabling innovation, automation, and digital transformation at scale for businesses worldwide.
                   </p>
                 </div>
               </div>

@@ -13,8 +13,8 @@ const WhyUs = () => {
       stats: '95% efficiency boost',
       testimonial: {
         text: "TunnelsNG automated our entire remote workflow system. As a people-driven company, this freed our team to focus on creativity and innovation instead of repetitive tasks.",
-        author: "Emmanuel Bountiful",
-        role: "Founder & CEO - Symbi Technologies",
+        author: "Phyna",
+        role: "Founder & CEO - Char Kulture",
       }
     },
     {
@@ -24,8 +24,8 @@ const WhyUs = () => {
       color: 'from-purple-500 to-pink-500',
       stats: '3x faster delivery',
       testimonial: {
-        text: "They built our MVP in just 3 weeks, connecting skilled professionals with clients seamlessly. Now we're the go-to platform for task solutions.",
-        author: "Taskpadi",
+        text: "They built our MVP in just 8 weeks, connecting skilled professionals with clients seamlessly. Now we're the go-to platform for task solutions.",
+        author: "Harrison",
         role: "CEO - Taskpadi",
       }
     },
@@ -61,7 +61,7 @@ const WhyUs = () => {
             Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">TunnelsNG</span>?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We believe technology should adapt to your vision—not the other way around. Whether you're freeing your team from manual busywork, accelerating an idea to market, or architecting for tomorrow's scale, we craft bespoke solutions that deliver impact without hidden strings.
+            We believe technology should adapt to your vision, not the other way around. Whether you're freeing your team from manual busywork, accelerating an idea to market, or architecting for tomorrow's scale, we craft bespoke solutions that deliver impact without hidden strings.
           </p>
         </div>
 

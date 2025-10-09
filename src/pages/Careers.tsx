@@ -387,7 +387,7 @@ const Careers = () => {
                 No Open Positions <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Right Now</span>
               </h2>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                But we're always building our talent pipeline. Great people don't wait for job postings—they reach out when they're ready to do their best work.
+                But we're always building our talent pipeline. Great people don't wait for job postings. They reach out when they're ready to do their best work.
               </p>
               
               <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 card-hover">

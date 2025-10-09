@@ -20,7 +20,7 @@ const Services = () => {
     {
       icon: <Users className="w-8 h-8" />,
       title: 'Growth-Aligned Partnerships',
-      description: 'Unlock growth potential through innovative engagement models—crafted to match your pace, resources, and ambition.',
+      description: 'Unlock growth potential through innovative engagement models crafted to match your pace, resources, and ambition.',
       features: ['Flexible Engagement', 'Growth-Based Terms', 'Custom Arrangements'],
       color: 'from-yellow-600 to-yellow-400',
       metric: 'Zero barriers to entry',
@@ -50,7 +50,7 @@ const Services = () => {
     {
       icon: <BarChart3 className="w-8 h-8" />,
       title: 'IT Consultancy & Strategy',
-      description: 'Advise on technology roadmaps—from tech-stack selection to cybersecurity and business continuity—to guide strategic tech decisions.',
+      description: 'Advise on technology roadmaps from tech-stack selection to cybersecurity and business continuity to guide strategic tech decisions.',
       features: ['Technology Roadmaps', 'Architecture Planning', 'Security Strategy'],
       color: 'from-red-600 to-red-400',
       metric: '50% cost reduction',

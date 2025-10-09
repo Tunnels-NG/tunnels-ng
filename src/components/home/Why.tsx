@@ -54,7 +54,7 @@ const About = () => {
                   
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Our Vision</h2>
                   <p className="text-gray-300 mb-6">
-                    To be the most trusted global technology partner—enabling innovation, automation, and digital transformation at scale.
+                    To be the most trusted global technology partner, enabling innovation, automation, and digital transformation at scale.
                   </p>
                   
                   <Button asChild className="mt-4 bg-tunnels-red hover:bg-tunnels-red/80 text-white group transition-all duration-300 transform hover:translate-x-1">

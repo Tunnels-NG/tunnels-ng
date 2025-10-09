@@ -84,7 +84,7 @@ const Contact = () => {
                   Have a Project in Mind?
                 </h3>
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                  Whether you're looking to automate processes, launch an MVP, or scale your existing platform—let's build something extraordinary together.
+                  Whether you're looking to automate processes, launch an MVP, or scale your existing platform, let's build something extraordinary together.
                 </p>
               </div>
               

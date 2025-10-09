@@ -34,7 +34,7 @@ const ServicesPage = () => {
       icon: <Users className="w-8 h-8" />,
       title: 'Growth-Aligned Partnerships',
       tagline: 'Build Now. Grow Together.',
-      description: 'Innovative engagement models designed to match your pace, resources, and ambition—removing traditional barriers to world-class development.',
+      description: 'Innovative engagement models designed to match your pace, resources, and ambition, removing traditional barriers to world-class development.',
       longDescription: 'We offer unique partnership models that align our success with yours. Instead of traditional upfront payments, we work with you to create flexible arrangements that allow you to access enterprise-level development services while focusing on growth.',
       image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       outcomes: [
@@ -376,7 +376,7 @@ const ServicesPage = () => {
               Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">TunnelsNG</span>?
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We don't just deliver solutions—we deliver results that transform your business.
+              We don't just deliver solutions, we deliver results that transform your business.
             </p>
           </div>
 
@@ -386,7 +386,7 @@ const ServicesPage = () => {
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Quality Guaranteed</h3>
-              <p className="text-gray-300 leading-relaxed">Every solution goes through rigorous testing and quality assurance. We don't just meet expectations—we exceed them.</p>
+              <p className="text-gray-300 leading-relaxed">Every solution goes through rigorous testing and quality assurance. We don't just meet expectations, we exceed them.</p>
             </div>
             
             <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
@@ -394,7 +394,7 @@ const ServicesPage = () => {
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Partnership Approach</h3>
-              <p className="text-gray-300 leading-relaxed">We're not just vendors—we're strategic partners invested in your success. Your growth is our growth.</p>
+              <p className="text-gray-300 leading-relaxed">We're not just vendors. We're strategic partners invested in your success. Your growth is our growth.</p>
             </div>
             
             <div className="text-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
