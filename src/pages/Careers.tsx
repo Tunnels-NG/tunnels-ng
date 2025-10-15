@@ -410,10 +410,10 @@ const Careers = () => {
                   </div>
                 </div>
                 
-                <a href="mailto:hello@tunnelsng.tech" className="group">
+                <a href="mailto:hello@tunnels.ng" className="group">
                   <button className="bg-red-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-red-600 transition-all duration-300 hover:scale-105 flex items-center mx-auto">
                     <Mail className="mr-3 w-5 h-5" />
-                    hello@tunnelsng.tech
+                    hello@tunnels.ng
                   </button>
                 </a>
               </div>

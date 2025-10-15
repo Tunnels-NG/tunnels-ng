@@ -125,13 +125,13 @@ const Footer = () => {
                   href="tel:+2347089118412"
                   className="text-gray-300 hover:text-tunnels-red transition-colors"
                 >
-                  +234 708 911 8412
+                  +234 Tunnels
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-tunnels-red shrink-0" />
-                <a href="mailto:hello@tunnelsng.tech" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  hello@tunnelsng.tech
+                <a href="mailto:hello@tunnels.ng" className="text-gray-300 hover:text-tunnels-red transition-colors">
+                  hello@tunnels.ng
                 </a>
               </li>
             </ul>

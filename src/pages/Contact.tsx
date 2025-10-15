@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check, Award, Rocket, Mail, Phone, MessageSquare, Send, Star, Zap, Shield, Target, Globe, Users, Code, Layers, ChevronDown, Play, X, Settings, TrendingUp, FileText, Lightbulb, BarChart3, Menu, Clock, MapPin, Briefcase } from 'lucide-react';
+import { ArrowRight, Check, Award, Rocket, Mail, Phone, MessageSquare, Send, Star, Zap, Shield, Target, Globe, Users, Code, Layers, ChevronDown, Play, X, Settings, TrendingUp, FileText, Lightbulb, BarChart3, Menu, Clock, MapPin, Briefcase, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+
+// EmailJS Configuration 
+const EMAILJS_CONFIG = {
+  serviceId: 'service_dklrwlt',              // From Email Services
+  templateIdCustomer: 'template_customer',   // Customer template ID
+  templateIdAdmin: 'template_admin',         // Admin template ID
+  publicKey: 'qhtEaObeaR1XYXprU'          // From Account settings
+};
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', budget: '', project: '', message: '' });
@@ -9,12 +19,17 @@ const ContactPage = () => {
   const [formProgress, setFormProgress] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
   const [selectedProjectType, setSelectedProjectType] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Calculate progress
     const newData = { ...formData, [name]: value };
     let progress = 0;
     if (newData.name.length > 2) progress += 16.67;
@@ -30,7 +45,6 @@ const ContactPage = () => {
     setSelectedProjectType(type);
     setFormData(prev => ({ ...prev, project: type }));
     
-    // Recalculate progress
     const newData = { ...formData, project: type };
     let progress = 0;
     if (newData.name.length > 2) progress += 16.67;
@@ -42,17 +56,45 @@ const ContactPage = () => {
     setFormProgress(Math.round(progress));
   };
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsSubmitting(true);
+    setSubmitStatus(null);
     
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        company: formData.company || 'Not provided',
+        budget: formData.budget || 'Not specified',
+        project_type: formData.project,
+        message: formData.message,
+        to_email: formData.email
+      };
+
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateIdCustomer,
+        templateParams
+      );
+
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateIdAdmin,
+        templateParams
+      );
+
+      setSubmitStatus('success');
+      setShowSuccessModal(true);
       setFormData({ name: '', email: '', company: '', budget: '', project: '', message: '' });
       setSelectedProjectType('');
       setFormProgress(0);
-      alert('Message sent successfully! We\'ll respond within 2 hours.');
-    }, 2000);
+      
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const projectTypes = [
@@ -67,10 +109,40 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
-      
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-gray-900 to-black border border-green-500/30 rounded-2xl p-8 max-w-md w-full relative animate-in fade-in zoom-in duration-300">
+            <button 
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+              <p className="text-gray-300 mb-6">
+                Thank you for reaching out. We've sent a confirmation to your email and our team will respond within 2 hours.
+              </p>
+              
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-xl hover:scale-105 transition-transform"
+              >
+                Got it!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -80,7 +152,6 @@ const ContactPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-black/85 to-gray-900/90"></div>
         </div>
 
-        {/* Background Effects */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
@@ -101,7 +172,6 @@ const ContactPage = () => {
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               Ready to transform your business? Let's discuss your project and create solutions that drive real results.
             </p>
-            
           </div>
         </div>
       </section>
@@ -132,15 +202,15 @@ const ContactPage = () => {
                     { 
                       icon: <Mail className="w-6 h-6" />, 
                       label: 'Email Us', 
-                      value: 'hello@tunnelsng.tech', 
+                      value: 'hello@tunnels.ng', 
                       description: 'Send us a detailed message',
-                      href: 'mailto:hello@tunnelsng.tech',
+                      href: 'mailto:hello@tunnels.ng',
                       color: 'from-blue-500 to-cyan-500'
                     },
                     { 
                       icon: <Phone className="w-6 h-6" />, 
                       label: 'Call Us', 
-                      value: '+234 708 911 8412', 
+                      value: '+234 Tunnels', 
                       description: 'Speak directly with our team',
                       href: 'tel:+2347089118412',
                       color: 'from-green-500 to-emerald-500'
@@ -149,7 +219,7 @@ const ContactPage = () => {
                       icon: <MessageSquare className="w-6 h-6" />, 
                       label: 'Schedule Call',
                       value: 'Book a consultation', 
-                      description: 'Free 30-minute strategy session',
+                      description: 'Pick a convenient time to discuss your strategy',
                       href: 'https://calendly.com/tunnelsnig',
                       target: '_blank',
                       color: 'from-purple-500 to-pink-500'
@@ -223,6 +293,17 @@ const ContactPage = () => {
                     <h3 className="text-2xl font-bold text-white mb-2">Start Your Project</h3>
                     <p className="text-gray-300">Tell us about your project and we'll get back to you within 2 hours.</p>
                   </div>
+
+                  {/* Error Message */}
+                  {submitStatus === 'error' && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-start space-x-3">
+                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-red-400 font-semibold mb-1">Failed to send message</h4>
+                        <p className="text-gray-300 text-sm">Please try again or contact us directly at hello@tunnels.ng</p>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="space-y-6">
                     {/* Name and Email Row */}
@@ -363,7 +444,6 @@ const ContactPage = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-900/30 to-purple-900/30 relative overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -400,7 +480,7 @@ const ContactPage = () => {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">
             <div className="flex items-center">
               <Check className="w-5 h-5 mr-2" />
-              <span>Free Consultation</span>
+              <span>Book Consultation</span>
             </div>
             <div className="flex items-center">
               <Check className="w-5 h-5 mr-2" />
@@ -413,7 +493,6 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

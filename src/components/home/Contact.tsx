@@ -33,15 +33,15 @@ const Contact = () => {
               { 
                 icon: <Mail className="w-8 h-8" />, 
                 title: 'Email Us', 
-                subtitle: 'hello@tunnelsng.tech', 
+                subtitle: 'hello@tunnels.ng', 
                 description: 'Send us a detailed message',
-                href: 'mailto:hello@tunnelsng.tech',
+                href: 'mailto:hello@tunnels.ng',
                 color: 'from-blue-500 to-cyan-500'
               },
               { 
                 icon: <Phone className="w-8 h-8" />, 
                 title: 'Call Us', 
-                subtitle: '+234 708 911 8412', 
+                subtitle: '+234 Tunnels', 
                 description: 'Speak directly with our team',
                 href: 'tel:+2347089118412',
                 color: 'from-green-500 to-emerald-500'
@@ -50,7 +50,7 @@ const Contact = () => {
                 icon: <MessageSquare className="w-8 h-8" />, 
                 title: 'Schedule a Call',
                 subtitle: 'Book a consultation', 
-                description: 'Free 30-minute strategy session',
+                description: 'Pick a convenient time to chat with us',
                 href: '#',
                 color: 'from-purple-500 to-pink-500'
               }
@@ -104,7 +104,7 @@ const Contact = () => {
                   Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
                 {/* <a
-                  href="mailto:hello@tunnelsng.tech"
+                  href="mailto:hello@tunnels.ng"
                   className="px-10 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center justify-center"
                 >
                   Send Quick Message
