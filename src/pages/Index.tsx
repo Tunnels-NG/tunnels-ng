@@ -1,92 +1,79 @@
-import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Hero from '@/components/home/Hero';
-import WhyUs from '@/components/home/WhyUs';
+import EngagementModels from '@/components/home/EngagementModels';
 import Services from '@/components/home/Services';
+import Testimonials from '@/components/home/Testimonials';
 import Partners from '@/components/home/Partners';
-import CaseStudies from '@/components/home/CaseStudies';
 import Contact from '@/components/home/Contact';
+import SEO from '@/components/SEO';
 
 const Index = () => {
-  // Add scroll animation effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollElements = document.querySelectorAll('.scroll-animate');
-      
-      scrollElements.forEach((element) => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight * 0.85) {
-          element.classList.add('animate-fade-in');
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Tunnels.ng",
+    "description": "Africa's leading technology venture studio specializing in MVP development, business automation, and innovative partnership models including Build Now Pay Later and equity partnerships.",
+    "url": "https://tunnels.ng",
+    "logo": "https://tunnels.ng/assets/Tunnels-Logo-White.png",
+    "image": "https://tunnels.ng/assets/og-image.png",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "Nigeria"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "MVP Development",
+            "description": "Rapid MVP development to validate your business idea"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Process Automation",
+            "description": "Streamline operations with custom automation solutions"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Equity Partnership",
+            "description": "Technology partnership with equity-based engagement"
+          }
         }
-      });
-    };
-    
-    // Initial check
-    handleScroll();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Clean up
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  
+      ]
+    }
+  };
+
   return (
     <div className="min-h-screen bg-tunnels-black">
+      <SEO 
+        title="Technology Venture Studio - Build Now, Pay Later"
+        description="Africa's leading technology venture studio. We build MVPs, automate business processes, and partner with founders through equity, revenue share, or Build Now Pay Later models. Transform your idea into a scalable product."
+        keywords="technology venture studio, MVP development, business automation, software development Nigeria, tech startup partner, build now pay later, equity partnership, fintech development, SaaS development, African tech"
+        url="https://tunnels.ng/"
+        structuredData={homeStructuredData}
+      />
       <Navbar />
       <main>
         <Hero />
-        <WhyUs />
+        <EngagementModels />
         <Services />
+        <Testimonials />
         <Partners />
-        {/* <CaseStudies /> */}
         <Contact />
       </main>
       <Footer />
-
-      <style>{`
-        .grid-pattern {
-          background-image: 
-            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-up {
-          from { opacity: 0; transform: translateY(50px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        `}
-      </style>
     </div>
   );
 };

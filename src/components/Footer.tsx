@@ -1,151 +1,222 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { Mail, Phone, MapPin, ArrowRight, ArrowUpRight, Linkedin, Twitter, Github, Instagram, Zap } from 'lucide-react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = {
+    company: [
+      { name: 'About Us', path: '/about' },
+      { name: 'Our Team', path: '/about#team' },
+      { name: 'Careers', path: '/careers' },
+      { name: 'Contact', path: '/contact' },
+    ],
+    services: [
+      { name: 'Business Automation', path: '/services#automation' },
+      { name: 'MVP Development', path: '/services#mvp' },
+      { name: 'Custom Software', path: '/services#custom' },
+      { name: 'IT Consultancy', path: '/services#consultancy' },
+    ],
+    resources: [
+      { name: 'Venture Studio', path: '/venture-studio' },
+      { name: 'Portfolio', path: '/portfolio' },
+      { name: 'Case Studies', path: '/case-studies' },
+      { name: 'How It Works', path: '/how-it-works' },
+      { name: 'FAQ', path: '/faq' },
+    ],
+  };
+
+  const socialLinks = [
+    { name: 'Twitter', icon: Twitter, url: 'https://twitter.com/tunnelsng' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/company/tunnelsng' },
+    { name: 'GitHub', icon: Github, url: 'https://github.com/tunnelsng' },
+    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/tunnelsng' },
+  ];
+
   return (
-    <footer className="bg-tunnels-black border-t border-tunnels-gray/20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
-          {/* Company Info */}
-          <div className='col-span-2'>
-            <img
-              src="/assets/Tunnels-Logo-White.png"
-              alt="TunnelsNG Logo"
-              className="h-32"
-            />
-            <p className="text-gray-300 mb-4">
-              Empowering innovation and automating growth for startups and enterprises with
-              cutting-edge technology solutions.
+    <footer className="relative bg-tunnels-black border-t border-tunnels-darkgray overflow-hidden">
+      <div className="relative border-b border-tunnels-darkgray">
+        <div className="container mx-auto px-6 md:px-10 lg:px-16 py-16">
+          <div className="bg-tunnels-dark border border-tunnels-darkgray rounded-2xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="text-center lg:text-left">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-tunnels-red/10 border border-tunnels-red/20 rounded-full text-tunnels-red text-sm font-medium mb-4">
+                <Zap className="w-4 h-4" />
+                Stay Updated
+              </div> */}
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
+                Get the latest insights
+              </h3>
+              <p className="text-tunnels-lightgray max-w-md">
+                Join 5,000+ founders and tech leaders. Get weekly insights on automation, MVPs, and scaling.
+              </p>
+            </div>
+            <div className="w-full lg:w-auto">
+              <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 min-w-[280px] px-5 py-3.5 bg-tunnels-darkgray border border-tunnels-gray/50 rounded-lg text-white placeholder:text-tunnels-lightgray focus:outline-none focus:border-tunnels-red/50 transition-colors"
+                />
+                <button
+                  type="submit"
+                  className="btn-primary whitespace-nowrap px-6 py-3.5"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Subscribe
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </button>
+              </form>
+              <p className="text-tunnels-lightgray text-xs mt-3 text-center sm:text-left">
+                No spam, ever. Unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative container mx-auto px-6 md:px-10 lg:px-16 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+          <div className="col-span-2 md:col-span-3 lg:col-span-2">
+            <Link to="/" className="inline-block mb-6">
+              <img
+                src="/assets/Tunnels-Logo-White.png"
+                alt="Tunnels.ng"
+                className="h-16 md:h-20 w-auto"
+              />
+            </Link>
+            <p className="text-tunnels-lightgray mb-6 max-w-sm leading-relaxed">
+              Empowering innovation through automation and accelerated MVP delivery. 
+              We're your tech venture studio partner for building, scaling, and dominating markets.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-white hover:text-tunnels-red transition-colors"
-                aria-label="Twitter"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-white hover:text-tunnels-red transition-colors"
-                aria-label="LinkedIn"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-white hover:text-tunnels-red transition-colors"
-                aria-label="GitHub"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                </svg>
-              </a>
+            
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-tunnels-darkgray border border-tunnels-gray/50 text-tunnels-lightgray hover:text-white hover:bg-tunnels-red hover:border-tunnels-red transition-all duration-300"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-white text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-300 hover:text-tunnels-red transition-colors">Home</Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-gray-300 hover:text-tunnels-red transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-gray-300 hover:text-tunnels-red transition-colors">Services</Link>
-              </li>
-              {/* <li>
-                <Link to="/case-studies" className="text-gray-300 hover:text-tunnels-red transition-colors">Case Studies</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-gray-300 hover:text-tunnels-red transition-colors">Blog</Link>
-              </li> */}
-              <li>
-                <Link to="/careers" className="text-gray-300 hover:text-tunnels-red transition-colors">Careers</Link>
-              </li> 
-              <li>
-                <Link to="/contact" className="text-gray-300 hover:text-tunnels-red transition-colors">Contact</Link>
-              </li>
+            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-tunnels-lightgray hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Services */}
-          {/* <div>
-            <h3 className="font-bold text-white text-lg mb-4">Our Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/services/automation" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  Business Process Automation
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/build-now" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  Strategic Partnership
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/system-audit" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  System Audit & Scalability
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/mvp" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  MVP Launch Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/consultancy" className="text-gray-300 hover:text-tunnels-red transition-colors">
-                  IT Consultancy
-                </Link>
-              </li>
-            </ul>
-          </div> */}
-
-          {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-white text-lg mb-4">Contact Us</h3>
+            <h4 className="text-white font-semibold mb-4">Services</h4>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-tunnels-lightgray hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-tunnels-lightgray hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="mr-2 h-5 w-5 text-tunnels-red shrink-0 mt-0.5" />
-                <span className="text-gray-300">Lagos, Nigeria</span>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-tunnels-red shrink-0 mt-0.5" />
+                <span className="text-tunnels-lightgray text-sm">
+                  Lagos, Nigeria<br />
+                  & Remote Worldwide
+                </span>
               </li>
-              <li className="flex items-center">
-                <Phone className="mr-2 h-5 w-5 text-tunnels-red shrink-0" />
+              <li>
                 <a
                   href="tel:+2347089118412"
-                  className="text-gray-300 hover:text-tunnels-red transition-colors"
+                  className="flex items-center gap-3 text-tunnels-lightgray hover:text-white transition-colors text-sm"
                 >
-                  +234 Tunnels
+                  <Phone className="w-5 h-5 text-tunnels-red shrink-0" />
+                  +234 708 911 8412
                 </a>
               </li>
-              <li className="flex items-center">
-                <Mail className="mr-2 h-5 w-5 text-tunnels-red shrink-0" />
-                <a href="mailto:hello@tunnels.ng" className="text-gray-300 hover:text-tunnels-red transition-colors">
+              <li>
+                <a
+                  href="mailto:hello@tunnels.ng"
+                  className="flex items-center gap-3 text-tunnels-lightgray hover:text-white transition-colors text-sm"
+                >
+                  <Mail className="w-5 h-5 text-tunnels-red shrink-0" />
                   hello@tunnels.ng
                 </a>
               </li>
             </ul>
+
             <NavLink
               to="/contact"
-              className="inline-block mt-6 px-6 py-3 bg-tunnels-red hover:bg-tunnels-red/80 text-white font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 mt-6 text-tunnels-red hover:text-tunnels-red-light transition-colors font-medium text-sm group"
             >
-              Get In Touch
+              Book a Call
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </NavLink>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-tunnels-gray/20 mt-12 pt-8 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} TunnelsNG. All rights reserved.</p>
+      <div className="relative border-t border-tunnels-darkgray">
+        <div className="container mx-auto px-6 md:px-10 lg:px-16 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-tunnels-lightgray text-sm">
+              © {currentYear} Tunnels.ng. All rights reserved.
+            </p>
+            
+            <div className="flex items-center gap-6">
+              <Link
+                to="/contact"
+                className="text-tunnels-lightgray hover:text-white transition-colors text-sm"
+              >
+                Contact Us
+              </Link>
+              <Link
+                to="/faq"
+                className="text-tunnels-lightgray hover:text-white transition-colors text-sm"
+              >
+                FAQ
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
