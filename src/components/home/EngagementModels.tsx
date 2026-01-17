@@ -90,10 +90,13 @@ const EngagementModels = () => {
                   {model.features.map((feature, i) => (
                     <span 
                       key={i} 
-                      className="flex items-center gap-2 text-white/90 bg-white/5 px-4 py-2 rounded-full border border-white/10"
+                      className="flex items-center gap-2 text-white/90 text-sm font-medium"
                     >
                       <CheckCircle className="w-4 h-4 text-tunnels-red" />
-                      {feature}
+                      <span className="relative inline-block">
+                        <span className="relative z-10 px-1">{feature}</span>
+                        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-white/80 via-white/30 to-transparent -z-10" />
+                      </span>
                     </span>
                   ))}
                 </div>

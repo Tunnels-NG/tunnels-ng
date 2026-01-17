@@ -12,9 +12,11 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'Tunnels.ng | Technology Venture Studio - Build Now, Pay Later',
-  description: "Africa's leading technology venture studio. We build MVPs, automate business processes, and partner with founders through equity, revenue share, or Build Now Pay Later models.",
-  keywords: 'technology venture studio, MVP development, business automation, software development Nigeria, tech startup partner, build now pay later, equity partnership, fintech development, SaaS development, African tech, Lagos software company',
+  title: 'TunnelsNG | Technology Venture Studio Nigeria',
+  description:
+    'TunnelsNG is a selective technology venture studio in Lagos partnering with African founders, growth-stage teams, and corporate innovators to co-build enduring products, automation, and venture partnerships.',
+  keywords:
+    'technology venture studio Nigeria, venture studio Africa, technical co-founder, startup technology partner, advisory and automation, Lagos venture studio, co-build startup Africa',
   image: 'https://tunnels.ng/assets/og-image.png',
   url: 'https://tunnels.ng',
 };

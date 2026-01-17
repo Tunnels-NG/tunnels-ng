@@ -151,15 +151,29 @@ const FAQ = () => {
     ]
   };
 
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": Object.values(faqs).flat().map((entry) => ({
+      "@type": "Question",
+      "name": entry.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": entry.answer
+      }
+    }))
+  };
+
   const currentFAQs = faqs[selectedCategory as keyof typeof faqs];
 
   return (
     <div className="min-h-screen bg-tunnels-black">
       <SEO 
-        title="FAQ"
-        description="Find answers to frequently asked questions about Tunnels.ng services, partnership models, pricing, and development process. Learn about Build Now Pay Later, equity partnerships, and more."
-        keywords="tunnels ng FAQ, MVP development questions, technology partnership FAQ, build now pay later explained, equity partnership questions, software development pricing"
+        title="TunnelsNG FAQ"
+        description="Answers to common questions about TunnelsNG’s advisory services, build mandates, venture partnerships, and evaluation process across Nigeria and Africa."
+        keywords="tunnelsng faq, venture studio questions, advisory services nigeria, automation partner africa"
         url="https://tunnels.ng/faq"
+        structuredData={faqStructuredData}
       />
       <Navbar />
 

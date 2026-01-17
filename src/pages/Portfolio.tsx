@@ -236,8 +236,9 @@ const Portfolio = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-tunnels-black via-transparent to-transparent" />
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-tunnels-black/80 text-tunnels-red text-xs font-medium rounded-full">
-                      {project.partnership}
+                    <span className="relative inline-block text-xs font-semibold uppercase tracking-wide text-tunnels-red">
+                      <span className="relative z-10 px-1">{project.partnership}</span>
+                      <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-tunnels-red/80 via-tunnels-red/40 to-transparent -z-10" />
                     </span>
                   </div>
                 </div>

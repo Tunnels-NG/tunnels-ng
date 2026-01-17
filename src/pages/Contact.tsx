@@ -1,19 +1,12 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Mail, Phone, MessageSquare, Send, Shield, Globe, Clock, X, Settings, TrendingUp, Users, Code, BarChart3, CheckCircle, AlertCircle, Rocket } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MessageSquare, Send, Shield, X, Settings, TrendingUp, Code, BarChart3, CheckCircle, AlertCircle, Rocket, Search } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import { EMAILJS_CONFIG } from '@/lib/email';
 
-
-// EmailJS Configuration 
-const EMAILJS_CONFIG = {
-  serviceId: 'service_dklrwlt',
-  templateIdCustomer: 'template_customer',
-  templateIdAdmin: 'template_admin',
-  publicKey: 'qhtEaObeaR1XYXprU'
-};
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', budget: '', project: '', message: '' });
@@ -107,7 +100,7 @@ const ContactPage = () => {
     { id: 'audit', label: 'System Audit', icon: TrendingUp },
     { id: 'consultancy', label: 'IT Consultancy', icon: BarChart3 },
     { id: 'development', label: 'Custom Development', icon: Code },
-    { id: 'partnership', label: 'Strategic Partnership', icon: Users }
+    { id: 'advisory', label: 'Advisory & Strategy', icon: Search }
   ];
 
   const contactMethods = [
@@ -138,9 +131,9 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-tunnels-black">
       <SEO 
-        title="Contact Us"
-        description="Get in touch with Tunnels.ng. Let's discuss your project idea, partnership opportunity, or any questions you have about our services. We respond within 24 hours."
-        keywords="contact tunnels ng, software development inquiry, tech partnership, project consultation, MVP development inquiry, Lagos tech company contact"
+        title="Contact TunnelsNG"
+        description="Start an advisory, build, or automation engagement with TunnelsNG—Lagos technology partners for serious founders and enterprises."
+        keywords="contact tunnelsng, technology services nigeria, advisory request, business automation nigeria, system audit contact"
         url="https://tunnels.ng/contact"
       />
       <Navbar />
@@ -161,16 +154,16 @@ const ContactPage = () => {
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Request Received</h3>
               <p className="text-white/60 mb-6">
-                Thank you for reaching out. We've sent a confirmation to your email and our team will respond within 2 hours.
+                Thank you for reaching out. We've sent a confirmation to your email and will review your request shortly.
               </p>
               
               <button
                 onClick={() => setShowSuccessModal(false)}
                 className="w-full px-6 py-3 bg-tunnels-red text-white font-semibold rounded-lg hover:bg-tunnels-red-light transition-colors"
               >
-                Got it!
+                Got it
               </button>
             </div>
           </div>
@@ -182,12 +175,20 @@ const ContactPage = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className={`text-center max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Let's Build <span className="text-tunnels-red">Something Amazing</span>
+              Work <span className="text-tunnels-red">With Us</span>
             </h1>
             
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Ready to transform your business? Let's discuss your project and create solutions that drive real results.
+            <p className="text-xl text-white/70 max-w-2xl mx-auto mb-8">
+              Reach out for advisory, build, or automation services. For long-term venture partnerships, please apply through our Venture Studio.
             </p>
+
+            <Link
+              to="/venture-studio/apply"
+              className="inline-flex items-center gap-2 text-tunnels-red hover:text-tunnels-red-light transition-colors font-medium"
+            >
+              Apply to Venture Studio
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -201,10 +202,10 @@ const ContactPage = () => {
               <div className="lg:col-span-2 space-y-8">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Ready to <span className="text-tunnels-red">Transform</span> Your Business?
+                    Get in <span className="text-tunnels-red">Touch</span>
                   </h2>
                   <p className="text-white/60 text-lg">
-                    Our team of experts is ready to discuss your project and provide tailored solutions that drive real results.
+                    We respond to qualified service inquiries. Initial discussion subject to evaluation.
                   </p>
                 </div>
                 
@@ -259,22 +260,10 @@ const ContactPage = () => {
                   </div>
                 )}
 
-                {/* Trust Indicators */}
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: Shield, label: '100% Confidential' },
-                    { icon: Clock, label: '2hr Response' },
-                    { icon: Check, label: 'Quality Guaranteed' },
-                    { icon: Globe, label: 'Global Support' }
-                  ].map((item, i) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={i} className="flex items-center gap-2 text-white/60">
-                        <Icon className="w-4 h-4 text-tunnels-red" />
-                        <span className="text-sm">{item.label}</span>
-                      </div>
-                    );
-                  })}
+                {/* Trust Indicator */}
+                <div className="flex items-center gap-3 p-4 bg-tunnels-black rounded-xl border border-tunnels-darkgray/30">
+                  <Shield className="w-5 h-5 text-tunnels-red flex-shrink-0" />
+                  <span className="text-white/60 text-sm">All inquiries are treated with strict confidentiality</span>
                 </div>
               </div>
               
@@ -282,8 +271,8 @@ const ContactPage = () => {
               <div className="lg:col-span-3">
                 <div className="bg-tunnels-black rounded-2xl p-8 border border-tunnels-darkgray/50">
                   <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-white mb-2">Start Your Project</h3>
-                    <p className="text-white/60">Tell us about your project and we'll get back to you within 2 hours.</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">Request a Service Discussion</h3>
+                    <p className="text-white/60">Tell us about your project and requirements.</p>
                   </div>
 
                   {/* Error Message */}
@@ -424,11 +413,25 @@ const ContactPage = () => {
                       }`}
                     >
                       {isSubmitting ? (
-                        <>Sending... <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /></>
+                        <>Submitting... <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /></>
                       ) : (
-                        <>Send Message <Send className="w-5 h-5" /></>
+                        <>Submit Request <Send className="w-5 h-5" /></>
                       )}
                     </button>
+
+                    {/* Venture Studio Notice */}
+                    <div className="mt-6 p-4 bg-tunnels-dark/50 rounded-xl border border-tunnels-darkgray/30">
+                      <p className="text-white/50 text-sm mb-3">
+                        Venture Studio partnerships require a separate application and evaluation process.
+                      </p>
+                      <Link
+                        to="/venture-studio/apply"
+                        className="inline-flex items-center gap-2 text-tunnels-red hover:text-tunnels-red-light transition-colors text-sm font-medium"
+                      >
+                        Apply to Venture Studio
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -441,13 +444,13 @@ const ContactPage = () => {
       <section className="py-20 bg-tunnels-black">
         <div className="container mx-auto px-6 md:px-10 lg:px-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Not Ready to Start Yet?
+            Explore Our Work
           </h2>
           <p className="text-xl text-white/60 mb-8 max-w-2xl mx-auto">
-            That's okay! Learn more about our services or connect with us when you're ready.
+            Learn more about our services and approach before reaching out.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/services"
               className="px-8 py-4 bg-tunnels-dark border border-tunnels-darkgray/50 text-white font-semibold rounded-lg hover:border-tunnels-red/30 transition-all duration-300 flex items-center justify-center gap-2"
@@ -461,15 +464,6 @@ const ContactPage = () => {
             >
               Learn About Us
             </Link>
-          </div>
-          
-          <div className="flex flex-wrap items-center justify-center gap-8 text-white/60">
-            {['Free Consultation', 'No Obligation', 'Quick Response'].map((item, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-tunnels-red" />
-                <span>{item}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>

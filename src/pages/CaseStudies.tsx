@@ -221,15 +221,31 @@ const CaseStudies = () => {
               
               <div className="flex flex-col justify-center">
                 <div className="flex flex-wrap gap-3 mb-4">
-                  <span className="px-3 py-1 bg-tunnels-red/10 text-tunnels-red text-sm rounded-full">
-                    {activeStudy.category}
-                  </span>
-                  <span className="px-3 py-1 bg-tunnels-dark text-white/60 text-sm rounded-full">
-                    {activeStudy.partnership}
-                  </span>
-                  <span className="px-3 py-1 bg-tunnels-dark text-white/60 text-sm rounded-full">
-                    {activeStudy.duration}
-                  </span>
+                  {[
+                    {
+                      value: activeStudy.category,
+                      textClass: 'text-tunnels-red',
+                      accent: 'from-tunnels-red/80 via-tunnels-red/30 to-transparent'
+                    },
+                    {
+                      value: activeStudy.partnership,
+                      textClass: 'text-white/70',
+                      accent: 'from-white/60 via-white/30 to-transparent'
+                    },
+                    {
+                      value: activeStudy.duration,
+                      textClass: 'text-white/70',
+                      accent: 'from-white/60 via-white/30 to-transparent'
+                    }
+                  ].map((label, idx) => (
+                    <span
+                      key={idx}
+                      className={`relative inline-block text-sm font-medium ${label.textClass}`}
+                    >
+                      <span className="relative z-10 px-1">{label.value}</span>
+                      <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r ${label.accent} -z-10`} />
+                    </span>
+                  ))}
                 </div>
                 
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">

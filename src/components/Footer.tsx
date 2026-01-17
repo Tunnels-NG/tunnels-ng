@@ -1,28 +1,24 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowRight, ArrowUpRight, Linkedin, Twitter, Github, Instagram, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, ArrowUpRight, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     company: [
-      { name: 'About Us', path: '/about' },
-      { name: 'Our Team', path: '/about#team' },
+      { name: 'About', path: '/about' },
       { name: 'Careers', path: '/careers' },
       { name: 'Contact', path: '/contact' },
     ],
     services: [
-      { name: 'Business Automation', path: '/services#automation' },
-      { name: 'MVP Development', path: '/services#mvp' },
-      { name: 'Custom Software', path: '/services#custom' },
-      { name: 'IT Consultancy', path: '/services#consultancy' },
+      { name: 'Advisory & Audit', path: '/services#advisory' },
+      { name: 'Build & Automation', path: '/services#build' },
+      { name: 'Venture Studio', path: '/venture-studio' },
     ],
     resources: [
-      { name: 'Venture Studio', path: '/venture-studio' },
-      { name: 'Portfolio', path: '/portfolio' },
       { name: 'Case Studies', path: '/case-studies' },
+      { name: 'Portfolio', path: '/portfolio' },
       { name: 'How It Works', path: '/how-it-works' },
-      { name: 'FAQ', path: '/faq' },
     ],
   };
 
@@ -39,10 +35,6 @@ const Footer = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 py-16">
           <div className="bg-tunnels-dark border border-tunnels-darkgray rounded-2xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
-              {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-tunnels-red/10 border border-tunnels-red/20 rounded-full text-tunnels-red text-sm font-medium mb-4">
-                <Zap className="w-4 h-4" />
-                Stay Updated
-              </div> */}
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
                 Get the latest insights
               </h3>
@@ -86,8 +78,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-tunnels-lightgray mb-6 max-w-sm leading-relaxed">
-              Empowering innovation through automation and accelerated MVP delivery. 
-              We're your tech venture studio partner for building, scaling, and dominating markets.
+              A technology venture studio focused on building, automating, and scaling enduring businesses.
             </p>
             
             <div className="flex items-center gap-3">
@@ -184,13 +175,15 @@ const Footer = () => {
               </li>
             </ul>
 
-            <NavLink
-              to="/contact"
+            <a
+              href="https://calendly.com/tunnelsnig"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-6 text-tunnels-red hover:text-tunnels-red-light transition-colors font-medium text-sm group"
             >
               Book a Call
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </NavLink>
+            </a>
           </div>
         </div>
       </div>

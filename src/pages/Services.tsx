@@ -1,15 +1,146 @@
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Check, Users, Code, Settings, Rocket, BarChart3, Target, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { ArrowRight, Check, Code, Target, Handshake, Search } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
 const ServicesPage = () => {
-  const [selectedService, setSelectedService] = useState('automation');
+  const servicePillars = [
+    {
+      id: 'advisory',
+      icon: Search,
+      title: 'Advisory & Audit',
+      tagline: 'Make the right decisions before you build.',
+      description: 'Strategic technology guidance and comprehensive system evaluation to ensure your technical decisions align with business objectives.',
+      longDescription: 'Before building or scaling, businesses need clarity. Our advisory services help you make informed technical decisions, avoid costly mistakes, and create a roadmap for sustainable growth. We assess your current systems, identify opportunities, and develop strategies that align technology with business outcomes.',
+      services: [
+        {
+          name: 'IT Consultancy & Advisory',
+          desc: 'Strategic guidance on technology investments, architecture decisions, and digital transformation.'
+        },
+        {
+          name: 'System Audit & Optimization',
+          desc: 'Comprehensive evaluation of existing systems to identify performance gaps and improvement opportunities.'
+        }
+      ],
+      outcomes: [
+        'Informed technology decisions',
+        'Reduced technical risk',
+        'Clear execution roadmap',
+        'Aligned IT and business strategy'
+      ],
+      cta: 'Request Advisory',
+      ctaLink: '/contact'
+    },
+    {
+      id: 'build',
+      icon: Code,
+      title: 'Build & Automation',
+      tagline: 'Execution-focused. Business-aligned.',
+      description: 'Scalable software development and intelligent automation solutions built with an ownership mindset and long-term maintainability.',
+      longDescription: 'We build systems designed to scale. Whether you need to automate critical business processes, launch an MVP to validate your market, or develop custom software for complex requirements, our team approaches every build with the same rigor we apply to our own ventures.',
+      services: [
+        {
+          name: 'Business Process Automation',
+          desc: 'Intelligent automation solutions that eliminate inefficiencies and reduce operational costs.'
+        },
+        {
+          name: 'Rapid MVP Development',
+          desc: 'Validate your market with a functional product built for speed and iteration.'
+        },
+        {
+          name: 'Custom Software Solutions',
+          desc: 'End-to-end development of scalable, maintainable systems tailored to your requirements.'
+        }
+      ],
+      outcomes: [
+        'Reduced operational overhead',
+        'Faster time to market',
+        'Scalable architecture',
+        'Maintainable codebase'
+      ],
+      cta: 'Discuss a Build',
+      ctaLink: '/contact'
+    },
+    {
+      id: 'venture',
+      icon: Handshake,
+      title: 'Venture Partnerships',
+      tagline: 'Long-term alignment. Shared accountability.',
+      description: 'Selective partnership models for ventures that meet our criteria. This is not a service — it\'s an evaluation-based collaboration.',
+      longDescription: 'For ventures with significant potential, we offer partnership structures that go beyond traditional client-vendor relationships. These are selective, long-term collaborations where our success is directly tied to yours. Partnership models are determined through internal evaluation based on stage, traction, and market potential.',
+      services: [
+        {
+          name: 'Deferred Build Partnerships',
+          desc: 'Milestone-based development with performance-tied repayment for validated early-stage ventures.'
+        },
+        {
+          name: 'Equity Partnerships',
+          desc: 'Long-term co-building with shared ownership for high-potential ventures with serious execution capacity.'
+        }
+      ],
+      outcomes: [
+        'Aligned incentives',
+        'Long-term technical partnership',
+        'Ownership mindset from day one',
+        'Shared accountability for outcomes'
+      ],
+      cta: 'Explore Venture Partnership',
+      ctaLink: '/venture-studio',
+      isSelective: true
+    }
+  ];
+
+  const servicesStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Technology Services for Startups & Businesses",
+      "provider": {
+        "@type": "Organization",
+        "name": "TunnelsNG",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lagos",
+          "addressCountry": "Nigeria"
+        }
+      },
+      "areaServed": ["Nigeria", "Africa"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Service Architecture",
+        "itemListElement": servicePillars.map((pillar) => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": pillar.title,
+            "description": pillar.description,
+            "url": `https://tunnels.ng${pillar.ctaLink}`
+          }
+        }))
+      }
+    }
+  ];
+  const [selectedPillar, setSelectedPillar] = useState('advisory');
   const [isVisible, setIsVisible] = useState(false);
   const [visibleSections, setVisibleSections] = useState(new Set<string>());
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const location = useLocation();
+
+  // Handle hash-based deep linking for pillars
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash && ['advisory', 'build', 'venture'].includes(hash)) {
+      setSelectedPillar(hash);
+      // Scroll to services section after a short delay
+      setTimeout(() => {
+        const servicesSection = document.getElementById('services-section');
+        if (servicesSection) {
+          servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -35,428 +166,204 @@ const ServicesPage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Canvas animation for hero
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = 500;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Floating particles
-    const particles: { x: number; y: number; vx: number; vy: number; radius: number; opacity: number }[] = [];
-    const particleCount = 50;
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw grid
-      ctx.strokeStyle = 'rgba(249, 115, 22, 0.03)';
-      ctx.lineWidth = 0.5;
-      const gridSize = 60;
-      for (let x = 0; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-
-      // Draw and update particles
-      particles.forEach((particle) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(249, 115, 22, ${particle.opacity})`;
-        ctx.fill();
-      });
-
-      // Draw connections between nearby particles
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(249, 115, 22, ${0.1 * (1 - distance / 120)})`;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
-
-  const services = [
-    {
-      id: 'automation',
-      icon: Settings,
-      title: 'Business Process Automation',
-      tagline: 'Streamline. Optimize. Scale.',
-      description: 'Transform your business operations with intelligent automation solutions that eliminate repetitive tasks and boost productivity.',
-      longDescription: 'We analyze your current workflows and design custom solutions that seamlessly integrate with your existing systems. Our automation experts use cutting-edge technologies to create processes that significantly reduce operational costs while improving accuracy and speed.',
-      outcomes: [
-        'Reduce operational costs by 40-60%',
-        'Eliminate human error in repetitive tasks',
-        'Free up team resources for strategic work',
-        'Improve process speed and consistency'
-      ],
-      solutions: [
-        'Custom Workflow Solutions',
-        'Intelligent Process Design',
-        'System Integration',
-        'Performance Monitoring'
-      ]
-    },
-    {
-      id: 'partnership',
-      icon: Users,
-      title: 'Growth-Aligned Partnerships',
-      tagline: 'Build Now. Grow Together.',
-      description: 'Innovative engagement models designed to match your pace, resources, and ambition, removing traditional barriers to world-class development.',
-      longDescription: 'We offer unique partnership models that align our success with yours. Through Build Now Pay Later and Equity Partnership options, we work with you to create flexible arrangements that allow you to access enterprise-level development services while focusing on growth.',
-      outcomes: [
-        'Access to experienced technical teams',
-        'Aligned incentives for mutual success',
-        'Flexible engagement structures',
-        'Long-term strategic partnership'
-      ],
-      solutions: [
-        'Build Now, Pay Later',
-        'Equity Partnerships',
-        'Strategic Technical Advisory',
-        'Growth-Oriented Planning'
-      ],
-      idealFor: ['Early-stage startups', 'Bootstrapped companies', 'Innovative business models', 'High-growth ventures']
-    },
-    {
-      id: 'audit',
-      icon: BarChart3,
-      title: 'System Audit & Optimization',
-      tagline: 'Diagnose. Optimize. Scale.',
-      description: 'Comprehensive evaluation of your existing systems to unlock performance improvements and prepare for exponential growth.',
-      longDescription: 'Our expert engineers conduct thorough assessments of your current infrastructure, identifying opportunities for improvement and implementing solutions that prepare your systems for scale. We focus on performance, security, and cost optimization.',
-      outcomes: [
-        'Improve system performance by 3-10x',
-        'Identify and resolve critical issues',
-        'Reduce infrastructure costs',
-        'Prepare for high-traffic scenarios'
-      ],
-      solutions: [
-        'Infrastructure Assessment',
-        'Performance Optimization',
-        'Security Enhancement',
-        'Scalability Planning'
-      ],
-      deliverables: ['Comprehensive Assessment Report', 'Optimization Roadmap', 'Implementation Strategy']
-    },
-    {
-      id: 'mvp',
-      icon: Rocket,
-      title: 'Rapid MVP Development',
-      tagline: 'Idea to Market in Record Time.',
-      description: 'Transform your ideas into market-ready products using proven acceleration methodologies that ensure speed without sacrificing quality.',
-      longDescription: 'Our streamlined development process gets your product to market faster than traditional approaches. We use proven frameworks and lean methodologies to build functional products that allow you to test, validate, and iterate quickly.',
-      outcomes: [
-        'Launch in weeks, not months',
-        'Validate ideas before full investment',
-        'Attract investors with working products',
-        'Gather real user feedback early'
-      ],
-      solutions: [
-        'Rapid Prototyping',
-        'Market Validation',
-        'User Experience Design',
-        'Iterative Development'
-      ]
-    },
-    {
-      id: 'consultancy',
-      icon: Target,
-      title: 'IT Consultancy & Advisory',
-      tagline: 'Expert Guidance. Smart Decisions.',
-      description: 'Strategic technology guidance to help you make informed decisions about your tech investments and digital transformation.',
-      longDescription: 'Our senior technology experts provide strategic guidance to help you navigate complex technology decisions. We develop comprehensive strategies that align with your business objectives and ensure your technology choices support long-term growth.',
-      outcomes: [
-        'Make informed technology decisions',
-        'Avoid costly architectural mistakes',
-        'Align IT strategy with business goals',
-        'Optimize technology investments'
-      ],
-      solutions: [
-        'IT Consultation Services',
-        'Technology Strategy Development',
-        'Architecture Planning', 
-        'Digital Transformation'
-      ]
-    },
-    {
-      id: 'development',
-      icon: Code,
-      title: 'Custom Software Solutions',
-      tagline: 'Bespoke Solutions. Infinite Scale.',
-      description: 'End-to-end custom software development that perfectly aligns with your business requirements and scales with your growth.',
-      longDescription: 'From web applications to mobile apps and enterprise systems, we build custom software solutions that are robust, scalable, and perfectly aligned with your business requirements. Our development team uses modern technologies and industry best practices.',
-      outcomes: [
-        'Tailored to your exact requirements',
-        'Scalable and maintainable solutions',
-        'Modern, responsive interfaces',
-        'Secure and performant architecture'
-      ],
-      solutions: [
-        'Full-Stack Development',
-        'Mobile Applications', 
-        'Enterprise Solutions',
-        'API Development'
-      ]
-    }
-  ];
-
-  const selectedServiceData = services.find(service => service.id === selectedService);
+  const selectedPillarData = servicePillars.find(pillar => pillar.id === selectedPillar);
 
   return (
     <div className="min-h-screen bg-tunnels-black">
       <SEO 
-        title="Our Services"
-        description="Explore our comprehensive technology services including business process automation, MVP development, custom software solutions, and enterprise systems. Transform your business with cutting-edge technology."
-        keywords="business automation services, MVP development, custom software development, enterprise solutions, SaaS development, mobile app development, web development Nigeria, fintech development"
+        title="Technology Services for Startups & Businesses"
+        description="Strategic advisory, build, and automation services from TunnelsNG—a Lagos-based technology venture studio partnering with serious founders and corporate teams across Nigeria and Africa."
+        keywords="technology services for startups, advisory audit Nigeria, build and automation partner, system audit for startups, scalable software architecture"
         url="https://tunnels.ng/services"
+        structuredData={servicesStructuredData}
       />
       <Navbar />
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-tunnels-black relative overflow-hidden">
-        {/* Animated canvas background */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 pointer-events-none"
-          style={{ top: 0 }}
-        />
-        
-        {/* Corner accents */}
-        <div className="absolute top-24 left-6 md:left-10 lg:left-16 w-16 h-16 border-l-2 border-t-2 border-tunnels-red/30 pointer-events-none" />
-        <div className="absolute top-24 right-6 md:right-10 lg:right-16 w-16 h-16 border-r-2 border-t-2 border-tunnels-red/30 pointer-events-none" />
-        
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our <span className="text-tunnels-red">Services</span>
+              Structured Technology <span className="text-tunnels-red">Services</span> for Serious Businesses
             </h1>
             
-            <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
-              Comprehensive technology solutions designed to transform your business, 
-              streamline operations, and drive sustainable growth.
+            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-10">
+              We provide advisory, build, and automation services designed to reduce execution risk, 
+              accelerate growth, and prepare businesses for long-term scale.
             </p>
-            
-            <div className="flex flex-wrap justify-center gap-6">
-              <div className="flex items-center gap-2 text-white/70 group">
-                <div className="w-6 h-6 rounded-full border border-tunnels-red/50 flex items-center justify-center group-hover:bg-tunnels-red/20 transition-colors">
-                  <Check className="w-3 h-3 text-tunnels-red" />
-                </div>
-                <span>Innovation-Driven</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/70 group">
-                <div className="w-6 h-6 rounded-full border border-tunnels-red/50 flex items-center justify-center group-hover:bg-tunnels-red/20 transition-colors">
-                  <Check className="w-3 h-3 text-tunnels-red" />
-                </div>
-                <span>Results-Focused</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/70 group">
-                <div className="w-6 h-6 rounded-full border border-tunnels-red/50 flex items-center justify-center group-hover:bg-tunnels-red/20 transition-colors">
-                  <Check className="w-3 h-3 text-tunnels-red" />
-                </div>
-                <span>Partnership-First</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services-section" data-section className={`py-20 bg-tunnels-dark relative transition-all duration-700 ${visibleSections.has('services-section') ? 'opacity-100' : 'opacity-0'}`}>
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `radial-gradient(circle at center, rgba(249, 115, 22, 0.5) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }} />
+      <section id="services-section" data-section className={`py-24 bg-tunnels-dark relative transition-all duration-700 ${visibleSections.has('services-section') ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Premium background effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-tunnels-red/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-tunnels-red/3 rounded-full blur-[100px]" />
+          <div className="absolute inset-0 opacity-[0.015]" style={{
+            backgroundImage: `linear-gradient(rgba(249, 115, 22, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.3) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
         
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Solutions That <span className="text-tunnels-red">Deliver</span>
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="mb-6 flex justify-center">
+              <span className="relative inline-block text-sm text-white/70 tracking-[0.3em] uppercase">
+                <span className="relative z-10 px-2">Our Service Architecture</span>
+                <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-tunnels-red/80 via-tunnels-red/40 to-transparent -z-10" />
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Three Strategic <span className="text-tunnels-red">Pillars</span>
             </h2>
-            <p className="text-white/70 max-w-2xl mx-auto text-lg">
-              Every solution we build is designed to solve real business problems and drive measurable results.
+            <p className="text-white/60 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+              Each pillar represents a distinct engagement model, designed for different stages of 
+              business maturity and strategic needs.
             </p>
           </div>
-          
-          <div className="grid lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
-            {/* Services Navigation */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-24 space-y-3">
-                {services.map((service, index) => {
-                  const Icon = service.icon;
-                  return (
-                    <button
-                      key={service.id}
-                      onClick={() => setSelectedService(service.id)}
-                      className={`w-full text-left p-4 rounded-xl transition-all duration-300 border group ${
-                        selectedService === service.id
-                          ? 'bg-tunnels-red border-tunnels-red text-white scale-[1.02]'
-                          : 'bg-tunnels-black border-tunnels-darkgray/50 text-white/70 hover:border-tunnels-red/30 hover:text-white hover:scale-[1.01]'
-                      }`}
-                      style={{ transitionDelay: `${index * 50}ms` }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                          selectedService === service.id ? 'bg-white/20' : 'bg-tunnels-darkgray group-hover:bg-tunnels-red/20'
-                        }`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm">{service.title}</h4>
-                          <p className={`text-xs ${selectedService === service.id ? 'text-white/80' : 'text-white/50'}`}>
-                            {service.tagline}
-                          </p>
-                        </div>
-                        <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${selectedService === service.id ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
 
-            {/* Service Details */}
-            <div className="lg:col-span-8">
-              {selectedServiceData && (
-                <div className="p-8 md:p-10 rounded-2xl border border-tunnels-darkgray/50 bg-tunnels-black relative overflow-hidden group">
-                  {/* Glow effect on hover */}
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-tunnels-red/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-xl bg-tunnels-red/10 flex items-center justify-center border border-tunnels-red/20">
-                        <selectedServiceData.icon className="w-7 h-7 text-tunnels-red" />
-                      </div>
-                      <div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">{selectedServiceData.title}</h2>
-                        <p className="text-tunnels-red font-medium">{selectedServiceData.tagline}</p>
-                      </div>
-                    </div>
-                    
-                    <p className="text-white/70 text-lg mb-4">{selectedServiceData.description}</p>
-                    <p className="text-white/60 mb-8 leading-relaxed">{selectedServiceData.longDescription}</p>
-
-                    <div className="grid md:grid-cols-2 gap-8 mb-8">
-                      <div>
-                        <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-tunnels-red rounded-full" />
-                          Outcomes You'll See
-                        </h4>
-                        <div className="space-y-3">
-                          {selectedServiceData.outcomes.map((outcome, i) => (
-                            <div key={i} className="flex items-start gap-3 text-white/70 group/item hover:text-white transition-colors">
-                              <Check className="w-5 h-5 text-tunnels-red mt-0.5 flex-shrink-0" />
-                              <span>{outcome}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-tunnels-red rounded-full" />
-                          What We Deliver
-                        </h4>
-                        <div className="space-y-3">
-                          {selectedServiceData.solutions.map((solution, i) => (
-                            <div key={i} className="flex items-start gap-3 text-white/70 hover:text-white transition-colors">
-                              <div className="w-1.5 h-1.5 bg-tunnels-red rounded-full mt-2 flex-shrink-0" />
-                              <span>{solution}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {selectedServiceData.idealFor && (
-                      <div className="mb-8">
-                        <h4 className="text-lg font-semibold text-white mb-4">Perfect For</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedServiceData.idealFor.map((target, i) => (
-                            <span key={i} className="px-3 py-1 bg-tunnels-red/10 text-tunnels-red rounded-full text-sm border border-tunnels-red/20 hover:bg-tunnels-red/20 transition-colors cursor-default">
-                              {target}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+          {/* Tab Navigation */}
+          <div className="flex justify-center mb-16">
+            <div className="inline-flex p-1.5 rounded-2xl bg-tunnels-black/80 border border-tunnels-darkgray/30 backdrop-blur-sm">
+              {servicePillars.map((pillar) => {
+                const Icon = pillar.icon;
+                const isActive = selectedPillar === pillar.id;
+                return (
+                  <button
+                    key={pillar.id}
+                    onClick={() => setSelectedPillar(pillar.id)}
+                    className={`relative flex items-center gap-2.5 px-5 md:px-6 py-3 rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? 'bg-tunnels-red text-white'
+                        : 'text-white/50 hover:text-white'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="font-medium text-sm">{pillar.title}</span>
+                    {pillar.isSelective && (
+                      <span className={`text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded font-bold ${
+                        isActive ? 'bg-white/20' : 'bg-tunnels-red/20 text-tunnels-red'
+                      }`}>
+                        •
+                      </span>
                     )}
-
-                    {selectedServiceData.deliverables && (
-                      <div className="mb-8">
-                        <h4 className="text-lg font-semibold text-white mb-4">Key Deliverables</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedServiceData.deliverables.map((deliverable, i) => (
-                            <span key={i} className="px-3 py-1 bg-tunnels-darkgray text-white/70 rounded-full text-sm hover:text-white transition-colors cursor-default">
-                              {deliverable}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              )}
+                  </button>
+                );
+              })}
             </div>
           </div>
+          
+          {/* Main Content Card */}
+          {selectedPillarData && (
+            <div className="max-w-6xl mx-auto">
+              <div className="relative rounded-3xl border border-tunnels-darkgray/30 bg-gradient-to-br from-tunnels-black via-tunnels-black to-tunnels-dark overflow-hidden">
+                {/* Top accent gradient */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-tunnels-red to-transparent" />
+                
+                {/* Decorative corner elements */}
+                <div className="absolute top-6 left-6 w-16 h-16 border-l-2 border-t-2 border-tunnels-red/30 rounded-tl-lg" />
+                <div className="absolute bottom-6 right-6 w-16 h-16 border-r-2 border-b-2 border-tunnels-red/30 rounded-br-lg" />
+
+                {/* Background glow */}
+                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-tunnels-red/5 blur-[100px] rounded-full" />
+
+                <div className="relative z-10 p-8 md:p-12 lg:p-16">
+                  {/* Header */}
+                  <div className="flex flex-col lg:flex-row lg:items-start gap-6 mb-10">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-tunnels-red to-tunnels-red-light flex items-center justify-center shadow-xl shadow-tunnels-red/20">
+                      <selectedPillarData.icon className="w-10 h-10 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">{selectedPillarData.title}</h2>
+                        {selectedPillarData.isSelective && (
+                          <span className="relative inline-block text-xs uppercase tracking-widest text-tunnels-red font-semibold">
+                            <span className="relative z-10 px-1">Evaluation-Based</span>
+                            <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-tunnels-red/80 via-tunnels-red/40 to-transparent -z-10 -skew-x-6" />
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-tunnels-red text-lg font-medium mb-4">{selectedPillarData.tagline}</p>
+                      <p className="text-white/70 text-lg leading-relaxed max-w-3xl">{selectedPillarData.description}</p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-tunnels-darkgray/50 to-transparent mb-10" />
+
+                  {/* Long description */}
+                  <p className="text-white/50 text-lg leading-relaxed mb-12 max-w-4xl">{selectedPillarData.longDescription}</p>
+
+                  {/* Two column layout */}
+                  <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    {/* Services Included */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-xl bg-tunnels-red/10 flex items-center justify-center">
+                          <Code className="w-5 h-5 text-tunnels-red" />
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Services Included</h4>
+                      </div>
+                      <div className="space-y-4">
+                        {selectedPillarData.services.map((service, i) => (
+                          <div 
+                            key={i} 
+                            className="group p-5 rounded-2xl bg-tunnels-dark/40 border border-tunnels-darkgray/20 hover:border-tunnels-red/30 transition-all duration-300 hover:-translate-y-1"
+                          >
+                            <div className="flex items-start gap-4">
+                              <div className="w-8 h-8 rounded-lg bg-tunnels-red/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-tunnels-red/20 transition-colors">
+                                <span className="text-tunnels-red text-sm font-bold">{i + 1}</span>
+                              </div>
+                              <div>
+                                <h5 className="text-white font-semibold mb-1.5 group-hover:text-tunnels-red transition-colors">{service.name}</h5>
+                                <p className="text-white/50 text-sm leading-relaxed">{service.desc}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Business Outcomes */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-xl bg-tunnels-red/10 flex items-center justify-center">
+                          <Target className="w-5 h-5 text-tunnels-red" />
+                        </div>
+                        <h4 className="text-xl font-bold text-white">Business Outcomes</h4>
+                      </div>
+                      <div className="p-6 rounded-2xl bg-tunnels-dark/40 border border-tunnels-darkgray/20">
+                        <div className="space-y-4">
+                          {selectedPillarData.outcomes.map((outcome, i) => (
+                            <div key={i} className="flex items-center gap-4 group">
+                              <div className="w-8 h-8 rounded-full bg-tunnels-red/10 flex items-center justify-center flex-shrink-0 group-hover:bg-tunnels-red/20 transition-colors">
+                                <Check className="w-4 h-4 text-tunnels-red" />
+                              </div>
+                              <span className="text-white/70 group-hover:text-white transition-colors">{outcome}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* CTA */}
+                      <div className="mt-8">
+                        <Link
+                          to={selectedPillarData.ctaLink}
+                          className="group inline-flex items-center gap-3 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-xl transition-all duration-300 hover:bg-tunnels-red-light hover:gap-4 hover:shadow-xl hover:shadow-tunnels-red/20"
+                        >
+                          <span>{selectedPillarData.cta}</span>
+                          <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -465,18 +372,18 @@ const ServicesPage = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Why Choose <span className="text-tunnels-red">TunnelsNG</span>?
+              Why <span className="text-tunnels-red">TunnelsNG</span>
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto text-lg">
-              We don't just deliver solutions. We deliver results that transform your business.
+              We approach technology with a business-first mindset and long-term accountability.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Check, title: 'Quality Guaranteed', desc: 'Every solution goes through rigorous testing. We don\'t just meet expectations, we exceed them.' },
-              { icon: Users, title: 'Partnership Approach', desc: 'We\'re not vendors. We\'re strategic partners invested in your success. Your growth is our growth.' },
-              { icon: Target, title: 'Results-Driven', desc: 'Every project starts with understanding your business goals. We measure our success by yours.' }
+              { icon: Target, title: 'Business-First Engineering', desc: 'Every technical decision is evaluated against business outcomes. We build what matters, not what\'s trendy.' },
+              { icon: Handshake, title: 'Long-Term Partnership Mindset', desc: 'We\'re not looking for quick transactions. We invest in relationships that create sustained value.' },
+              { icon: Check, title: 'Accountability for Outcomes', desc: 'We measure success by your results, not our deliverables. Our incentives are aligned with yours.' }
             ].map((item, index) => (
               <div 
                 key={index}
@@ -505,29 +412,27 @@ const ServicesPage = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Ready to <span className="text-tunnels-red">Transform</span> Your Business?
+              Work With a Technology <span className="text-tunnels-red">Partner</span>, Not Just a Vendor
             </h2>
-            <p className="text-white/70 text-lg mb-8">
-              Whether you're a startup with a bold vision or an enterprise ready to scale, we're here to turn your ideas into reality.
+            <p className="text-white/70 text-lg mb-10">
+              We work with founders and businesses committed to building scalable, long-term products.
             </p>
             
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3 hover:shadow-lg hover:shadow-tunnels-red/20"
-            >
-              Schedule a Consultation
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-white/60">
-              {['Free Consultation', 'Flexible Engagement', 'Global Delivery'].map((item, index) => (
-                <div key={index} className="flex items-center gap-2 hover:text-white transition-colors">
-                  <div className="w-5 h-5 rounded-full border border-tunnels-red/50 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-tunnels-red" />
-                  </div>
-                  <span>{item}</span>
-                </div>
-              ))}
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3 hover:shadow-lg hover:shadow-tunnels-red/20"
+              >
+                Work With Us
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/venture-studio"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-tunnels-red/50 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red/10 hover:border-tunnels-red hover:gap-3"
+              >
+                Explore Venture Studio
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </div>

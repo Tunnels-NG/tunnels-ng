@@ -13,7 +13,7 @@ const Testimonials = () => {
       role: 'CEO & Founder',
       company: 'FinFlow',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80',
-      quote: "Tunnels.ng transformed our idea into a fully functional fintech platform in just 8 weeks. Their Build Now, Pay Later model meant we could launch without burning through our seed funding. We're now processing over $2M in transactions monthly.",
+      quote: "Tunnels.ng didn't just build our fintech platform, they became strategic partners in our growth. In 8 weeks, we went from concept to processing over $2M monthly. Their execution speed and business acumen set them apart.",
       rating: 5,
       results: '$2M+ monthly transactions'
     },
@@ -22,7 +22,7 @@ const Testimonials = () => {
       role: 'Co-Founder',
       company: 'LogiTech Africa',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80',
-      quote: "The equity partnership model was perfect for us. Tunnels didn't just build our logistics platform, they became true partners invested in our success. Their technical guidance helped us scale to 15 cities across Nigeria.",
+      quote: "We needed more than developers. We needed partners who understood scaling a logistics business across Africa. Tunnels brought technical excellence and strategic thinking that helped us expand to 15 cities.",
       rating: 5,
       results: '15 cities, 500% growth'
     },
@@ -31,7 +31,7 @@ const Testimonials = () => {
       role: 'Product Lead',
       company: 'HealthBridge',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&q=80',
-      quote: "Working with Tunnels felt like having a world-class tech team in-house. They automated our entire patient management system, reducing administrative time by 60%. The ROI was visible within the first month.",
+      quote: "The partnership approach changed everything. Tunnels automated our entire patient management system and stayed engaged to ensure adoption. We saw 60% time savings within the first month.",
       rating: 5,
       results: '60% time saved'
     },
@@ -40,7 +40,7 @@ const Testimonials = () => {
       role: 'Founder',
       company: 'EduScale',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80',
-      quote: "From MVP to 50,000 users in 6 months. Tunnels understood our vision for democratizing education and built a platform that scales beautifully. Their team feels like an extension of ours.",
+      quote: "From MVP to 50,000 users in 6 months. Tunnels understood our vision for democratizing education and built a platform that scales beautifully. They operate like an extension of our founding team.",
       rating: 5,
       results: '50K users in 6 months'
     }
@@ -116,7 +116,7 @@ const Testimonials = () => {
             What Our <span className="text-tunnels-red">Partners</span> Say
           </h2>
           <p className="text-tunnels-lightgray text-lg md:text-xl max-w-2xl mx-auto">
-            Real stories from founders who turned their vision into reality with Tunnels.ng
+            Founders and leaders share their experience building with Tunnels.ng
           </p>
         </div>
 
@@ -174,10 +174,13 @@ const Testimonials = () => {
                       "{testimonials[currentIndex].quote}"
                     </blockquote>
                     
-                    {/* Results badge */}
-                    <div className="inline-flex items-center gap-2 bg-tunnels-red/10 border border-tunnels-red/30 px-4 py-2 rounded-full">
-                      <span className="text-tunnels-red font-semibold">Result:</span>
-                      <span className="text-white">{testimonials[currentIndex].results}</span>
+                    {/* Results highlight */}
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 uppercase tracking-wide">
+                      <span className="text-tunnels-red">Result</span>
+                      <span className="relative inline-block text-base normal-case tracking-normal text-white">
+                        <span className="relative z-10 px-1">{testimonials[currentIndex].results}</span>
+                        <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-tunnels-red/70 via-tunnels-red/30 to-transparent -z-10" />
+                      </span>
                     </div>
                   </div>
                 </div>

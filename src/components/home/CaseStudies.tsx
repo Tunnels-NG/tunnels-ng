@@ -106,9 +106,9 @@ const CaseStudyCard = ({
         </div>
         
         <div className="p-6 md:p-8 md:w-1/2">
-          <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 transition-colors duration-300
-            ${isActive ? 'bg-tunnels-red/20 text-tunnels-red/90' : 'bg-tunnels-red/10 text-tunnels-red'}`}>
-            {category}
+          <div className="relative inline-block text-sm font-semibold text-tunnels-red mb-4">
+            <span className="relative z-10 px-1">{category}</span>
+            <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r ${isActive ? 'from-tunnels-red/80 via-tunnels-red/30 to-transparent' : 'from-tunnels-red/50 via-tunnels-red/20 to-transparent'} -z-10`} />
           </div>
           <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
           <p className="text-gray-300 mb-4">{description}</p>

@@ -340,8 +340,9 @@ const HowItWorks = () => {
                   <div className="flex-1 pt-1">
                     <div className="flex flex-wrap items-center gap-3 mb-2">
                       <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                      <span className="px-3 py-1 bg-tunnels-dark text-tunnels-red text-xs rounded-full">
-                        {step.duration}
+                      <span className="relative inline-block text-xs font-semibold uppercase tracking-wide text-tunnels-red">
+                        <span className="relative z-10 px-1">{step.duration}</span>
+                        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-tunnels-red/80 via-tunnels-red/40 to-transparent -z-10" />
                       </span>
                     </div>
                     <p className="text-white/60">{step.description}</p>

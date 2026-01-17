@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ChevronDown, ArrowRight, Rocket, Code2, Settings, Users, BookOpen, Briefcase, FolderKanban } from 'lucide-react';
+import { ChevronDown, ArrowRight, Search, Code2, Handshake, Target, Layers, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -32,20 +32,18 @@ const Navbar = () => {
       name: 'Services', 
       path: '/services',
       dropdown: [
-        { name: 'Business Automation', path: '/services#automation', icon: Settings, description: 'Streamline your operations' },
-        { name: 'MVP Development', path: '/services#mvp', icon: Rocket, description: 'Launch faster' },
-        { name: 'Custom Software', path: '/services#custom', icon: Code2, description: 'Tailored solutions' },
-        { name: 'IT Consultancy', path: '/services#consultancy', icon: Users, description: 'Strategic guidance' },
+        { name: 'Advisory & Audit', path: '/services#advisory', icon: Search, description: 'Strategic guidance before you build' },
+        { name: 'Build & Automation', path: '/services#build', icon: Code2, description: 'Scalable software & process automation' },
+        { name: 'Venture Partnerships', path: '/venture-studio#models-section', icon: Handshake, description: 'Selective, evaluation-based collaboration' },
       ]
     },
     { 
       name: 'Venture Studio', 
       path: '/venture-studio',
       dropdown: [
-        { name: 'Partnership Models', path: '/venture-studio', icon: Briefcase, description: 'Equity, revenue share & more' },
-        { name: 'How It Works', path: '/how-it-works', icon: BookOpen, description: 'Our process explained' },
-        { name: 'Portfolio', path: '/portfolio', icon: FolderKanban, description: 'Ventures we\'ve built' },
-        { name: 'Case Studies', path: '/case-studies', icon: Rocket, description: 'Success stories' },
+        { name: 'Partnership Models', path: '/venture-studio#models-section', icon: Layers, description: 'Deferred build, equity & revenue share' },
+        { name: 'Selection Criteria', path: '/venture-studio#criteria-section', icon: Target, description: 'What we look for in ventures' },
+        { name: 'Our Process', path: '/venture-studio#process-section', icon: FileCheck, description: 'From evaluation to launch' },
       ]
     },
     { name: 'Careers', path: '/careers' },

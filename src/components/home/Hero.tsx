@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -192,9 +192,9 @@ const Hero = () => {
             }`}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight mt-8">
-              We Build Tech.
+              We Co-Build Technology
               <br />
-              <span className="text-tunnels-red">You Scale Business.</span>
+              <span className="text-tunnels-red">Businesses That Scale</span>
             </h1>
           </div>
 
@@ -203,8 +203,9 @@ const Hero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Launch faster, reduce costs by 60%, and own products that generate revenue from day one. 
-            Our founders have scaled startups to $10M+ ARR.
+            A technology venture studio partnering with founders and growth-stage businesses 
+            to build, automate, and scale revenue-generating products through structured 
+            services and long-term partnerships.
           </p>
 
           <div 
@@ -213,18 +214,18 @@ const Hero = () => {
             }`}
           >
             <Link 
-              to="/contact" 
+              to="/services" 
               className="inline-flex items-center px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:shadow-lg hover:shadow-tunnels-red/20"
             >
-              Start a Project
+              Work With Us
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link 
-              to="/portfolio" 
+              to="/venture-studio" 
               className="inline-flex items-center px-8 py-4 border border-tunnels-gray text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-dark hover:border-tunnels-lightgray"
             >
-              <Play className="mr-2 w-5 h-5" />
-              See Our Work
+              Venture Studio
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
 
@@ -239,7 +240,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white">50+</div>
-              <div className="text-sm text-tunnels-lightgray mt-1">Happy Clients</div>
+              <div className="text-sm text-tunnels-lightgray mt-1">Partners Served</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white">15+</div>

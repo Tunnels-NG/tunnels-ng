@@ -53,9 +53,12 @@ const WhyUs = () => {
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-red-500/10 backdrop-blur-sm rounded-full text-sm text-white mb-6 border border-red-500/20">
-            <Award className="w-4 h-4 mr-2 text-red-500" />
-            Why Choose Us
+          <div className="flex items-center justify-center gap-3 mb-6 text-white/80 text-sm uppercase tracking-[0.3em]">
+            <Award className="w-4 h-4 text-red-500" />
+            <span className="relative inline-block">
+              <span className="relative z-10 px-2">Why Choose Us</span>
+              <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-red-500/70 via-pink-500/40 to-transparent -z-10" />
+            </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">TunnelsNG</span>?
