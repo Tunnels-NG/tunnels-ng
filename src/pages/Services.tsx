@@ -68,7 +68,7 @@ const ServicesPage = () => {
       icon: Handshake,
       title: 'Venture Partnerships',
       tagline: 'Long-term alignment. Shared accountability.',
-      description: 'Selective partnership models for ventures that meet our criteria. This is not a service — it\'s an evaluation-based collaboration.',
+      description: 'Selective partnership models for ventures that meet our criteria. This is not a service. It is an evaluation-based collaboration.',
       longDescription: 'For ventures with significant potential, we offer partnership structures that go beyond traditional client-vendor relationships. These are selective, long-term collaborations where our success is directly tied to yours. Partnership models are determined through internal evaluation based on stage, traction, and market potential.',
       services: [
         {
@@ -172,7 +172,7 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-tunnels-black">
       <SEO 
         title="Technology Services for Startups & Businesses"
-        description="Strategic advisory, build, and automation services from TunnelsNG—a Lagos-based technology venture studio partnering with serious founders and corporate teams across Nigeria and Africa."
+        description="Strategic advisory, build, and automation services from TunnelsNG, a Lagos-based technology venture studio partnering with serious founders and corporate teams across Nigeria and Africa."
         keywords="technology services for startups, advisory audit Nigeria, build and automation partner, system audit for startups, scalable software architecture"
         url="https://tunnels.ng/services"
         structuredData={servicesStructuredData}
@@ -227,7 +227,7 @@ const ServicesPage = () => {
 
           {/* Tab Navigation */}
           <div className="flex justify-center mb-16">
-            <div className="inline-flex p-1.5 rounded-2xl bg-tunnels-black/80 border border-tunnels-darkgray/30 backdrop-blur-sm">
+            <div className="inline-flex flex-wrap md:flex-nowrap gap-2 md:gap-0 p-1.5 rounded-2xl bg-tunnels-black/80 border border-tunnels-darkgray/30 backdrop-blur-sm">
               {servicePillars.map((pillar) => {
                 const Icon = pillar.icon;
                 const isActive = selectedPillar === pillar.id;
@@ -235,16 +235,16 @@ const ServicesPage = () => {
                   <button
                     key={pillar.id}
                     onClick={() => setSelectedPillar(pillar.id)}
-                    className={`relative flex items-center gap-2.5 px-5 md:px-6 py-3 rounded-xl transition-all duration-300 ${
+                    className={`relative flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-6 py-2.5 md:py-3 rounded-xl transition-all duration-300 flex-1 md:flex-initial ${
                       isActive
                         ? 'bg-tunnels-red text-white'
                         : 'text-white/50 hover:text-white'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span className="font-medium text-sm">{pillar.title}</span>
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium text-xs md:text-sm">{pillar.title}</span>
                     {pillar.isSelective && (
-                      <span className={`text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded font-bold ${
+                      <span className={`hidden md:inline text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded font-bold ${
                         isActive ? 'bg-white/20' : 'bg-tunnels-red/20 text-tunnels-red'
                       }`}>
                         •

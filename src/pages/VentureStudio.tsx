@@ -9,8 +9,8 @@ const VentureStudio = () => {
   const ventureStructuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Startup Venture Studio Nigeria",
-    "serviceType": "Technical co-founder and venture partnership",
+    "name": "TunnelsNG Venture Studio",
+    "serviceType": "Venture partnership and technical co-founder",
     "provider": {
       "@type": "Organization",
       "name": "TunnelsNG",
@@ -18,8 +18,7 @@ const VentureStudio = () => {
         "@type": "PostalAddress",
         "addressLocality": "Lagos",
         "addressCountry": "Nigeria"
-      },
-      "areaServed": ["Nigeria", "Africa"]
+      }
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -30,7 +29,7 @@ const VentureStudio = () => {
           "itemOffered": {
             "@type": "Service",
             "name": "Deferred Build Partnership",
-            "description": "Milestone-based development with repayment tied to traction.",
+            "description": "Performance-linked development with deferred repayment triggered by revenue milestones or funding.",
             "url": "https://tunnels.ng/venture-studio"
           }
         },
@@ -39,7 +38,7 @@ const VentureStudio = () => {
           "itemOffered": {
             "@type": "Service",
             "name": "Equity Partnership",
-            "description": "Shared ownership and technical co-founder support for high-potential startups.",
+            "description": "Long-term co-building with 10-30% equity, determined after evaluation. Technical co-founder involvement.",
             "url": "https://tunnels.ng/venture-studio"
           }
         },
@@ -47,8 +46,8 @@ const VentureStudio = () => {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Revenue Share Transformation",
-            "description": "Technology transformation for operating businesses with revenue.",
+            "name": "Revenue Share Partnership",
+            "description": "Time-bound partnership (12-36 months) with 5-20% revenue share, capped to prevent long-term drag.",
             "url": "https://tunnels.ng/venture-studio"
           }
         }
@@ -65,27 +64,30 @@ const VentureStudio = () => {
       label: 'Model 01',
       icon: Clock,
       image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80',
-      description: 'Milestone-based development with repayment tied to post-launch performance. Requires validation signals and committed founders ready to execute.',
-      benefits: ['Structured milestone delivery', 'Performance-tied repayment', 'Full technical team access', 'Launch-focused execution'],
-      ideal: 'Early-stage startups with validated demand'
+      description: 'Performance-linked development with deferred repayment triggered by revenue milestones or funding events. Reserved for validated ventures with committed founders and clear paths to monetization.',
+      benefits: ['Milestone-based delivery structure', 'Repayment tied to revenue or funding', 'Full technical team commitment', 'Aligned incentives from day one'],
+      ideal: 'Early-stage ventures with market validation',
+      terms: 'Repayment begins post-traction'
     },
     {
       title: 'Equity Partnership',
       label: 'Model 02',
       icon: Handshake,
       image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80',
-      description: 'Long-term co-building with shared ownership. Success is tied directly to venture outcomes through strategic technical leadership and aligned incentives.',
-      benefits: ['True long-term alignment', 'Strategic technical leadership', 'Ongoing iteration & support', 'Shared ownership mindset'],
-      ideal: 'High-potential ventures with serious execution capacity'
+      description: 'Deep co-building with shared ownership, typically ranging from 10% to 30% equity determined after evaluation. We become long-term technical co-founders invested in your venture\'s success.',
+      benefits: ['10% to 30% equity range (post-evaluation)', 'Long-term technical co-founder role', 'Ongoing product iteration & support', 'Board-level strategic involvement'],
+      ideal: 'High-potential ventures with serious operators',
+      terms: 'Equity finalized after due diligence'
     },
     {
-      title: 'Revenue Share',
+      title: 'Revenue Share Partnership',
       label: 'Model 03',
       icon: TrendingUp,
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
-      description: 'For operating businesses with proven revenue models seeking technology transformation. Transparent, time-bound agreements with clear monetization requirements.',
-      benefits: ['Clear monetization required', 'Time-bound agreements', 'Transparent terms', 'Performance-aligned'],
-      ideal: 'Businesses with proven revenue models'
+      description: 'Time-bound technology partnership for operating businesses, typically 5% to 20% of revenue over 12 to 36 months. Agreements are capped to prevent long-term drag on your margins.',
+      benefits: ['5% to 20% revenue share range', '12 to 36 month agreement term', 'Capped total repayment', 'No perpetual obligations'],
+      ideal: 'Revenue-generating businesses seeking transformation',
+      terms: 'Terms structured around existing revenue'
     }
   ];
 
@@ -123,46 +125,46 @@ const VentureStudio = () => {
   const process = [
     {
       step: '01',
-      title: 'Discovery',
-      description: 'We explore your vision, market opportunity, and business model through an in-depth conversation.'
+      title: 'Initial Conversation',
+      description: 'A candid discussion about your venture, market opportunity, and what you\'re trying to build. No pitch decks required. We assess fit through dialogue.'
     },
     {
       step: '02',
-      title: 'Evaluation',
-      description: 'Our team assesses technical feasibility, market fit, and partnership alignment. Not all ventures proceed past this stage.'
+      title: 'Evaluation & Diligence',
+      description: 'We assess technical feasibility, market potential, founder commitment, and monetization clarity. Many ventures do not proceed past this stage.'
     },
     {
       step: '03',
-      title: 'Agreement',
-      description: 'For selected ventures, we structure a partnership with clear terms, milestones, and shared accountability.'
+      title: 'Terms & Structure',
+      description: 'For qualified ventures, we define the partnership model: equity range, deferred terms, or revenue share, with clear milestones and accountability.'
     },
     {
       step: '04',
-      title: 'Build',
-      description: 'Our team builds with an ownership mindset, bringing the same dedication we apply to our own ventures.'
+      title: 'Build & Iterate',
+      description: 'Our team executes with an ownership mindset. We ship in cycles, validate assumptions, and iterate based on market feedback, not just specifications.'
     },
     {
       step: '05',
-      title: 'Launch & Grow',
-      description: 'We support your launch and continue iterating as you scale, maintaining long-term partnership.'
+      title: 'Scale & Support',
+      description: 'Post-launch, we remain invested in your trajectory. Ongoing iteration, technical guidance, and strategic support as the partnership matures.'
     }
   ];
 
   const criteria = [
-    { icon: Lightbulb, title: 'Innovative Idea', description: 'Solving a real problem with a differentiated approach' },
-    { icon: Target, title: 'Clear Vision', description: 'Well-defined goals with deep market understanding' },
-    { icon: Users, title: 'Committed Founders', description: 'Serious operators ready to execute relentlessly' },
-    { icon: BarChart3, title: 'Market Potential', description: 'Addressable market with significant growth opportunity' },
-    { icon: Shield, title: 'Defensible Model', description: 'Sustainable competitive advantage or unique positioning' },
-    { icon: DollarSign, title: 'Revenue Path', description: 'Clear and credible route to monetization' }
+    { icon: Lightbulb, title: 'Validated Problem', description: 'Evidence of customer demand: pilots, LOIs, or paying users' },
+    { icon: Target, title: 'Clear Position', description: 'A defined market view with conviction, not just an idea' },
+    { icon: Users, title: 'Committed Operators', description: 'Founders with skin in the game and capacity to execute' },
+    { icon: BarChart3, title: 'Scalable Opportunity', description: 'Addressable market with credible path to meaningful scale' },
+    { icon: Shield, title: 'Defensibility', description: 'Differentiation or positioning that compounds over time' },
+    { icon: DollarSign, title: 'Monetization Clarity', description: 'A credible route to revenue, not hypothetical, actionable' }
   ];
 
   return (
     <div className="min-h-screen bg-tunnels-black">
       <SEO 
-        title="Startup Venture Studio Nigeria"
-        description="Selective startup venture studio in Lagos acting as a technical co-founder for African founders and corporate spin-outs through evaluated, long-term partnerships."
-        keywords="startup venture studio Nigeria, technical co-founder Africa, venture studio Africa, co-build startup Africa, selective venture studio"
+        title="Venture Studio"
+        description="Selective venture studio partnering with founders through equity, deferred build, and revenue share structures. We co-build technology ventures with aligned incentives and shared accountability."
+        keywords="venture studio, technology co-founder, equity partnership, deferred build, revenue share partnership, startup co-building"
         url="https://tunnels.ng/venture-studio"
         structuredData={ventureStructuredData}
       />
@@ -187,19 +189,19 @@ const VentureStudio = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-6">
-              We partner with exceptional founders and businesses to co-build, launch, and scale 
-              technology companies through long-term, aligned partnerships.
+              We selectively partner with founders and businesses to co-build technology ventures 
+              through equity, deferred, and revenue-linked structures with shared accountability.
             </p>
             
             <p className="text-white/50 text-sm uppercase tracking-wider mb-10">
-              This is not a service. It's a selective collaboration.
+              Not a dev shop. A selective, long-term partnership.
             </p>
 
             <Link
               to="/venture-studio/apply"
               className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
             >
-              Apply to Partner With Us
+              Apply for Partnership
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -219,8 +221,8 @@ const VentureStudio = () => {
                 Why a <span className="text-tunnels-red">Venture Studio</span> Model Works
               </h2>
               <p className="text-white/60 max-w-3xl mx-auto">
-                Technology is a long-term asset that requires aligned incentives and shared accountability. 
-                Our venture studio model ensures business-first execution with true partnership.
+                Transactional dev shops optimize for delivery. We optimize for outcomes. 
+                Shared risk, aligned incentives, and iterative growth define every partnership.
               </p>
             </div>
 
@@ -229,13 +231,13 @@ const VentureStudio = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
                   <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&q=80" alt="" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4 relative z-10">The Traditional Way</h3>
+                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Transactional Dev Shops</h3>
                 <ul className="space-y-3">
                   {[
-                    'Large upfront spend before validation',
-                    'Transactional, short-term delivery',
-                    'Misaligned incentives',
-                    'Technology built without ownership mindset'
+                    'Large capital outlay before validation',
+                    'Scope-driven, deadline-focused delivery',
+                    'Incentives end when invoice is paid',
+                    'No stake in your long-term success'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/50">
                       <X className="w-4 h-4 text-white/30 mt-1 flex-shrink-0" />
@@ -249,13 +251,13 @@ const VentureStudio = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
                   <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&q=80" alt="" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4 relative z-10">The TunnelsNG Way</h3>
+                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Venture Studio Partnership</h3>
                 <ul className="space-y-3">
                   {[
-                    'Long-term partnership approach',
-                    'Shared accountability for outcomes',
-                    'Business-driven technical decisions',
-                    'Incentives aligned around growth and value'
+                    'Shared risk through deferred or equity structures',
+                    'Outcome-driven, iteration-focused execution',
+                    'Incentives aligned to your growth metrics',
+                    'Long-term stake in venture success'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/80">
                       <Check className="w-4 h-4 text-tunnels-red mt-1 flex-shrink-0" />
@@ -281,8 +283,8 @@ const VentureStudio = () => {
               Partnership <span className="text-tunnels-red">Models</span>
             </h2>
             <p className="text-white/60 max-w-3xl mx-auto">
-              Partnership structures are selected after internal evaluation based on stage, traction, and long-term potential. 
-              Not all ventures qualify.
+              Each structure is determined after evaluation of your venture's stage, validation signals, and growth trajectory. 
+              We partner selectively. Qualification is required.
             </p>
           </div>
 
@@ -432,10 +434,10 @@ const VentureStudio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our Venture Studio <span className="text-tunnels-red">Process</span>
+              How We <span className="text-tunnels-red">Engage</span>
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              From initial conversation to launch and beyond. A structured path for serious ventures.
+              A structured path from conversation to partnership. Designed for serious founders building ventures with scale potential.
             </p>
           </div>
 
@@ -501,11 +503,11 @@ const VentureStudio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What We <span className="text-tunnels-red">Look For</span>
+              Qualification <span className="text-tunnels-red">Signals</span>
             </h2>
             <p className="text-white/60 max-w-3xl mx-auto">
-              We partner selectively. Not every idea is a fit, and that's intentional. 
-              Here's what we look for in potential ventures.
+              We evaluate ventures against specific criteria. If these don't describe your current stage, 
+              we may not be the right fit yet.
             </p>
           </div>
 
@@ -534,23 +536,23 @@ const VentureStudio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Think You're a <span className="text-tunnels-red">Fit</span>?
+              Ready to Start a <span className="text-tunnels-red">Conversation</span>?
             </h2>
             <p className="text-white/60 text-lg mb-8">
-              If you're building a serious business and looking for a long-term technical partner, 
-              apply to explore a venture studio collaboration.
+              If you're building a venture with validated demand and the commitment to execute, 
+              we're open to exploring partnership.
             </p>
             
             <Link
               to="/venture-studio/apply"
               className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
             >
-              Apply to Partner With Us
+              Start a Venture Conversation
               <ArrowRight className="w-5 h-5" />
             </Link>
             
             <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-white/50">
-              {['NDA Available', 'No Obligation Initial Conversation'].map((item, index) => (
+              {['NDA Available on Request', 'Evaluation-Based Partnership'].map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-tunnels-red" />
                   <span>{item}</span>
