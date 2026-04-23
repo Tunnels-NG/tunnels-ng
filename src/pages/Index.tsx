@@ -1,9 +1,13 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Hero from '@/components/home/Hero';
+import ClarityLayer from '@/components/home/ClarityLayer';
 import Services from '@/components/home/Services';
+import HowWeWork from '@/components/home/HowWeWork';
+import Metrics from '@/components/home/Metrics';
 import Partners from '@/components/home/Partners';
 import Testimonials from '@/components/home/Testimonials';
+import TrustBanner from '@/components/home/TrustBanner';
 import Contact from '@/components/home/Contact';
 import SEO from '@/components/SEO';
 
@@ -15,7 +19,7 @@ const Index = () => {
       "name": "TunnelsNG",
       "url": "https://tunnels.ng",
       "logo": "https://tunnels.ng/assets/Tunnels-Logo-White.png",
-      "description": "Technology venture studio in Lagos, Nigeria partnering with African founders, growth-stage teams, and corporate innovators.",
+      "description": "Growth systems for modern products. We design and execute the systems that turn products into users.",
       "foundingLocation": "Lagos, Nigeria",
       "areaServed": ["Nigeria", "West Africa", "Africa"],
       "sameAs": [
@@ -40,35 +44,35 @@ const Index = () => {
     {
       "@context": "https://schema.org",
       "@type": "OfferCatalog",
-      "name": "TunnelsNG Service Architecture",
+      "name": "TunnelsNG Growth Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Advisory & Audit",
+            "name": "Growth Strategy",
             "areaServed": "Nigeria",
-            "serviceType": "Technology advisory for startups and enterprises",
-            "url": "https://tunnels.ng/services#advisory"
+            "serviceType": "User acquisition strategy and conversion pathway design",
+            "url": "https://tunnels.ng/services#strategy"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Build & Automation",
+            "name": "Execution Sprints",
             "areaServed": "Africa",
-            "serviceType": "Custom software, MVP development, automation",
-            "url": "https://tunnels.ng/services#build"
+            "serviceType": "Direct user acquisition and activation optimization",
+            "url": "https://tunnels.ng/services#sprints"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Venture Studio Partnerships",
+            "name": "Growth Partnerships",
             "areaServed": "Africa",
-            "serviceType": "Selective co-building and technical co-founder engagements",
+            "serviceType": "Embedded growth partner and growth systems co-design",
             "url": "https://tunnels.ng/venture-studio"
           }
         }
@@ -78,19 +82,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Technology Venture Studio Nigeria"
-        description="Lagos-based technology venture studio partnering with African founders, growth-stage businesses, and corporate operators to co-build products, automation, and long-term ventures."
-        keywords="technology venture studio Nigeria, venture studio Africa, startup technology partner Nigeria, technical co-founder Africa, co-build startup Africa"
+      <SEO
+        title="Growth Systems for Modern Products"
+        description="We design and execute the systems that turn products into users. Growth strategy, execution sprints, and venture partnerships for products ready to grow."
+        keywords="growth systems, user acquisition, conversion engine, growth strategy, product growth, growth infrastructure, activation optimization"
         url="https://tunnels.ng/"
         structuredData={homeStructuredData}
       />
       <Navbar />
       <main>
         <Hero />
+        <ClarityLayer />
         <Services />
+        <HowWeWork />
+        <Metrics />
         <Partners />
         <Testimonials />
+        <TrustBanner />
         <Contact />
       </main>
       <Footer />

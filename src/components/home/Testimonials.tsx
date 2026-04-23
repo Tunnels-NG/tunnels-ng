@@ -13,16 +13,16 @@ const Testimonials = () => {
       role: 'CEO & Founder',
       company: 'FinFlow',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80',
-      quote: "Tunnels.ng didn't just build our fintech platform, they became strategic partners in our growth. In 8 weeks, we went from concept to processing over $2M monthly. Their execution speed and business acumen set them apart.",
+      quote: "We had the product but couldn't get users. Tunnels engineered our entire user acquisition system - in 8 weeks, we went from invisible to processing $2M monthly. They understand growth at a system level.",
       rating: 5,
-      results: '$2M+ monthly transactions'
+      results: '$2M+ monthly volume'
     },
     {
       name: 'Michael Okonkwo',
       role: 'Co-Founder',
       company: 'LogiTech Africa',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80',
-      quote: "We needed more than developers. We needed partners who understood scaling a logistics business across Africa. Tunnels brought technical excellence and strategic thinking that helped us expand to 15 cities.",
+      quote: "Tunnels mapped our growth channels across 15 cities and built the activation systems that turned signups into active users. The 500% growth wasn't luck - it was engineered.",
       rating: 5,
       results: '15 cities, 500% growth'
     },
@@ -31,16 +31,16 @@ const Testimonials = () => {
       role: 'Product Lead',
       company: 'HealthBridge',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&q=80',
-      quote: "The partnership approach changed everything. Tunnels automated our entire patient management system and stayed engaged to ensure adoption. We saw 60% time savings within the first month.",
+      quote: "Our product worked, but adoption was painfully slow. Tunnels redesigned our entry points and built a growth system that drove 60% faster user onboarding in the first month.",
       rating: 5,
-      results: '60% time saved'
+      results: '60% faster onboarding'
     },
     {
       name: 'David Mensah',
       role: 'Founder',
       company: 'EduScale',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80',
-      quote: "From MVP to 50,000 users in 6 months. Tunnels understood our vision for democratizing education and built a platform that scales beautifully. They operate like an extension of our founding team.",
+      quote: "From launch to 50,000 users in 6 months. Tunnels didn't just help us get users - they built the repeatable system that keeps acquiring them. It's growth infrastructure, not a campaign.",
       rating: 5,
       results: '50K users in 6 months'
     }
@@ -116,7 +116,7 @@ const Testimonials = () => {
             What Our <span className="text-tunnels-red">Partners</span> Say
           </h2>
           <p className="text-tunnels-lightgray text-lg md:text-xl max-w-2xl mx-auto">
-            Founders and leaders share their experience building with Tunnels.ng
+            Founders share how Tunnels engineered their growth breakthroughs
           </p>
         </div>
 

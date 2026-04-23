@@ -36,117 +36,105 @@ const FAQ = () => {
 
   const categories = [
     { id: 'general', label: 'General' },
-    { id: 'partnership', label: 'Partnership Models' },
-    { id: 'process', label: 'Process & Timeline' },
-    { id: 'technical', label: 'Technical' },
-    { id: 'pricing', label: 'Pricing & Payment' }
+    { id: 'partnerships', label: 'Partnerships' },
+    { id: 'process', label: 'Process' },
+    { id: 'pricing', label: 'Pricing' },
+    { id: 'results', label: 'Results & Metrics' }
   ];
 
   const faqs = {
     general: [
       {
         question: 'What is Tunnels.ng?',
-        answer: 'Tunnels.ng is a technology venture studio that partners with founders and businesses to build digital products. Unlike traditional agencies, we offer flexible partnership models including equity partnerships, revenue sharing, and our unique "Build Now, Pay Later" option. We are not just developers, we are co-builders invested in your success.'
+        answer: 'We help products get to real users. We design and execute growth systems that turn working products into products people actually use. Not marketing, not branding - real user acquisition and activation.'
       },
       {
-        question: 'What makes Tunnels different from other development agencies?',
-        answer: 'Three things set us apart: First, our partnership models mean we have skin in the game, we succeed when you succeed. Second, we specialize in the African market, understanding its unique challenges and opportunities. Third, we offer end-to-end support from ideation to scaling, not just code delivery.'
+        question: 'What makes you different from marketing agencies?',
+        answer: 'Marketing agencies sell brand awareness and impressions. We build growth systems that acquire and activate real users. We measure success in users gained, not reach or engagement.'
       },
       {
-        question: 'What types of projects do you work on?',
-        answer: 'We specialize in fintech, SaaS, marketplaces, agritech, and food tech, though we are open to innovative ideas in other sectors. We typically work on web applications, mobile apps, and complex platform builds that require both technical excellence and strategic thinking.'
+        question: 'What types of products do you work with?',
+        answer: 'Products with working functionality seeking systematic user growth. Typically SaaS, fintech, marketplaces, and platforms. We help functional products, not just ideas.'
       },
       {
         question: 'Do you only work with startups?',
-        answer: 'Not at all. While we love working with early-stage founders, we also partner with established businesses looking to build new digital products, modernize legacy systems, or spin out new ventures. Our partnership models adapt to different business stages.'
+        answer: 'No. We work with any product facing a growth challenge - early-stage startups, growing products, or established companies launching new offerings.'
       }
     ],
-    partnership: [
+    partnerships: [
       {
-        question: 'What is the "Build Now, Pay Later" model?',
-        answer: 'Build Now, Pay Later allows you to get your product built with minimal upfront cost. We develop your MVP or full product, and you pay us back over time from your revenue once you launch. It\'s designed for founders with great ideas but limited initial capital. Specific terms vary based on project scope and revenue projections.'
+        question: 'What partnership models do you offer?',
+        answer: 'Three: Sprint Partnership (4-12 weeks, fixed engagement), Embedded Partner (3-6 months, ongoing), Equity Partnership (long-term, equity-based). Model depends on product stage and goals.'
       },
       {
-        question: 'How does the Equity Partnership work?',
-        answer: 'In an equity partnership, we reduce our development fees in exchange for equity in your company. This typically ranges from 5-20% depending on the scope of work and stage of your venture. We become true partners, providing ongoing technical support and strategic input as you grow.'
+        question: 'How do you decide which model fits?',
+        answer: 'During assessment, we evaluate your product stage, growth gap, team capacity, and goals. We recommend the model that aligns with where you are and where you\'re going.'
       },
       {
-        question: 'What is Revenue Share?',
-        answer: 'Revenue share means we take a percentage of your product\'s revenue for a defined period instead of traditional payment. This is ideal for products with clear monetization strategies. The percentage and duration are negotiated based on your business model and our contribution.'
+        question: 'What is a Sprint Partnership?',
+        answer: 'Intensive 4-12 week campaign to build your initial growth system, acquire first users, and deliver a repeatable playbook.'
       },
       {
-        question: 'Can I switch between partnership models?',
-        answer: 'Yes, we understand that circumstances change. We\'ve helped founders transition from one model to another as their situation evolves. For example, converting from Build Now, Pay Later to equity once they raise funding. We\'re flexible and founder-friendly.'
+        question: 'What is an Embedded Partner engagement?',
+        answer: '3-6 month partnership where we operate as part of your team, continuously acquiring users and optimizing systems.'
       },
       {
-        question: 'How do you decide which partnership model fits my project?',
-        answer: 'During our discovery phase, we assess your funding situation, business model, timeline, and risk appetite. We then recommend the model that aligns best with your goals. Sometimes we create hybrid arrangements that combine elements of different models.'
+        question: 'How does Equity Partnership work?',
+        answer: 'For high-potential products, we take equity (typically 5-15%) and become your long-term growth partner with fully aligned incentives. Zero upfront cost.'
       }
     ],
     process: [
       {
-        question: 'How long does it take to build an MVP?',
-        answer: 'Most MVPs take 8-12 weeks from kickoff to launch. This includes 1-2 weeks of discovery, 2-3 weeks of design, and 6-8 weeks of development. Complex projects may take 16-20 weeks. We prioritize speed without sacrificing quality.'
+        question: 'How long until we see results?',
+        answer: 'First users typically within 2-4 weeks. Meaningful traction within 4-8 weeks. We prioritize speed to signal.'
       },
       {
-        question: 'What happens during the Discovery phase?',
-        answer: 'Discovery is where we deeply understand your vision, market, and users. We conduct stakeholder interviews, market research, user persona development, and technical feasibility assessment. You\'ll receive a comprehensive discovery report, user personas, and a detailed project scope document.'
+        question: 'What happens during the assessment phase?',
+        answer: 'We audit your product, analyze current user behavior, map growth opportunities, and identify the gaps holding you back. Delivered in 1-2 weeks.'
       },
       {
-        question: 'How involved will I be during the build process?',
-        answer: 'Very involved. We operate in 2-week sprints with regular demos and feedback sessions. You\'ll have access to a shared project board, direct communication with your development team, and weekly progress reports. We believe great products come from close collaboration.'
+        question: 'How involved will we be?',
+        answer: 'Very. We embed with your team, require product access, and need close collaboration. Growth works best with tight integration.'
       },
       {
-        question: 'Do you provide support after launch?',
-        answer: 'Absolutely. Our Growth & Support phase includes ongoing maintenance, bug fixes, feature enhancements, and scaling support. For equity and revenue share partners, this support is built into our partnership. For other models, we offer flexible support packages.'
-      },
-      {
-        question: 'What if I need to pivot or change direction?',
-        answer: 'Pivots are a natural part of building products. Our agile approach is designed to accommodate changes. We build in flexibility milestones where we can assess and adjust direction based on user feedback and market response without derailing the project.'
-      }
-    ],
-    technical: [
-      {
-        question: 'What technologies do you work with?',
-        answer: 'We are technology-agnostic but have deep expertise in React, React Native, Node.js, Python, PostgreSQL, MongoDB, AWS, and blockchain technologies. We choose the stack that best fits your product needs, scalability requirements, and long-term maintenance considerations.'
-      },
-      {
-        question: 'Will I own the code?',
-        answer: 'Yes. Regardless of partnership model, you own 100% of the intellectual property and source code we develop for you. We may retain usage rights for portfolio purposes, but you have full ownership and control over your product.'
-      },
-      {
-        question: 'How do you ensure code quality?',
-        answer: 'We follow industry best practices: code reviews on every pull request, automated testing, continuous integration/deployment, and security audits. Our senior engineers oversee all projects to maintain consistent quality standards.'
-      },
-      {
-        question: 'Can you integrate with existing systems?',
-        answer: 'Yes, we regularly integrate with payment processors, social media APIs, banking systems, logistics platforms, and enterprise software. If you have existing systems, we\'ll assess integration requirements during discovery and plan accordingly.'
-      },
-      {
-        question: 'Do you build mobile apps?',
-        answer: 'Yes. We build cross-platform mobile apps using React Native, which allows us to ship iOS and Android apps from a single codebase. For projects requiring native performance, we can also develop native iOS (Swift) or Android (Kotlin) applications.'
+        question: 'Do you provide support after the engagement?',
+        answer: 'For Sprint engagements, we deliver a playbook you can operate. For Embedded/Equity partnerships, ongoing support is built in.'
       }
     ],
     pricing: [
       {
-        question: 'How much does it cost to build an MVP?',
-        answer: 'MVP costs typically range from $15,000 to $50,000 depending on complexity, features, and integrations. However, with our partnership models, your upfront cost could be significantly lower, or even zero with Build Now, Pay Later or equity arrangements.'
+        question: 'How much does it cost?',
+        answer: 'Sprint partnerships: $15K-$50K depending on scope. Embedded: Monthly retainer + performance incentives. Equity: Zero upfront, equity-based.'
       },
       {
-        question: 'Do you require a deposit?',
-        answer: 'For traditional payment arrangements, we require 30-40% upfront to begin work. For Build Now, Pay Later, we may require a smaller commitment or none at all depending on the project. Equity partnerships typically have minimal upfront requirements.'
+        question: 'What\'s the minimum engagement?',
+        answer: 'Typically $5K minimum for any paid engagement. Equity partnerships have no minimum but require evaluation approval.'
       },
       {
-        question: 'What payment methods do you accept?',
-        answer: 'We accept bank transfers, credit cards, and cryptocurrency. For international clients, we can invoice in USD, EUR, GBP, or local currencies. We are flexible and will work with you to find a payment arrangement that works.'
+        question: 'Do you guarantee results?',
+        answer: 'We guarantee systems and effort, not outcomes. We\'ll acquire users and optimize activation, but can\'t guarantee viral growth or specific numbers.'
       },
       {
-        question: 'Are there any hidden costs?',
-        answer: 'No hidden costs. Our proposals are comprehensive and include development, testing, deployment, and initial support. Third-party costs (hosting, domain, API subscriptions) are clearly outlined and remain your responsibility, but we\'ll help you budget for these.'
+        question: 'What if we can\'t afford upfront costs?',
+        answer: 'Apply for Equity Partnership. If your product and team meet our criteria, we work for equity with zero upfront cost.'
+      }
+    ],
+    results: [
+      {
+        question: 'How do you measure success?',
+        answer: 'Users acquired, activation rate, cost per acquisition, channel efficiency, time to first user. Real metrics, not vanity numbers.'
       },
       {
-        question: 'What if the project goes over budget?',
-        answer: 'Scope changes can affect timelines and costs. That\'s why we\'re thorough during discovery and maintain clear documentation. If scope changes are needed, we discuss them openly and get your approval before proceeding. No surprises.'
+        question: 'What results have you achieved?',
+        answer: '18+ products helped, 12K+ users acquired, 3.2x average activation lift across engagements.'
+      },
+      {
+        question: 'How fast do you move?',
+        answer: 'First users in 2-4 weeks average. We prioritize speed to signal over perfection.'
+      },
+      {
+        question: 'What if it doesn\'t work?',
+        answer: 'We iterate fast. If a channel underperforms, we kill it and try another. Growth is experimentation guided by data.'
       }
     ]
   };
@@ -168,10 +156,10 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="TunnelsNG FAQ"
-        description="Answers to common questions about TunnelsNG’s advisory services, build mandates, venture partnerships, and evaluation process across Nigeria and Africa."
-        keywords="tunnelsng faq, venture studio questions, advisory services nigeria, automation partner africa"
+      <SEO
+        title="FAQ - Growth Services"
+        description="Answers about Tunnels growth services, partnership models, process, and results. Learn how we help products get to real users."
+        keywords="growth faq, user acquisition questions, growth partnership faq, startup growth questions"
         url="https://tunnels.ng/faq"
         structuredData={faqStructuredData}
       />
@@ -280,14 +268,14 @@ const FAQ = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { q: 'Minimum project size?', a: 'We typically work on projects starting at $10K' },
-              { q: 'Remote or on-site?', a: 'We work remotely with teams across Africa and globally' },
-              { q: 'NDA available?', a: 'Yes, we sign NDAs before any detailed discussions' },
-              { q: 'Team size per project?', a: '2-5 dedicated team members based on scope' },
-              { q: 'Communication tools?', a: 'Slack, Google Meet, and your preferred platforms' },
-              { q: 'First step to get started?', a: 'Book a free discovery call with our team' }
+              { q: 'Minimum engagement?', a: '$5K for paid, evaluation for equity' },
+              { q: 'Remote or on-site?', a: 'Fully remote, global partnerships' },
+              { q: 'NDA available?', a: 'Yes, signed before detailed discussions' },
+              { q: 'First step?', a: 'Contact form for paid services, application for partnerships' },
+              { q: 'Average engagement length?', a: '4-12 weeks for sprints, 3-6 months embedded' },
+              { q: 'Industries served?', a: 'SaaS, fintech, marketplaces, platforms, any digital product' }
             ].map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="p-6 rounded-xl border border-tunnels-darkgray/50 hover:border-tunnels-red/30 transition-all duration-300"
               >

@@ -9,16 +9,16 @@ import { EMAILJS_CONFIG } from '@/lib/email';
 
 const evaluationCriteria = [
   {
-    title: 'Validated Problem',
-    description: 'Clear evidence of customer demand, market pull, or commercial pilots that prove the problem is worth solving.'
+    title: 'Working Product',
+    description: 'You have a functional product that users can actually use today.'
   },
   {
-    title: 'Accountable Team',
-    description: 'Founders or operators with industry expertise, execution capacity, and direct ownership of business outcomes.'
+    title: 'Growth Challenge',
+    description: 'There\'s a gap between your product quality and current user adoption.'
   },
   {
-    title: 'Scale Ambition',
-    description: 'Targets significant markets with a credible plan for defensibility, monetisation, and scale.'
+    title: 'Committed Team',
+    description: 'You have bandwidth to work alongside us and execute on growth.'
   }
 ];
 
@@ -26,37 +26,35 @@ const partnershipHighlights = [
   {
     icon: Layers,
     title: 'Partnership Models',
-    description: 'Deferred build, equity, or revenue-share structures determined after internal diligence.'
+    description: 'Sprint (4-12 weeks), Embedded (3-6 months), Equity (long-term).'
   },
   {
     icon: Briefcase,
-    title: 'Engagement Window',
-    description: 'We onboard a limited number of ventures per cycle to preserve focus and accountability.'
+    title: 'Selective Process',
+    description: 'We evaluate products against traction, team commitment, and market potential.'
   },
   {
     icon: Target,
-    title: 'Evaluation',
-    description: 'Applications are reviewed against traction, execution readiness, and market potential.'
+    title: 'Growth-Ready',
+    description: 'We look for products ready to scale, not just product quality.'
   }
 ];
 
-const stageOptions = ['Pre-launch (prototype ready)', 'Early revenue (0-50k MRR)', 'Growth (50k+ MRR)', 'Corporate spin-out'];
-const fundingOptions = ['Bootstrapped', 'Pre-seed', 'Seed', 'Series A+', 'Corporate budget available'];
-const partnershipInterest = ['Deferred Build', 'Equity Partnership', 'Revenue Share', 'Not sure - need recommendation'];
+const partnershipTypeOptions = ['Sprint Partnership (4-12 weeks)', 'Embedded Partner (3-6 months)', 'Equity Partnership (long-term)', 'Not sure - need recommendation'];
 
 const VentureApplicationPage = () => {
   const applicationStructuredData = {
     "@context": "https://schema.org",
     "@type": "ApplyAction",
-    "name": "TunnelsNG Venture Studio Application",
-    "description": "Application for startups and corporate teams seeking a technical co-founder partnership in Nigeria and Africa.",
+    "name": "Tunnels Growth Partnership Application",
+    "description": "Apply for a growth partnership with Tunnels. For products with working functionality seeking systematic user acquisition and growth.",
     "target": {
       "@type": "EntryPoint",
       "urlTemplate": "https://tunnels.ng/venture-studio/apply"
     },
     "result": {
       "@type": "Service",
-      "name": "Startup Venture Studio Nigeria"
+      "name": "Growth Partnership"
     },
     "areaServed": ["Nigeria", "Africa"]
   };
@@ -67,13 +65,15 @@ const VentureApplicationPage = () => {
     role: '',
     website: '',
     location: '',
-    productStage: '',
-    traction: '',
-    fundingStatus: '',
-    teamSize: '',
-    partnershipModel: '',
     timeline: '',
-    description: ''
+    description: '',
+    productName: '',
+    productUrl: '',
+    currentUsers: '',
+    targetAudience: '',
+    distributionGap: '',
+    previousEfforts: '',
+    partnershipType: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
@@ -92,7 +92,9 @@ const VentureApplicationPage = () => {
     formData.founderName.trim().length > 1 &&
     formData.email.includes('@') &&
     formData.company.trim().length > 1 &&
-    formData.productStage !== '' &&
+    formData.productName.trim().length > 1 &&
+    formData.productUrl.trim().length > 1 &&
+    formData.distributionGap.trim().length > 30 &&
     formData.description.trim().length > 30;
 
   const handleSubmit = async (event?: React.FormEvent<HTMLFormElement>) => {
@@ -101,20 +103,20 @@ const VentureApplicationPage = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const messageBody = `Role: ${formData.role || 'Not provided'}\nWebsite: ${formData.website || 'Not provided'}\nLocation: ${formData.location || 'Not provided'}\nStage: ${formData.productStage}\nTraction: ${formData.traction || 'Not provided'}\nFunding: ${formData.fundingStatus || 'Not specified'}\nTeam Size: ${formData.teamSize || 'Not provided'}\nPreferred Model: ${formData.partnershipModel || 'Not specified'}\nTimeline: ${formData.timeline || 'Not provided'}\n\nFocus Narrative:\n${formData.description}`;
+    const messageBody = `Product Name: ${formData.productName}\nProduct URL: ${formData.productUrl}\nCurrent Users: ${formData.currentUsers || 'Not provided'}\nTarget Audience: ${formData.targetAudience || 'Not provided'}\nRole: ${formData.role || 'Not provided'}\nWebsite: ${formData.website || 'Not provided'}\nLocation: ${formData.location || 'Not provided'}\nPartnership Type: ${formData.partnershipType || 'Not specified'}\nTimeline: ${formData.timeline || 'Not provided'}\n\nGrowth Challenge:\n${formData.distributionGap}\n\nPrevious Efforts:\n${formData.previousEfforts || 'Not provided'}\n\nWhy This Partnership:\n${formData.description}`;
 
     const templateParams = {
       from_name: formData.founderName,
       from_email: formData.email,
       company: formData.company,
-      budget: formData.fundingStatus || 'Not specified',
-      project_type: `Venture Studio Application (${formData.partnershipModel || 'Model TBD'})`,
+      budget: 'Growth Partnership',
+      project_type: `Growth Partnership Application (${formData.partnershipType || 'Type TBD'})`,
       message: messageBody,
       to_email: formData.email,
-      venture_stage: formData.productStage,
-      venture_traction: formData.traction || 'Not provided',
+      venture_stage: formData.productName,
+      venture_traction: formData.currentUsers || 'Not provided',
       venture_timeline: formData.timeline || 'Not provided',
-      venture_team: formData.teamSize || 'Not provided'
+      venture_team: formData.targetAudience || 'Not provided'
     };
 
     try {
@@ -139,13 +141,15 @@ const VentureApplicationPage = () => {
         role: '',
         website: '',
         location: '',
-        productStage: '',
-        traction: '',
-        fundingStatus: '',
-        teamSize: '',
-        partnershipModel: '',
         timeline: '',
-        description: ''
+        description: '',
+        productName: '',
+        productUrl: '',
+        currentUsers: '',
+        targetAudience: '',
+        distributionGap: '',
+        previousEfforts: '',
+        partnershipType: ''
       });
     } catch (error) {
       console.error('EmailJS Error:', error);
@@ -157,10 +161,10 @@ const VentureApplicationPage = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Venture Studio Application"
-        description="Apply to TunnelsNG’s startup venture studio in Nigeria—our technical co-founder program for African founders with validated traction and accountable teams."
-        keywords="venture studio application Nigeria, technical co-founder application Africa, tunnelsng partnership"
+      <SEO
+        title="Growth Partnership Application"
+        description="Apply for a growth partnership with Tunnels. For products with working functionality seeking systematic user acquisition and growth."
+        keywords="growth partnership application, user acquisition partner, startup growth partner, growth consulting"
         url="https://tunnels.ng/venture-studio/apply"
         structuredData={applicationStructuredData}
       />
@@ -183,7 +187,7 @@ const VentureApplicationPage = () => {
 
               <h3 className="text-2xl font-bold text-white mb-2">Application Received</h3>
               <p className="text-white/60 mb-6">
-                Thank you for submitting your venture. Our team will review and get back if the fit is aligned with our current build cycles.
+                Thank you for applying. Our team will review your product and growth opportunity. We'll reach out if there's a potential fit for partnership.
               </p>
 
               <button
@@ -203,10 +207,10 @@ const VentureApplicationPage = () => {
           <div className="max-w-4xl">
             <p className="text-tunnels-red uppercase tracking-[0.3em] text-xs mb-4">Selective Program</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Apply to the TunnelsNG Venture Studio
+              Apply for a Growth Partnership
             </h1>
             <p className="text-white/70 text-lg md:text-xl max-w-3xl">
-              This application is for founders, operators, and corporate teams with validated traction looking to co-build with our studio. Service inquiries should go through the contact form.
+              This application is for products with working functionality seeking growth support. Standard service inquiries should use the contact form.
             </p>
           </div>
         </div>
@@ -255,9 +259,9 @@ const VentureApplicationPage = () => {
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-3">Venture Studio Application</h2>
+                <h2 className="text-3xl font-bold text-white mb-3">Growth Partnership Application</h2>
                 <p className="text-white/60">
-                  We review applications weekly. Only ventures aligned with our investment focus and capacity will move to diligence.
+                  We review applications weekly. Only products aligned with our focus and capacity will move forward.
                 </p>
               </div>
               <div className="flex items-center gap-3 p-4 rounded-2xl border border-tunnels-darkgray/40 bg-tunnels-black/40">
@@ -352,69 +356,85 @@ const VentureApplicationPage = () => {
 
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-white text-sm mb-2">Product Stage *</label>
-                  <select
-                    name="productStage"
-                    value={formData.productStage}
-                    onChange={handleChange}
-                    className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
-                  >
-                    <option value="" disabled>Select stage</option>
-                    {stageOptions.map((option) => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-white text-sm mb-2">Funding Status</label>
-                  <select
-                    name="fundingStatus"
-                    value={formData.fundingStatus}
-                    onChange={handleChange}
-                    className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
-                  >
-                    <option value="" disabled>Select status</option>
-                    {fundingOptions.map((option) => (
-                      <option key={option} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-white text-sm mb-2">Traction Snapshot</label>
+                  <label className="block text-white text-sm mb-2">Product Name *</label>
                   <input
-                    name="traction"
-                    value={formData.traction}
+                    name="productName"
+                    value={formData.productName}
                     onChange={handleChange}
                     className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
-                    placeholder="Revenue, pilots, or usage"
+                    placeholder="Your product name"
                   />
                 </div>
                 <div>
-                  <label className="block text-white text-sm mb-2">Team Size</label>
+                  <label className="block text-white text-sm mb-2">Product URL *</label>
                   <input
-                    name="teamSize"
-                    value={formData.teamSize}
+                    name="productUrl"
+                    value={formData.productUrl}
                     onChange={handleChange}
                     className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
-                    placeholder="Number of core team members"
+                    placeholder="https://yourproduct.com"
                   />
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-white text-sm mb-2">Preferred Partnership Model</label>
+                  <label className="block text-white text-sm mb-2">Current Monthly Active Users</label>
+                  <input
+                    name="currentUsers"
+                    value={formData.currentUsers}
+                    onChange={handleChange}
+                    className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
+                    placeholder="e.g., 500 MAU or 'Pre-launch'"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white text-sm mb-2">Target User Profile</label>
+                  <input
+                    name="targetAudience"
+                    value={formData.targetAudience}
+                    onChange={handleChange}
+                    className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
+                    placeholder="Who is this product for?"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-white text-sm mb-2">What's your growth challenge? *</label>
+                <textarea
+                  name="distributionGap"
+                  value={formData.distributionGap}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none resize-none"
+                  placeholder="Describe the gap between your product and users..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-white text-sm mb-2">Previous Growth Efforts</label>
+                <textarea
+                  name="previousEfforts"
+                  value={formData.previousEfforts}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none resize-none"
+                  placeholder="What have you tried? What worked/didn't work?"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-white text-sm mb-2">Partnership Type</label>
                   <select
-                    name="partnershipModel"
-                    value={formData.partnershipModel}
+                    name="partnershipType"
+                    value={formData.partnershipType}
                     onChange={handleChange}
                     className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
                   >
                     <option value="" disabled>Select preference</option>
-                    {partnershipInterest.map((option) => (
+                    {partnershipTypeOptions.map((option) => (
                       <option key={option} value={option}>{option}</option>
                     ))}
                   </select>
@@ -426,20 +446,20 @@ const VentureApplicationPage = () => {
                     value={formData.timeline}
                     onChange={handleChange}
                     className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none"
-                    placeholder="e.g. Pilot in Q2"
+                    placeholder="e.g. Q2 2026"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-white text-sm mb-2">What should we know? *</label>
+                <label className="block text-white text-sm mb-2">Why is this the right partnership? *</label>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   rows={6}
                   className="w-full p-4 rounded-xl bg-tunnels-dark border border-tunnels-darkgray/40 text-white focus:border-tunnels-red/60 focus:outline-none resize-none"
-                  placeholder="Describe your venture, market insight, execution plan, and why TunnelsNG is the right partner."
+                  placeholder="Tell us about your product, the users you're trying to reach, and why you believe Tunnels is the right partner..."
                 />
               </div>
 
@@ -460,7 +480,7 @@ const VentureApplicationPage = () => {
               </button>
 
               <p className="text-white/40 text-xs">
-                By submitting, you confirm the information provided is accurate and understand that progressing to diligence is not guaranteed.
+                By submitting, you confirm the information provided is accurate and understand that acceptance into the partnership program is not guaranteed.
               </p>
             </form>
           </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Search, Wrench, Rocket } from 'lucide-react';
+import { ArrowRight, Compass, Zap, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
@@ -47,29 +47,29 @@ const Services = () => {
 
   const servicePillars = [
     {
-      icon: Search,
-      title: 'Advisory & Audit',
-      description: 'Strategic technology guidance and system evaluation to optimize your digital infrastructure. We assess your current systems, identify opportunities, and create actionable roadmaps for transformation.',
-      services: ['IT Consultancy', 'System Audit', 'Technology Strategy', 'Digital Transformation'],
-      cta: 'Explore Advisory',
-      link: '/services#advisory',
+      icon: Compass,
+      title: 'Growth Strategy',
+      description: 'Figure out who your users are, where to find them, and how to convert them. We map the path from attention to activation with a strategy built for real growth.',
+      services: ['Audience Research', 'Channel Planning', 'Conversion Design', 'Messaging'],
+      cta: 'Learn More',
+      link: '/services#strategy',
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80'
     },
     {
-      icon: Wrench,
-      title: 'Build & Automation',
-      description: 'End-to-end development and automation solutions that transform ideas into scalable products. From rapid MVP development to enterprise-grade custom software, we build technology that drives revenue.',
-      services: ['MVP Development', 'Custom Software', 'Business Automation', 'AI Integration'],
-      cta: 'Explore Build Services',
-      link: '/services#build',
+      icon: Zap,
+      title: 'Execution Sprints',
+      description: 'Focused campaigns that get you actual users. We run targeted acquisition, get your product in front of the right people, and optimize your funnels to turn visitors into active users.',
+      services: ['User Acquisition', 'Community Outreach', 'Content Creation', 'Funnel Optimization'],
+      cta: 'See How It Works',
+      link: '/services#sprints',
       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80'
     },
     {
       icon: Rocket,
-      title: 'Venture Studio',
-      description: 'Long-term partnerships for founders ready to co-build technology businesses that endure. We invest our expertise, resources, and network to help you build and scale revenue-generating products.',
-      services: ['Co-building', 'Equity Partnership', 'Profit Sharing', 'Strategic Support'],
-      cta: 'Venture Studio',
+      title: 'Growth Partnerships',
+      description: 'For products ready to scale, we become your growth partner. We embed with your team, help you build traction, and create the systems that drive sustainable user growth.',
+      services: ['Embedded Partnership', 'Traction Building', 'Growth Systems', 'Long-term Infrastructure'],
+      cta: 'Explore Partnerships',
       link: '/venture-studio',
       image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80'
     }
@@ -94,10 +94,10 @@ const Services = () => {
       <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
         <div className={`mb-20 text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            How We Help Businesses <span className="text-tunnels-red">Grow With Technology</span>
+            What We <span className="text-tunnels-red">Do</span>
           </h2>
           <p className="text-tunnels-lightgray max-w-xl mx-auto text-lg">
-            Three focused pathways to accelerate your business through technology.
+            Three focused pathways to get your product to real users.
           </p>
         </div>
 

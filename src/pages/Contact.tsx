@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Mail, Phone, MessageSquare, Send, Shield, X, Settings, TrendingUp, Code, BarChart3, CheckCircle, AlertCircle, Rocket, Search } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MessageSquare, Send, Shield, X, Compass, Zap, CheckCircle, AlertCircle, Rocket, Search, Settings } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -95,34 +95,34 @@ const ContactPage = () => {
   };
 
   const projectTypes = [
-    { id: 'automation', label: 'Business Automation', icon: Settings },
-    { id: 'mvp', label: 'MVP Development', icon: Rocket },
-    { id: 'audit', label: 'System Audit', icon: TrendingUp },
-    { id: 'consultancy', label: 'IT Consultancy', icon: BarChart3 },
-    { id: 'development', label: 'Custom Development', icon: Code },
-    { id: 'advisory', label: 'Advisory & Strategy', icon: Search }
+    { id: 'strategy', label: 'Growth Strategy', icon: Compass, description: 'Figure out how to reach your users' },
+    { id: 'sprint', label: 'Execution Sprint', icon: Zap, description: 'Get your first users in 4-12 weeks' },
+    { id: 'partnership', label: 'Growth Partnership', icon: Rocket, description: 'Long-term embedded partnership' },
+    { id: 'audit', label: 'Growth Audit', icon: Search, description: 'Assess what\'s holding you back' },
+    { id: 'system', label: 'Growth Systems', icon: Settings, description: 'Build repeatable user acquisition' },
+    { id: 'other', label: 'Other', icon: MessageSquare, description: 'General inquiry' }
   ];
 
   const contactMethods = [
-    { 
-      icon: Mail, 
-      label: 'Email Us', 
-      value: 'hello@tunnels.ng', 
-      description: 'Send us a detailed message',
+    {
+      icon: Mail,
+      label: 'Email Us',
+      value: 'hello@tunnels.ng',
+      description: 'Tell us about your product and goals',
       href: 'mailto:hello@tunnels.ng'
     },
-    { 
-      icon: Phone, 
-      label: 'Call Us', 
-      value: '+234 708 911 8412', 
-      description: 'Speak directly with our team',
+    {
+      icon: Phone,
+      label: 'Call Us',
+      value: '+234 708 911 8412',
+      description: 'Talk to us about getting users',
       href: 'tel:+2347089118412'
     },
-    { 
-      icon: MessageSquare, 
+    {
+      icon: MessageSquare,
       label: 'Schedule Call',
-      value: 'Book a consultation', 
-      description: 'Pick a convenient time',
+      value: 'Book a consultation',
+      description: 'Schedule a free consultation',
       href: 'https://calendly.com/tunnelsnig',
       external: true
     }
@@ -130,10 +130,10 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Contact TunnelsNG"
-        description="Start an advisory, build, or automation engagement with TunnelsNG—Lagos technology partners for serious founders and enterprises."
-        keywords="contact tunnelsng, technology services nigeria, advisory request, business automation nigeria, system audit contact"
+      <SEO
+        title="Contact Us"
+        description="Get your product to real users. Contact us for growth strategy, execution sprints, or partnership discussions."
+        keywords="contact growth services, user acquisition contact, growth partnership contact, growth consultation"
         url="https://tunnels.ng/contact"
       />
       <Navbar />
@@ -175,18 +175,18 @@ const ContactPage = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className={`text-center max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Work <span className="text-tunnels-red">With Us</span>
+              Get Your Product to <span className="text-tunnels-red">Real Users</span>
             </h1>
-            
+
             <p className="text-xl text-white/70 max-w-2xl mx-auto mb-8">
-              Reach out for advisory, build, or automation services. For long-term venture partnerships, please apply through our Venture Studio.
+              Reach out for growth strategy, execution sprints, or growth partnerships. For venture studio partnerships, use the application form.
             </p>
 
             <Link
               to="/venture-studio/apply"
               className="inline-flex items-center gap-2 text-tunnels-red hover:text-tunnels-red-light transition-colors font-medium"
             >
-              Apply to Venture Studio
+              Apply for Growth Partnership
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -202,7 +202,7 @@ const ContactPage = () => {
               <div className="lg:col-span-2 space-y-8">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Get in <span className="text-tunnels-red">Touch</span>
+                    Start the <span className="text-tunnels-red">Conversation</span>
                   </h2>
                   <p className="text-white/60 text-lg">
                     We respond to qualified service inquiries. Initial discussion subject to evaluation.
@@ -387,7 +387,7 @@ const ContactPage = () => {
                     
                     {/* Message */}
                     <div>
-                      <label className="block text-white font-medium mb-2">Project Details *</label>
+                      <label className="block text-white font-medium mb-2">Tell us about your product and goals *</label>
                       <textarea
                         name="message"
                         value={formData.message}
@@ -398,7 +398,7 @@ const ContactPage = () => {
                         className={`w-full p-4 bg-tunnels-dark border rounded-xl text-white placeholder-white/30 transition-all duration-300 focus:outline-none resize-none ${
                           focusedField === 'message' ? 'border-tunnels-red' : 'border-tunnels-darkgray/50'
                         }`}
-                        placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+                        placeholder="Tell us about your product, where you are now, and what you're trying to achieve..."
                         required
                       />
                     </div>
@@ -428,7 +428,7 @@ const ContactPage = () => {
                         to="/venture-studio/apply"
                         className="inline-flex items-center gap-2 text-tunnels-red hover:text-tunnels-red-light transition-colors text-sm font-medium"
                       >
-                        Apply to Venture Studio
+                        Apply for Growth Partnership
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -447,15 +447,15 @@ const ContactPage = () => {
             Explore Our Work
           </h2>
           <p className="text-xl text-white/60 mb-8 max-w-2xl mx-auto">
-            Learn more about our services and approach before reaching out.
+            Learn more about our growth approach before reaching out
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/services"
               className="px-8 py-4 bg-tunnels-dark border border-tunnels-darkgray/50 text-white font-semibold rounded-lg hover:border-tunnels-red/30 transition-all duration-300 flex items-center justify-center gap-2"
             >
-              View Our Services
+              View Growth Services
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link

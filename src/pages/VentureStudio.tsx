@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Users, TrendingUp, Shield, Target, Lightbulb, DollarSign, Handshake, Clock, BarChart3, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check, Users, TrendingUp, Target, Zap, Rocket, X, ChevronLeft, ChevronRight, Code, BarChart3, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
 const VentureStudio = () => {
-  const ventureStructuredData = {
+  const distributionStructuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "TunnelsNG Venture Studio",
-    "serviceType": "Venture partnership and technical co-founder",
+    "name": "TunnelsNG Growth Partnerships",
+    "serviceType": "Growth partnership and embedded user acquisition",
     "provider": {
       "@type": "Organization",
       "name": "TunnelsNG",
@@ -22,14 +22,14 @@ const VentureStudio = () => {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Venture Partnership Models",
+      "name": "Growth Partnership Models",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Deferred Build Partnership",
-            "description": "Performance-linked development with deferred repayment triggered by revenue milestones or funding.",
+            "name": "Growth Sprint Partnership",
+            "description": "Intensive 4-12 week campaigns to build your initial growth system and acquire your first cohort of users.",
             "url": "https://tunnels.ng/venture-studio"
           }
         },
@@ -37,8 +37,8 @@ const VentureStudio = () => {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Equity Partnership",
-            "description": "Long-term co-building with 10-30% equity, determined after evaluation. Technical co-founder involvement.",
+            "name": "Embedded Growth Partner",
+            "description": "3-6 month engagement where we embed within your team to design, build, and operate your growth infrastructure.",
             "url": "https://tunnels.ng/venture-studio"
           }
         },
@@ -46,48 +46,52 @@ const VentureStudio = () => {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Revenue Share Partnership",
-            "description": "Time-bound partnership (12-36 months) with 5-20% revenue share, capped to prevent long-term drag.",
+            "name": "Equity Growth Partnership",
+            "description": "Long-term partnership where we take equity and become your growth partner with fully aligned incentives.",
             "url": "https://tunnels.ng/venture-studio"
           }
         }
       ]
     }
   };
+
   const [isVisible, setIsVisible] = useState(false);
   const [visibleSections, setVisibleSections] = useState(new Set<string>());
   const [activeModel, setActiveModel] = useState(0);
 
   const partnershipModels = [
     {
-      title: 'Deferred Build Partnership',
+      title: 'Sprint Partnership',
       label: 'Model 01',
-      icon: Clock,
+      icon: Zap,
       image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80',
-      description: 'Performance-linked development with deferred repayment triggered by revenue milestones or funding events. Reserved for validated ventures with committed founders and clear paths to monetization.',
-      benefits: ['Milestone-based delivery structure', 'Repayment tied to revenue or funding', 'Full technical team commitment', 'Aligned incentives from day one'],
-      ideal: 'Early-stage ventures with market validation',
-      terms: 'Repayment begins post-traction'
+      duration: '4-12 weeks',
+      description: 'Focused campaigns to get you your first users. We build the systems, run the campaigns, and get you to traction fast.',
+      benefits: ['First users in weeks', 'Growth playbook delivered', 'Channel testing', 'Funnel optimization'],
+      ideal: 'Products ready to launch or recently launched',
+      terms: 'Fixed engagement, milestone-based'
+    },
+    {
+      title: 'Embedded Partnership',
+      label: 'Model 02',
+      icon: Users,
+      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80',
+      duration: '3-6 months',
+      description: 'We join your team to build and run your growth systems. Think of us as your dedicated growth team.',
+      benefits: ['Dedicated growth team', 'Ongoing user acquisition', 'Continuous optimization', 'Strategic guidance'],
+      ideal: 'Growing products with product-market fit',
+      terms: 'Monthly retainer + performance incentives'
     },
     {
       title: 'Equity Partnership',
-      label: 'Model 02',
-      icon: Handshake,
-      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80',
-      description: 'Deep co-building with shared ownership, typically ranging from 10% to 30% equity determined after evaluation. We become long-term technical co-founders invested in your venture\'s success.',
-      benefits: ['10% to 30% equity range (post-evaluation)', 'Long-term technical co-founder role', 'Ongoing product iteration & support', 'Board-level strategic involvement'],
-      ideal: 'High-potential ventures with serious operators',
-      terms: 'Equity finalized after due diligence'
-    },
-    {
-      title: 'Revenue Share Partnership',
       label: 'Model 03',
-      icon: TrendingUp,
+      icon: Rocket,
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
-      description: 'Time-bound technology partnership for operating businesses, typically 5% to 20% of revenue over 12 to 36 months. Agreements are capped to prevent long-term drag on your margins.',
-      benefits: ['5% to 20% revenue share range', '12 to 36 month agreement term', 'Capped total repayment', 'No perpetual obligations'],
-      ideal: 'Revenue-generating businesses seeking transformation',
-      terms: 'Terms structured around existing revenue'
+      duration: 'Long-term (12+ months)',
+      description: 'For high-potential products, we take equity and become your long-term growth partner with fully aligned incentives.',
+      benefits: ['Zero upfront cost', 'Aligned incentives', 'Long-term commitment', 'Full growth ownership'],
+      ideal: 'High-potential products with committed teams',
+      terms: 'Equity determined after evaluation'
     }
   ];
 
@@ -125,48 +129,40 @@ const VentureStudio = () => {
   const process = [
     {
       step: '01',
-      title: 'Initial Conversation',
-      description: 'A candid discussion about your venture, market opportunity, and what you\'re trying to build. No pitch decks required. We assess fit through dialogue.'
+      title: 'Product Assessment',
+      duration: '1 week',
+      description: 'Deep product audit, market analysis, growth gap identification'
     },
     {
       step: '02',
-      title: 'Evaluation & Diligence',
-      description: 'We assess technical feasibility, market potential, founder commitment, and monetization clarity. Many ventures do not proceed past this stage.'
+      title: 'Growth Architecture',
+      duration: '1-2 weeks',
+      description: 'Channel strategy, conversion design, system blueprint'
     },
     {
       step: '03',
-      title: 'Terms & Structure',
-      description: 'For qualified ventures, we define the partnership model: equity range, deferred terms, or revenue share, with clear milestones and accountability.'
-    },
-    {
-      step: '04',
-      title: 'Build & Iterate',
-      description: 'Our team executes with an ownership mindset. We ship in cycles, validate assumptions, and iterate based on market feedback, not just specifications.'
-    },
-    {
-      step: '05',
-      title: 'Scale & Support',
-      description: 'Post-launch, we remain invested in your trajectory. Ongoing iteration, technical guidance, and strategic support as the partnership matures.'
+      title: 'Build & Operate',
+      duration: '4-12+ weeks',
+      description: 'Execute campaigns, acquire users, optimize & iterate'
     }
   ];
 
   const criteria = [
-    { icon: Lightbulb, title: 'Validated Problem', description: 'Evidence of customer demand: pilots, LOIs, or paying users' },
-    { icon: Target, title: 'Clear Position', description: 'A defined market view with conviction, not just an idea' },
-    { icon: Users, title: 'Committed Operators', description: 'Founders with skin in the game and capacity to execute' },
-    { icon: BarChart3, title: 'Scalable Opportunity', description: 'Addressable market with credible path to meaningful scale' },
-    { icon: Shield, title: 'Defensibility', description: 'Differentiation or positioning that compounds over time' },
-    { icon: DollarSign, title: 'Monetization Clarity', description: 'A credible route to revenue, not hypothetical, actionable' }
+    { icon: Code, title: 'Working Product', description: 'You have a functional product, not just an idea' },
+    { icon: Target, title: 'Growth Challenge', description: 'Clear gap between product quality and user adoption' },
+    { icon: Users, title: 'Committed Team', description: 'Founders with capacity to execute alongside us' },
+    { icon: TrendingUp, title: 'Market Signal', description: 'Some early validation or clear path to monetization' },
+    { icon: BarChart3, title: 'Scale Potential', description: 'Addressable market worth the growth investment' }
   ];
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Venture Studio"
-        description="Selective venture studio partnering with founders through equity, deferred build, and revenue share structures. We co-build technology ventures with aligned incentives and shared accountability."
-        keywords="venture studio, technology co-founder, equity partnership, deferred build, revenue share partnership, startup co-building"
+      <SEO
+        title="Growth Partnerships"
+        description="Selective partnerships for products ready to grow. We embed as your growth partner to design, build, and operate user acquisition systems."
+        keywords="growth partnership, embedded growth partner, user acquisition partner, growth partnerships, growth strategy consulting"
         url="https://tunnels.ng/venture-studio"
-        structuredData={ventureStructuredData}
+        structuredData={distributionStructuredData}
       />
       <Navbar />
 
@@ -174,27 +170,26 @@ const VentureStudio = () => {
       <section className="pt-32 pb-20 bg-tunnels-black relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80" 
-            alt="" 
+          <img
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80"
+            alt=""
             className="w-full h-full object-cover opacity-10"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-tunnels-black via-tunnels-black/95 to-tunnels-black" />
         </div>
-        
+
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Venture <span className="text-tunnels-red">Studio</span>
+              Growth <span className="text-tunnels-red">Partnerships</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-6">
-              We selectively partner with founders and businesses to co-build technology ventures 
-              through equity, deferred, and revenue-linked structures with shared accountability.
+              For products ready to scale, we become your embedded growth partner
             </p>
-            
+
             <p className="text-white/50 text-sm uppercase tracking-wider mb-10">
-              Not a dev shop. A selective, long-term partnership.
+              Selective partnerships where we work alongside you to build real traction
             </p>
 
             <Link
@@ -208,21 +203,21 @@ const VentureStudio = () => {
         </div>
       </section>
 
-      {/* Why Venture Studio Model */}
-      <section 
-        id="why-section" 
-        data-section 
-        className={`py-20 bg-tunnels-dark transition-all duration-700 ${visibleSections.has('why-section') ? 'opacity-100' : 'opacity-0'}`}
+      {/* Traditional Marketing Agencies vs Distribution Partnership */}
+      <section
+        id="comparison-section"
+        data-section
+        className={`py-20 bg-tunnels-dark transition-all duration-700 ${visibleSections.has('comparison-section') ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why a <span className="text-tunnels-red">Venture Studio</span> Model Works
+                Marketing Agencies vs <span className="text-tunnels-red">Growth Partners</span>
               </h2>
               <p className="text-white/60 max-w-3xl mx-auto">
-                Transactional dev shops optimize for delivery. We optimize for outcomes. 
-                Shared risk, aligned incentives, and iterative growth define every partnership.
+                Marketing agencies optimize for awareness. We optimize for getting you actual users.
+                Real metrics, systematic thinking, and long-term results define how we work.
               </p>
             </div>
 
@@ -231,13 +226,13 @@ const VentureStudio = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
                   <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&q=80" alt="" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Transactional Dev Shops</h3>
+                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Marketing Agencies</h3>
                 <ul className="space-y-3">
                   {[
-                    'Large capital outlay before validation',
-                    'Scope-driven, deadline-focused delivery',
-                    'Incentives end when invoice is paid',
-                    'No stake in your long-term success'
+                    'Brand awareness focus',
+                    'Campaign-based thinking',
+                    'Vanity metrics (impressions, reach)',
+                    'Short-term engagements'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/50">
                       <X className="w-4 h-4 text-white/30 mt-1 flex-shrink-0" />
@@ -251,13 +246,13 @@ const VentureStudio = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
                   <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&q=80" alt="" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Venture Studio Partnership</h3>
+                <h3 className="text-xl font-bold text-white mb-4 relative z-10">Growth Partnership</h3>
                 <ul className="space-y-3">
                   {[
-                    'Shared risk through deferred or equity structures',
-                    'Outcome-driven, iteration-focused execution',
-                    'Incentives aligned to your growth metrics',
-                    'Long-term stake in venture success'
+                    'User acquisition focus',
+                    'System-based thinking',
+                    'Real metrics (users, activation, retention)',
+                    'Long-term infrastructure building'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/80">
                       <Check className="w-4 h-4 text-tunnels-red mt-1 flex-shrink-0" />
@@ -272,9 +267,9 @@ const VentureStudio = () => {
       </section>
 
       {/* Partnership Models Carousel */}
-      <section 
-        id="models-section" 
-        data-section 
+      <section
+        id="models-section"
+        data-section
         className={`py-20 bg-tunnels-black transition-all duration-700 overflow-hidden ${visibleSections.has('models-section') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
@@ -283,7 +278,7 @@ const VentureStudio = () => {
               Partnership <span className="text-tunnels-red">Models</span>
             </h2>
             <p className="text-white/60 max-w-3xl mx-auto">
-              Each structure is determined after evaluation of your venture's stage, validation signals, and growth trajectory. 
+              Each structure is determined after evaluation of your product's stage, distribution gap, and growth potential.
               We partner selectively. Qualification is required.
             </p>
           </div>
@@ -301,8 +296,8 @@ const VentureStudio = () => {
                       activeModel === index ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
-                    <img 
-                      src={model.image} 
+                    <img
+                      src={model.image}
                       alt={model.title}
                       className="w-full h-full object-cover"
                     />
@@ -316,15 +311,15 @@ const VentureStudio = () => {
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-tunnels-red/5 rounded-full blur-[100px] pointer-events-none" />
 
               {/* Content */}
-              <div className="relative z-10 p-8 md:p-12 lg:p-16 min-h-[500px] flex flex-col justify-center">
+              <div className="relative z-10 p-8 md:p-12 lg:p-16 min-h-[600px] flex flex-col justify-center">
                 {partnershipModels.map((model, index) => {
                   const Icon = model.icon;
                   return (
                     <div
                       key={index}
                       className={`transition-all duration-500 ${
-                        activeModel === index 
-                          ? 'opacity-100 translate-x-0' 
+                        activeModel === index
+                          ? 'opacity-100 translate-x-0'
                           : 'opacity-0 absolute translate-x-8 pointer-events-none'
                       }`}
                     >
@@ -337,19 +332,25 @@ const VentureStudio = () => {
                             </div>
                             <span className="text-tunnels-red text-sm uppercase tracking-widest font-medium">{model.label}</span>
                           </div>
-                          
+
                           {/* Title */}
-                          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
                             {model.title}
                           </h3>
-                          
+
+                          {/* Duration */}
+                          <div className="flex items-center gap-2 mb-6">
+                            <Clock className="w-5 h-5 text-tunnels-red" />
+                            <span className="text-white/70 text-lg">Duration: {model.duration}</span>
+                          </div>
+
                           {/* Description */}
                           <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed">
                             {model.description}
                           </p>
-                          
+
                           {/* Benefits */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                             {model.benefits.map((benefit, i) => (
                               <div key={i} className="flex items-center gap-3 text-white/80">
                                 <div className="w-6 h-6 rounded-full bg-tunnels-red/20 flex items-center justify-center flex-shrink-0">
@@ -359,11 +360,17 @@ const VentureStudio = () => {
                               </div>
                             ))}
                           </div>
-                          
-                          {/* Ideal For */}
-                          <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                            <span className="text-tunnels-red font-semibold">Ideal for:</span>
-                            <span className="text-white/70">{model.ideal}</span>
+
+                          {/* Ideal For & Terms */}
+                          <div className="space-y-3">
+                            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                              <span className="text-tunnels-red font-semibold">Ideal for:</span>
+                              <span className="text-white/70">{model.ideal}</span>
+                            </div>
+                            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 ml-3">
+                              <span className="text-tunnels-red font-semibold">Terms:</span>
+                              <span className="text-white/70">{model.terms}</span>
+                            </div>
                           </div>
                         </div>
                       )}
@@ -374,13 +381,13 @@ const VentureStudio = () => {
 
               {/* Navigation */}
               <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-center gap-3 z-20">
-                <button 
+                <button
                   onClick={prevModel}
                   className="w-12 h-12 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-white/10 hover:border-tunnels-red/30 transition-all duration-300"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <button 
+                <button
                   onClick={nextModel}
                   className="w-12 h-12 rounded-xl bg-tunnels-red/20 backdrop-blur-sm border border-tunnels-red/30 flex items-center justify-center text-white hover:bg-tunnels-red/30 transition-all duration-300"
                 >
@@ -390,7 +397,7 @@ const VentureStudio = () => {
 
               {/* Progress indicator */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/5">
-                <div 
+                <div
                   className="h-full bg-tunnels-red transition-all duration-500"
                   style={{ width: `${((activeModel + 1) / partnershipModels.length) * 100}%` }}
                 />
@@ -406,8 +413,8 @@ const VentureStudio = () => {
                     key={index}
                     onClick={() => setActiveModel(index)}
                     className={`p-4 rounded-xl border transition-all duration-300 text-left ${
-                      activeModel === index 
-                        ? 'bg-tunnels-red/10 border-tunnels-red/30' 
+                      activeModel === index
+                        ? 'bg-tunnels-red/10 border-tunnels-red/30'
                         : 'bg-tunnels-dark/50 border-tunnels-darkgray/30 hover:border-tunnels-red/20'
                     }`}
                   >
@@ -425,25 +432,25 @@ const VentureStudio = () => {
         </div>
       </section>
 
-      {/* Our Venture Studio Process */}
-      <section 
-        id="process-section" 
-        data-section 
+      {/* Our Process */}
+      <section
+        id="process-section"
+        data-section
         className={`py-20 bg-tunnels-dark transition-all duration-700 ${visibleSections.has('process-section') ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              How We <span className="text-tunnels-red">Engage</span>
+              Our <span className="text-tunnels-red">Process</span>
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              A structured path from conversation to partnership. Designed for serious founders building ventures with scale potential.
+              A structured path from product assessment to user acquisition. Designed for products ready to scale.
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             {process.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="flex gap-6 mb-8 last:mb-0"
               >
@@ -456,7 +463,10 @@ const VentureStudio = () => {
                   )}
                 </div>
                 <div className="flex-1 pb-8">
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                    <span className="text-tunnels-red text-sm">({item.duration})</span>
+                  </div>
                   <p className="text-white/60">{item.description}</p>
                 </div>
               </div>
@@ -470,23 +480,23 @@ const VentureStudio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
             <div className="aspect-[4/3] rounded-xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=600&q=80" 
-                alt="Team collaboration" 
+              <img
+                src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=600&q=80"
+                alt="Team collaboration"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="aspect-[4/3] rounded-xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" 
-                alt="Strategy session" 
+              <img
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80"
+                alt="Strategy session"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="aspect-[4/3] rounded-xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" 
-                alt="Product development" 
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                alt="Product development"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -495,27 +505,45 @@ const VentureStudio = () => {
       </section>
 
       {/* Selection Criteria */}
-      <section 
-        id="criteria-section" 
-        data-section 
+      <section
+        id="criteria-section"
+        data-section
         className={`py-20 bg-tunnels-black transition-all duration-700 ${visibleSections.has('criteria-section') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Qualification <span className="text-tunnels-red">Signals</span>
+              Selection <span className="text-tunnels-red">Criteria</span>
             </h2>
             <p className="text-white/60 max-w-3xl mx-auto">
-              We evaluate ventures against specific criteria. If these don't describe your current stage, 
+              We evaluate products against specific criteria. If these don't describe your current stage,
               we may not be the right fit yet.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {criteria.map((item, index) => {
+            {criteria.slice(0, 3).map((item, index) => {
               const Icon = item.icon;
               return (
-                <div 
+                <div
+                  key={index}
+                  className="p-6 rounded-xl border border-tunnels-darkgray/50 hover:border-tunnels-red/30 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-tunnels-darkgray rounded-lg flex items-center justify-center mb-4 group-hover:bg-tunnels-red transition-colors duration-300">
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-white/50 text-sm">{item.description}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
+            {criteria.slice(3).map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
                   key={index}
                   className="p-6 rounded-xl border border-tunnels-darkgray/50 hover:border-tunnels-red/30 transition-all duration-300 group"
                 >
@@ -539,18 +567,18 @@ const VentureStudio = () => {
               Ready to Start a <span className="text-tunnels-red">Conversation</span>?
             </h2>
             <p className="text-white/60 text-lg mb-8">
-              If you're building a venture with validated demand and the commitment to execute, 
+              If you have a working product with a clear growth gap and the commitment to grow,
               we're open to exploring partnership.
             </p>
-            
+
             <Link
               to="/venture-studio/apply"
               className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
             >
-              Start a Venture Conversation
+              Apply for Growth Partnership
               <ArrowRight className="w-5 h-5" />
             </Link>
-            
+
             <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-white/50">
               {['NDA Available on Request', 'Evaluation-Based Partnership'].map((item, index) => (
                 <div key={index} className="flex items-center gap-2">

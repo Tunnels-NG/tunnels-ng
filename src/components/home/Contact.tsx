@@ -30,28 +30,28 @@ const Contact = () => {
           <div className="p-10 md:p-14 bg-tunnels-dark border border-tunnels-darkgray/50 rounded-2xl">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Ready for a Serious <span className="text-tunnels-red">Tech Partner</span>?
+                Ready to <span className="text-tunnels-red">Grow Your User Base</span>?
               </h2>
               <p className="text-white/70 max-w-2xl mx-auto text-lg">
-                Whether you need strategic advisory, scalable execution, or a long-term venture partner, 
-                we work with teams committed to building real businesses.
+                Whether you need growth strategy, execution sprints, or a long-term growth partner,
+                we work with teams committed to getting real users.
               </p>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/services"
+                to="/contact"
                 className="inline-flex items-center gap-2 px-10 py-4 bg-tunnels-red text-white text-lg font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light"
               >
-                Work With Us
+                Get More Users
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/venture-studio/apply"
                 className="inline-flex items-center gap-2 px-10 py-4 border border-tunnels-gray text-white text-lg font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-dark hover:border-tunnels-lightgray"
               >
-                Apply to Venture Studio
+                Apply for Growth Partnership
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

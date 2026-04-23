@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Search, Lightbulb, Code, Rocket, HeadphonesIcon, CheckCircle2, Clock, Users, Target } from 'lucide-react';
+import { ArrowRight, Search, Lightbulb, Rocket, CheckCircle2, Zap, BarChart, TrendingUp, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -37,109 +37,79 @@ const HowItWorks = () => {
     {
       id: 1,
       icon: Search,
-      title: 'Discovery',
+      title: 'Understand Your Product',
       duration: '1-2 Weeks',
-      description: 'We dive deep into understanding your vision, market, and users.',
+      description: 'We audit your product, users, and market to figure out what\'s holding you back from growth',
       details: [
-        'Initial consultation to understand your business goals',
-        'Market research and competitive analysis',
-        'User persona development and journey mapping',
-        'Technical feasibility assessment',
-        'Partnership model discussion and alignment'
+        'Product-market fit assessment',
+        'Current user behavior analysis',
+        'Competitor research',
+        'Channel opportunities',
+        'Growth gap identification'
       ],
-      deliverables: ['Discovery Report', 'Market Analysis', 'User Personas', 'Project Scope Document']
+      deliverables: ['Product Audit', 'User Analysis', 'Gap Assessment', 'Opportunity Map']
     },
     {
       id: 2,
       icon: Lightbulb,
-      title: 'Strategy & Design',
-      duration: '2-3 Weeks',
-      description: 'We craft the blueprint that will guide your product to success.',
+      title: 'Design the Strategy',
+      duration: '1-2 Weeks',
+      description: 'We map out the complete path from first touch to active user, tailored for your product',
       details: [
-        'Product roadmap and feature prioritization',
-        'Information architecture and user flows',
-        'Wireframing and interactive prototypes',
-        'UI/UX design with your brand identity',
-        'Technical architecture planning'
+        'Where users will find you',
+        'What makes them sign up',
+        'Messaging and positioning',
+        'Channel priorities',
+        'Activation milestones'
       ],
-      deliverables: ['Product Roadmap', 'Wireframes', 'UI/UX Designs', 'Technical Architecture']
+      deliverables: ['Growth Blueprint', 'Conversion Map', 'Messaging Guide', 'Channel Plan']
     },
     {
       id: 3,
-      icon: Code,
-      title: 'Development',
-      duration: '8-16 Weeks',
-      description: 'We bring your vision to life with clean, scalable code.',
-      details: [
-        'Agile development with 2-week sprints',
-        'Regular demos and feedback sessions',
-        'Continuous integration and testing',
-        'Code reviews and quality assurance',
-        'Progress tracking and transparent communication'
-      ],
-      deliverables: ['Working Software', 'Sprint Reports', 'Test Documentation', 'Source Code']
-    },
-    {
-      id: 4,
       icon: Rocket,
-      title: 'Launch',
-      duration: '1-2 Weeks',
-      description: 'We deploy your product and ensure a smooth market entry.',
+      title: 'Execute & Grow',
+      duration: '4-12 Weeks',
+      description: 'We build and run the systems that get your product to real users',
       details: [
-        'Production environment setup',
-        'Performance optimization and security audits',
-        'Beta testing with real users',
-        'Go-to-market strategy execution',
-        'Launch monitoring and rapid issue resolution'
+        'User acquisition campaigns',
+        'Community outreach',
+        'Content creation',
+        'Conversion optimization',
+        'Funnel improvements'
       ],
-      deliverables: ['Deployed Product', 'Launch Checklist', 'Analytics Setup', 'Documentation']
-    },
-    {
-      id: 5,
-      icon: HeadphonesIcon,
-      title: 'Growth & Support',
-      duration: 'Ongoing',
-      description: 'We continue to nurture and scale your product post-launch.',
-      details: [
-        'Ongoing maintenance and bug fixes',
-        'Feature enhancements based on user feedback',
-        'Performance monitoring and optimization',
-        'Scaling support as your user base grows',
-        'Strategic guidance for product evolution'
-      ],
-      deliverables: ['Monthly Reports', 'Feature Updates', 'Support Coverage', 'Growth Insights']
+      deliverables: ['Active Users', 'Growth Playbook', 'Performance Reports', 'Optimized Systems']
     }
   ];
 
   const principles = [
     {
       icon: Target,
-      title: 'Outcome-Focused',
-      description: 'We measure success by your business outcomes, not just deliverables.'
+      title: 'Built to Last',
+      description: 'We create repeatable systems and processes, not one-off campaigns'
     },
     {
-      icon: Users,
-      title: 'Collaborative',
-      description: 'You are not just a client, you are a partner in the building process.'
+      icon: BarChart,
+      title: 'Real Metrics',
+      description: 'Users acquired, activation rates, channel performance - not vanity metrics'
     },
     {
-      icon: Clock,
-      title: 'Transparent',
-      description: 'Real-time visibility into progress, challenges, and decisions.'
+      icon: Zap,
+      title: 'Move Fast',
+      description: 'Quick testing cycles to find what works and cut what doesn\'t'
     },
     {
-      icon: CheckCircle2,
-      title: 'Quality-Driven',
-      description: 'We never compromise on code quality, security, or user experience.'
+      icon: TrendingUp,
+      title: 'Product-First',
+      description: 'Growth strategy built on deep understanding of your product'
     }
   ];
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
+      <SEO
         title="How It Works"
-        description="Learn how Tunnels.ng transforms your idea into a scalable product. From discovery to delivery, our proven process ensures your project succeeds. Five simple steps to launch."
-        keywords="how to build MVP, software development process, startup development steps, product development lifecycle, MVP launch process, agile development Nigeria"
+        description="Our 3-stage process for getting products to real users. Understand, design, execute - systematic growth from zero to traction."
+        keywords="growth process, user acquisition process, how to get users, growth strategy, acquisition process"
         url="https://tunnels.ng/how-it-works"
       />
       <Navbar />
@@ -158,26 +128,25 @@ const HowItWorks = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              How We <span className="text-tunnels-red">Build</span>
+              How we get you <span className="text-tunnels-red">real users</span>
             </h1>
-            
+
             <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
-              From the first conversation to launch day and beyond, here is our proven 
-              process for turning ideas into thriving digital products.
+              Our 3-stage process for moving products from zero to traction
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-6 text-white/60">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-tunnels-red" />
-                <span>12-20 Week Average Timeline</span>
+                <span>2-4 weeks to first users</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-tunnels-red" />
-                <span>Agile Methodology</span>
+                <span>Systems-based approach</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-tunnels-red" />
-                <span>Continuous Collaboration</span>
+                <span>Measurable outcomes</span>
               </div>
             </div>
           </div>
@@ -293,8 +262,8 @@ const HowItWorks = () => {
                     ))}
                   </div>
                   <div className="flex justify-between mt-2">
-                    <span className="text-white/40 text-xs">Discovery</span>
-                    <span className="text-white/40 text-xs">Growth</span>
+                    <span className="text-white/40 text-xs">Understand</span>
+                    <span className="text-white/40 text-xs">Execute</span>
                   </div>
                 </div>
               </div>
@@ -395,18 +364,18 @@ const HowItWorks = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Start Your <span className="text-tunnels-red">Journey</span>?
+              Ready to Build Your <span className="text-tunnels-red">Growth System</span>?
             </h2>
             <p className="text-white/60 text-lg mb-8">
-              Let's discuss your idea and find the perfect partnership model for your venture.
+              Let's audit your product and identify the growth gaps holding you back.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
               >
-                Book a Discovery Call
+                Start Growth Audit
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link

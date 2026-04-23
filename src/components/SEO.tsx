@@ -12,11 +12,11 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'TunnelsNG | Technology Venture Studio Nigeria',
+  title: 'Tunnels.ng | Distribution Systems for Modern Products',
   description:
-    'TunnelsNG is a selective technology venture studio in Lagos partnering with African founders, growth-stage teams, and corporate innovators to co-build enduring products, automation, and venture partnerships.',
+    'We design and execute the systems that turn products into users. Distribution strategy, execution sprints, and partnerships for products ready to grow.',
   keywords:
-    'technology venture studio Nigeria, venture studio Africa, technical co-founder, startup technology partner, advisory and automation, Lagos venture studio, co-build startup Africa',
+    'distribution operating system, user acquisition, conversion engine, distribution strategy, product distribution, growth systems, activation optimization, user acquisition partner',
   image: 'https://tunnels.ng/assets/og-image.png',
   url: 'https://tunnels.ng',
 };

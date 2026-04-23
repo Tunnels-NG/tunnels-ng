@@ -69,10 +69,10 @@ const Partners = () => {
         
         <div className={`mb-16 text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Trusted by <span className="text-tunnels-red">Industry Leaders</span>
+            Products We've <span className="text-tunnels-red">Helped Grow</span>
           </h2>
           <p className="text-tunnels-lightgray max-w-2xl mx-auto text-lg md:text-xl">
-            Building successful partnerships with innovative companies worldwide
+            Partnering with products across sectors to engineer real user acquisition
           </p>
         </div>
 
@@ -130,19 +130,19 @@ const Partners = () => {
         <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center p-6 border border-tunnels-darkgray rounded-xl bg-tunnels-dark/50 hover:border-tunnels-red/30 transition-colors duration-300">
             <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">18+</div>
-            <div className="text-tunnels-lightgray text-sm">Partner Companies</div>
+            <div className="text-tunnels-lightgray text-sm">Products Helped</div>
           </div>
           <div className="text-center p-6 border border-tunnels-darkgray rounded-xl bg-tunnels-dark/50 hover:border-tunnels-red/30 transition-colors duration-300">
-            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">5+</div>
-            <div className="text-tunnels-lightgray text-sm">Cloud Partners</div>
+            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">12K+</div>
+            <div className="text-tunnels-lightgray text-sm">Users Acquired</div>
           </div>
           <div className="text-center p-6 border border-tunnels-darkgray rounded-xl bg-tunnels-dark/50 hover:border-tunnels-red/30 transition-colors duration-300">
-            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">100%</div>
-            <div className="text-tunnels-lightgray text-sm">Client Satisfaction</div>
+            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">3.2x</div>
+            <div className="text-tunnels-lightgray text-sm">Avg. Activation Lift</div>
           </div>
           <div className="text-center p-6 border border-tunnels-darkgray rounded-xl bg-tunnels-dark/50 hover:border-tunnels-red/30 transition-colors duration-300">
-            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">∞</div>
-            <div className="text-tunnels-lightgray text-sm">Growth Potential</div>
+            <div className="text-3xl md:text-4xl font-bold text-tunnels-red mb-1">12+</div>
+            <div className="text-tunnels-lightgray text-sm">Markets Entered</div>
           </div>
         </div>
       </div>

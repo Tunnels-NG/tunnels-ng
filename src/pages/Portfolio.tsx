@@ -52,7 +52,7 @@ const Portfolio = () => {
       tags: ['React', 'Node.js', 'Blockchain', 'Card Issuing API'],
       metrics: { transactions: '100K+', countries: '12+', uptime: '99.99%' },
       link: '#',
-      partnership: 'Equity Partnership'
+      partnership: 'Embedded Growth Partner'
     },
     {
       id: 2,
@@ -63,7 +63,7 @@ const Portfolio = () => {
       tags: ['Next.js', 'PostgreSQL', 'Redis', 'AWS'],
       metrics: { listings: '50K+', users: '200K+', cities: '30+' },
       link: '#',
-      partnership: 'Build Now, Pay Later'
+      partnership: 'Sprint Partnership'
     },
     {
       id: 3,
@@ -74,7 +74,7 @@ const Portfolio = () => {
       tags: ['React', 'Python', 'MongoDB', 'Social APIs'],
       metrics: { merchants: '5K+', gmv: '$2M+', conversion: '+45%' },
       link: '#',
-      partnership: 'Revenue Share'
+      partnership: 'Performance Partnership'
     },
     {
       id: 4,
@@ -85,7 +85,7 @@ const Portfolio = () => {
       tags: ['React Native', 'Node.js', 'Firebase', 'Maps API'],
       metrics: { orders: '25K+', kitchens: '15+', rating: '4.8★' },
       link: '#',
-      partnership: 'Equity Partnership'
+      partnership: 'Embedded Growth Partner'
     },
     {
       id: 5,
@@ -96,7 +96,7 @@ const Portfolio = () => {
       tags: ['Python', 'TensorFlow', 'React', 'WebSocket'],
       metrics: { accuracy: '78%+', signals: '500+/day', traders: '10K+' },
       link: '#',
-      partnership: 'Build Now, Pay Later'
+      partnership: 'Sprint Partnership'
     },
     {
       id: 6,
@@ -107,7 +107,7 @@ const Portfolio = () => {
       tags: ['React Native', 'Node.js', 'PostgreSQL', 'Logistics API'],
       metrics: { farmers: '2K+', deliveries: '15K+', freshness: '24hrs' },
       link: '#',
-      partnership: 'Equity Partnership'
+      partnership: 'Embedded Growth Partner'
     },
     {
       id: 7,
@@ -118,7 +118,7 @@ const Portfolio = () => {
       tags: ['Python', 'Computer Vision', 'React', 'IoT'],
       metrics: { yield: '+35%', farms: '500+', accuracy: '92%' },
       link: '#',
-      partnership: 'Revenue Share'
+      partnership: 'Performance Partnership'
     }
   ];
 
@@ -127,18 +127,18 @@ const Portfolio = () => {
     : projects.filter(p => p.category === selectedCategory);
 
   const stats = [
-    { value: '25+', label: 'Ventures Built' },
-    { value: '$5M+', label: 'Combined GMV' },
-    { value: '12+', label: 'African Countries' },
-    { value: '500K+', label: 'Users Served' }
+    { value: '18+', label: 'Products Helped' },
+    { value: '500K+', label: 'Users Acquired' },
+    { value: '12+', label: 'Markets Entered' },
+    { value: '3.2x', label: 'Avg Activation Lift' }
   ];
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Our Portfolio"
-        description="Explore our portfolio of successful ventures including Fenypay, Listdem, Zuura, OkansEat, and more. See how we transform ideas into scalable products across fintech, e-commerce, agritech, and SaaS."
-        keywords="software portfolio, fintech projects, SaaS projects, agritech solutions, e-commerce platforms, Fenypay, Listdem, Zuura, Nigerian startups, technology ventures"
+      <SEO
+        title="Portfolio - Our Work"
+        description="Products we've helped grow across fintech, SaaS, marketplaces, and more. See how we build user acquisition systems that work."
+        keywords="growth portfolio, user acquisition results, growth case studies, startup growth portfolio"
         url="https://tunnels.ng/portfolio"
       />
       <Navbar />
@@ -158,12 +158,11 @@ const Portfolio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our <span className="text-tunnels-red">Portfolio</span>
+              Products We've <span className="text-tunnels-red">Grown</span>
             </h1>
-            
+
             <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
-              A showcase of ventures we've built, partnered with, and helped scale. 
-              Each project represents a unique partnership story.
+              A showcase of products we've helped reach real users
             </p>
             
             <div className="flex flex-wrap justify-center gap-8">
@@ -338,19 +337,19 @@ const Portfolio = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Want to Be Our Next <span className="text-tunnels-red">Success Story</span>?
+              Ready to <span className="text-tunnels-red">Grow Your User Base</span>?
             </h2>
             <p className="text-white/60 text-lg mb-8">
-              Join the growing list of ventures we've helped build and scale. 
+              Join the growing list of ventures we've helped build and scale.
               Let's discuss how we can bring your vision to life.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:gap-3"
               >
-                Start Your Project
+                Get More Users
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link

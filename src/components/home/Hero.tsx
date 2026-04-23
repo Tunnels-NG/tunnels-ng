@@ -192,20 +192,18 @@ const Hero = () => {
             }`}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight mt-8">
-              We Co-Build Technology
+              Get your product
               <br />
-              <span className="text-tunnels-red">Businesses That Scale</span>
+              <span className="text-tunnels-red">to real users</span>
             </h1>
           </div>
 
-          <p 
+          <p
             className={`text-lg md:text-xl text-tunnels-lightgray max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-100 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            A technology venture studio partnering with founders and growth-stage businesses 
-            to build, automate, and scale revenue-generating products through structured 
-            services and long-term partnerships.
+            We help products get found, tried, and adopted. From strategy to hands-on execution, we build the growth systems that move you from zero to traction.
           </p>
 
           <div 
@@ -213,18 +211,18 @@ const Hero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <Link 
-              to="/services" 
+            <Link
+              to="/contact"
               className="inline-flex items-center px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light hover:shadow-lg hover:shadow-tunnels-red/20"
             >
-              Work With Us
+              Get More Users
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <Link 
-              to="/venture-studio" 
+            <Link
+              to="/how-it-works"
               className="inline-flex items-center px-8 py-4 border border-tunnels-gray text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-dark hover:border-tunnels-lightgray"
             >
-              Venture Studio
+              See How It Works
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
@@ -235,16 +233,16 @@ const Hero = () => {
             }`}
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white">100+</div>
-              <div className="text-sm text-tunnels-lightgray mt-1">Projects Delivered</div>
+              <div className="text-3xl md:text-4xl font-bold text-white">12K+</div>
+              <div className="text-sm text-tunnels-lightgray mt-1">Users Acquired</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white">50+</div>
-              <div className="text-sm text-tunnels-lightgray mt-1">Partners Served</div>
+              <div className="text-3xl md:text-4xl font-bold text-white">3.2x</div>
+              <div className="text-sm text-tunnels-lightgray mt-1">Avg. Activation Lift</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white">15+</div>
-              <div className="text-sm text-tunnels-lightgray mt-1">Countries</div>
+              <div className="text-3xl md:text-4xl font-bold text-white">18+</div>
+              <div className="text-sm text-tunnels-lightgray mt-1">Products Helped</div>
             </div>
           </div>
         </div>

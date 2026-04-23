@@ -109,10 +109,10 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
+      <SEO
         title="Careers"
-        description="Join Tunnels.ng and build the future of technology in Africa. Explore exciting career opportunities in software development, product design, and more. Remote-friendly with competitive benefits."
-        keywords="tech jobs Nigeria, software developer jobs, remote tech jobs Africa, startup careers, product designer jobs, Lagos tech jobs, career opportunities"
+        description="Build conversion systems with us. Join Tunnels.ng to engineer user acquisition infrastructure for modern products. Remote-friendly with competitive benefits."
+        keywords="distribution jobs, growth jobs, user acquisition careers, remote tech jobs, startup careers, Lagos tech jobs"
         url="https://tunnels.ng/careers"
       />
       <Navbar />
@@ -122,12 +122,12 @@ const Careers = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className={`text-center max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Build <span className="text-tunnels-red">Legacy</span> With Us
+              Build Conversion <span className="text-tunnels-red">Systems</span> With Us
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Join a remote-first team of makers, thinkers, and innovators who believe 
-              great work happens when people have the freedom to do their best.
+              Join a remote-first team engineering the infrastructure that turns products into users.
+              We're building the future of conversion, one system at a time.
             </p>
 
             <div className="flex flex-wrap justify-center gap-8 mb-12">

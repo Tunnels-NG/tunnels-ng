@@ -29,32 +29,32 @@ const About = () => {
 
   const values = [
     {
-      title: 'Innovation',
-      description: 'We constantly explore new technologies and approaches to solve complex business challenges.',
+      title: 'User-Focused',
+      description: 'Every decision we make is optimized for one thing: helping you get real users who actually use your product.',
       icon: Lightbulb,
     },
     {
-      title: 'Excellence',
-      description: 'We deliver high-quality solutions and commit to exceeding expectations in everything we do.',
+      title: 'Results-Driven',
+      description: 'We track real metrics: users acquired, activation rates, time to traction. Not vanity metrics like impressions or reach.',
       icon: Trophy,
     },
     {
-      title: 'Partnership',
-      description: 'We build long-term relationships based on trust, transparency, and mutual growth.',
+      title: 'Product Understanding',
+      description: 'We take time to understand your product deeply. You can\'t grow what you don\'t understand.',
       icon: Handshake,
     },
     {
-      title: 'Impact',
-      description: 'We measure success by the transformative impact our solutions create for businesses.',
+      title: 'Systematic Approach',
+      description: 'Growth isn\'t luck. It\'s repeatable systems and processes built to acquire users consistently.',
       icon: Zap,
     }
   ];
 
   const stats = [
-    { label: "Projects Delivered", value: "100+" },
-    { label: "Happy Clients", value: "50+" },
-    { label: "Countries Served", value: "15+" },
-    { label: "Years of Innovation", value: "8+" }
+    { label: "Products Helped", value: "18+" },
+    { label: "Users Acquired", value: "12K+" },
+    { label: "Markets Entered", value: "12+" },
+    { label: "Avg. Activation Lift", value: "3.2x" }
   ];
 
   const partners = [
@@ -87,10 +87,10 @@ const About = () => {
 
   return (
     <div className="bg-tunnels-black text-white overflow-hidden">
-      <SEO 
+      <SEO
         title="About Us"
-        description="Learn about Tunnels.ng - Africa's leading technology venture studio. Discover our mission to empower founders and businesses through innovative technology partnerships, MVP development, and business automation."
-        keywords="about tunnels ng, technology venture studio Africa, Nigerian tech company, startup partnership, MVP development team, Lagos software company"
+        description="We exist because great products die in obscurity. Learn about Tunnels.ng - we help products get to real users."
+        keywords="about tunnels ng, user acquisition company, growth strategy Africa, product growth Nigeria"
         url="https://tunnels.ng/about"
       />
       <Navbar />
@@ -110,26 +110,28 @@ const About = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              We Are <span className="text-tunnels-red">TunnelsNG</span>
+              We exist because great products
+              <br />
+              <span className="text-tunnels-red">die in obscurity</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-10">
-              Since 2018, we've been turning bold ideas into revenue-generating products. 
-              A technology venture studio trusted by founders across 15+ countries to build, partner, and scale.
+              Most founders don't fail because they built something bad. They fail because nobody found it.
+              We're the growth infrastructure that ensures good products reach real users.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <div className="flex items-center justify-center gap-2 text-white/70">
                 <Check className="w-5 h-5 text-tunnels-red" />
-                <span>Build Now, Pay Later</span>
+                <span>User-Focused Thinking</span>
               </div>
               <div className="flex items-center justify-center gap-2 text-white/70">
                 <Check className="w-5 h-5 text-tunnels-red" />
-                <span>Equity Partnerships Available</span>
+                <span>Measurable Outcomes</span>
               </div>
               <div className="flex items-center justify-center gap-2 text-white/70">
                 <Check className="w-5 h-5 text-tunnels-red" />
-                <span>15+ Countries Served</span>
+                <span>Systems Over Campaigns</span>
               </div>
             </div>
 
@@ -159,24 +161,24 @@ const About = () => {
             {/* Content */}
             <div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
-                Built for <span className="text-tunnels-red">Founders</span>
+                The <span className="text-tunnels-red">Real Problem</span>
               </h2>
-              
+
               <div className="space-y-6 text-white/70 text-lg leading-relaxed">
                 <p>
-                  <span className="text-white">In 2018, we launched TunnelsNG</span> with a singular mission: to ensure brilliant ideas never die in the "what if" stage. We understood the frustration of founders with game-changing concepts but without the capital or technical expertise to bring them to life.
-                </p>
-                
-                <p>
-                  Since then, we've delivered <span className="text-white">100+ products and helped launch startups across 15+ countries</span>, from Lagos to London, Nairobi to New York. We don't just write code; we become your technical co-founder. Through our <span className="text-white">Build Now, Pay Later</span> model and <span className="text-white">Equity Partnership</span> options, we remove every barrier standing between your idea and its success.
-                </p>
-                
-                <p>
-                  From automating complex business operations to launching market-ready MVPs in weeks, our track record speaks for itself. The startups we've built are generating revenue, scaling globally, and changing industries.
+                  <span className="text-white">We started Tunnels because we kept seeing the same pattern:</span> founders building incredible products that nobody ever used. Not because the products were bad. But because getting users - the actual system of getting products in front of people who need them - was treated as an afterthought.
                 </p>
 
                 <p>
-                  <span className="text-white">Your idea deserves to exist.</span> Let's make it happen.
+                  Marketing agencies sold brand awareness. Development shops built features. Growth consultants gave generic advice. But nobody was engineering <span className="text-white">user acquisition as a system</span> - mapping user pathways, designing conversion triggers, and executing targeted campaigns that push products into real environments.
+                </p>
+
+                <p>
+                  So we built it. <span className="text-white">18+ products helped. 12,000+ users acquired. 3.2x average activation lift.</span> We've designed growth systems for fintech, SaaS, marketplaces, and everything in between. From Lagos to global markets.
+                </p>
+
+                <p>
+                  <span className="text-white">Your product works. Now let's get it used.</span>
                 </p>
               </div>
             </div>
@@ -226,7 +228,7 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
               <p className="text-white/70 text-lg leading-relaxed">
-                To eliminate the barriers between great ideas and successful products. We empower founders and businesses with world-class technology, flexible partnership models, and the execution power to build products that matter.
+                Ensure no good product fails because of user acquisition. We design and execute the systems that move products from invisibility to adoption, turning potential users into active users.
               </p>
             </div>
 
@@ -237,7 +239,7 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Our Vision</h3>
               <p className="text-white/70 text-lg leading-relaxed">
-                To become Africa's leading technology venture studio, the place where founders transform bold visions into billion-dollar realities, regardless of starting capital.
+                Become the default growth infrastructure for modern products. The first call founders make when they need real users, not vanity metrics.
               </p>
             </div>
           </div>
@@ -300,10 +302,10 @@ const About = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className="mb-16 text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Trusted by <span className="text-tunnels-red">Industry Leaders</span>
+              Products We've <span className="text-tunnels-red">Grown</span>
             </h2>
             <p className="text-tunnels-lightgray max-w-2xl mx-auto text-lg md:text-xl">
-              Building successful partnerships with innovative companies worldwide
+              Partnering with products across sectors to engineer real user acquisition
             </p>
           </div>
 
@@ -378,16 +380,16 @@ const About = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Have an Idea Worth <span className="text-tunnels-red">Building</span>?
+              Ready to <span className="text-tunnels-red">Grow Your Product</span>?
             </h2>
             <p className="text-white/70 text-lg mb-8">
-              Whether you need a technical co-founder, want to explore equity partnerships, or simply need world-class development, we're ready.
+              Whether you need growth strategy, execution sprints, or a long-term growth partner, we're ready to get your product to real users.
             </p>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-tunnels-red text-white font-semibold rounded-lg transition-all duration-300 hover:bg-tunnels-red-light"
             >
-              Let's Talk
+              Get More Users
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>

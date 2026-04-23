@@ -11,9 +11,9 @@ const Footer = () => {
       { name: 'Contact', path: '/contact' },
     ],
     services: [
-      { name: 'Advisory & Audit', path: '/services#advisory' },
-      { name: 'Build & Automation', path: '/services#build' },
-      { name: 'Venture Studio', path: '/venture-studio' },
+      { name: 'Growth Strategy', path: '/services#strategy' },
+      { name: 'Execution Sprints', path: '/services#sprints' },
+      { name: 'Growth Partnerships', path: '/venture-studio' },
     ],
     resources: [
       { name: 'Case Studies', path: '/case-studies' },
@@ -36,10 +36,10 @@ const Footer = () => {
           <div className="bg-tunnels-dark border border-tunnels-darkgray rounded-2xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
-                Get the latest insights
+                Distribution insights, weekly
               </h3>
               <p className="text-tunnels-lightgray max-w-md">
-                Join 5,000+ founders and tech leaders. Get weekly insights on automation, MVPs, and scaling.
+                Join founders learning how to engineer real user acquisition. No fluff, just systems.
               </p>
             </div>
             <div className="w-full lg:w-auto">
@@ -78,7 +78,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-tunnels-lightgray mb-6 max-w-sm leading-relaxed">
-              A technology venture studio focused on building, automating, and scaling enduring businesses.
+              We help products get to real users.
             </p>
             
             <div className="flex items-center gap-3">

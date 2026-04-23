@@ -40,17 +40,17 @@ const CaseStudies = () => {
       subtitle: 'Bridging Crypto and Traditional Finance Across Africa',
       category: 'Fintech',
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80',
-      partnership: 'Equity Partnership',
+      partnership: 'Embedded Growth Partner',
       duration: '6 Months',
-      challenge: 'African users faced significant barriers accessing cryptocurrency markets. Complex onboarding, limited payment options, and no easy way to convert crypto to spendable cash. Traditional banks were slow to adapt, leaving a massive gap in the market.',
-      solution: 'We built Fenypay from the ground up as a comprehensive financial infrastructure. The platform features seamless fiat-to-crypto conversion, virtual and physical card issuance, and integration with local payment systems across 12 African countries.',
+      challenge: 'African users wanted crypto access but couldn\'t find or activate on available platforms. Discovery and onboarding were major friction points preventing market penetration.',
+      solution: 'We designed a multi-channel growth system targeting crypto communities, built frictionless onboarding optimized for mobile-first activation, and engineered viral referral mechanics that spread across 12 countries.',
       results: [
         { metric: '100K+', label: 'Transactions Processed' },
         { metric: '12', label: 'Countries Covered' },
         { metric: '99.99%', label: 'Uptime Achieved' },
         { metric: '$2M+', label: 'Monthly Volume' }
       ],
-      technologies: ['React', 'Node.js', 'Blockchain APIs', 'Card Issuing Infrastructure'],
+      niche: ['Fintech', 'Crypto', 'Mobile-First'],
       testimonial: {
         quote: 'Tunnels did not just build our platform, they helped us reimagine what financial access could look like for Africans.',
         author: 'Founder, Fenypay'
@@ -58,24 +58,24 @@ const CaseStudies = () => {
     },
     {
       id: 2,
-      title: 'Zuura',
+      title: 'Zura',
       subtitle: 'Transforming Social Media into Storefronts',
       category: 'SaaS',
       image: 'https://images.unsplash.com/photo-1556742077-0a6b6a4a4ac4?w=800&q=80',
-      partnership: 'Revenue Share',
+      partnership: 'Performance Partnership',
       duration: '4 Months',
-      challenge: 'Small merchants across Africa were selling on Instagram and WhatsApp but struggled with inventory management, payments, and order tracking. They needed enterprise-level tools without enterprise-level complexity or cost.',
-      solution: 'Zuura emerged as an all-in-one social commerce platform. Merchants can create digital storefronts, sync products to social media, accept multiple payment methods, and track orders, all from a single dashboard.',
+      challenge: 'Thousands of social sellers existed but most never converted followers into paying customers. The gap between social presence and actual sales was costing merchants revenue daily.',
+      solution: 'We embedded growth directly into merchant workflows - one-click storefront creation from Instagram, WhatsApp checkout optimization, and viral sharing mechanics that turned customers into acquisition channels. Then launched through influencer partnerships to seed initial merchant base.',
       results: [
         { metric: '5K+', label: 'Active Merchants' },
         { metric: '$2M+', label: 'GMV Processed' },
         { metric: '+45%', label: 'Conversion Lift' },
         { metric: '3min', label: 'Avg Setup Time' }
       ],
-      technologies: ['React', 'Python', 'MongoDB', 'Instagram & WhatsApp APIs'],
+      niche: ['SaaS', 'Social Commerce', 'Mobile-First'],
       testimonial: {
         quote: 'The team understood our market deeply. They built exactly what African merchants needed, not what Silicon Valley thinks we need.',
-        author: 'Co-founder, Zuura'
+        author: 'Co-founder, Zura'
       }
     },
     {
@@ -84,17 +84,17 @@ const CaseStudies = () => {
       subtitle: 'Africa\'s Trusted Classified Marketplace',
       category: 'Marketplace',
       image: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&q=80',
-      partnership: 'Build Now, Pay Later',
+      partnership: 'Sprint Partnership',
       duration: '5 Months',
-      challenge: 'Existing classified platforms weren\'t designed for African markets. Users needed a trustworthy platform with local payment integration, fraud protection, and support for the unique ways Africans buy and sell.',
-      solution: 'We developed Listdem as a mobile-first classified platform with built-in verification systems, escrow payments, and location-based discovery. The platform supports everything from vehicles to real estate to services.',
+      challenge: 'Both buyers and sellers were scattered across WhatsApp groups and Facebook. No single platform had achieved network density. The chicken-and-egg problem was keeping everyone fragmented.',
+      solution: 'We engineered a dual-sided acquisition engine - automated scraping to populate initial listings for buyer attraction, then seller-focused SMS and WhatsApp campaigns in high-density neighborhoods. Location-based notifications drove reactivation, while escrow payments increased conversion trust.',
       results: [
         { metric: '50K+', label: 'Active Listings' },
         { metric: '200K+', label: 'Registered Users' },
         { metric: '30+', label: 'Cities Covered' },
         { metric: '85%', label: 'Mobile Traffic' }
       ],
-      technologies: ['Next.js', 'PostgreSQL', 'Redis', 'AWS Infrastructure'],
+      niche: ['Marketplace', 'Classifieds', 'Mobile-First'],
       testimonial: {
         quote: 'Tunnels helped us launch faster than we thought possible, and the Build Now Pay Later model meant we could preserve our runway.',
         author: 'CEO, Listdem'
@@ -106,17 +106,17 @@ const CaseStudies = () => {
       subtitle: 'AI-Powered Precision Agriculture',
       category: 'AgriTech',
       image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80',
-      partnership: 'Revenue Share',
+      partnership: 'Performance Partnership',
       duration: '7 Months',
-      challenge: 'African farmers lacked access to modern agricultural technology. Crop diseases, unpredictable yields, and inefficient resource use were costing them billions annually. They needed affordable, accessible AI tools.',
-      solution: 'Farmarly uses computer vision and machine learning to provide real-time crop health monitoring, disease detection, and yield predictions. Farmers can simply snap photos of their crops and receive instant actionable insights.',
+      challenge: 'Farmers had never heard of precision agriculture software. Digital literacy was low, app store discovery was zero, and traditional marketing channels didn\'t reach rural farming communities at scale.',
+      solution: 'We bypassed digital channels entirely - partnered with agricultural cooperatives and seed distributors for physical outreach, trained community champions to drive demos at farmer gatherings, and built offline-first functionality so the app worked without internet. Word-of-mouth became our primary growth engine.',
       results: [
         { metric: '+35%', label: 'Yield Improvement' },
         { metric: '500+', label: 'Farms Onboarded' },
         { metric: '92%', label: 'Detection Accuracy' },
         { metric: '10K+', label: 'Scans Processed' }
       ],
-      technologies: ['Python', 'TensorFlow', 'React Native', 'IoT Sensors'],
+      niche: ['AgriTech', 'AI', 'Mobile-First'],
       testimonial: {
         quote: 'For the first time, small-scale farmers have access to technology that was once only available to large agricultural corporations.',
         author: 'Founder, Farmarly'
@@ -128,10 +128,10 @@ const CaseStudies = () => {
 
   return (
     <div className="min-h-screen bg-tunnels-black">
-      <SEO 
-        title="Case Studies"
-        description="Explore detailed case studies of our successful ventures including Fenypay, Zuura, Listdem, and Farmarly. See how we solved complex challenges and delivered measurable results."
-        keywords="software case studies, fintech success stories, MVP case study, startup success, technology transformation, Fenypay case study, Nigerian tech startups"
+      <SEO
+        title="Case Studies - Real Results"
+        description="Real examples of growth systems we've built. See how we moved products from invisible to adopted."
+        keywords="startup case studies, user acquisition examples, growth case studies, growth results"
         url="https://tunnels.ng/case-studies"
       />
       <Navbar />
@@ -150,12 +150,11 @@ const CaseStudies = () => {
         <div className="container mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Case <span className="text-tunnels-red">Studies</span>
+              Real <span className="text-tunnels-red">Results</span>
             </h1>
-            
+
             <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
-              Deep dives into how we've partnered with founders to build 
-              products that solve real problems and create lasting impact.
+              Deep dives into how we built growth systems that turned products into users
             </p>
             
             <div className="flex flex-wrap justify-center gap-6 text-white/60">
@@ -280,13 +279,13 @@ const CaseStudies = () => {
                   {activeStudy.challenge}
                 </p>
               </div>
-              
+
               <div className="p-8 rounded-2xl border border-tunnels-darkgray/50 bg-tunnels-dark">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <span className="w-8 h-8 bg-tunnels-red/10 rounded-lg flex items-center justify-center">
                     <span className="text-tunnels-red font-bold">2</span>
                   </span>
-                  Our Solution
+                  System We Built
                 </h3>
                 <p className="text-white/70 leading-relaxed">
                   {activeStudy.solution}
@@ -294,12 +293,12 @@ const CaseStudies = () => {
               </div>
             </div>
 
-            {/* Technologies & Testimonial */}
+            {/* Industry & Testimonial */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-8 rounded-2xl border border-tunnels-darkgray/50">
-                <h3 className="text-lg font-semibold text-white mb-4">Technologies Used</h3>
+                <h3 className="text-lg font-semibold text-white mb-4">Industry</h3>
                 <div className="flex flex-wrap gap-2">
-                  {activeStudy.technologies.map((tech, i) => (
+                  {activeStudy.niche.map((tech, i) => (
                     <span 
                       key={i}
                       className="px-4 py-2 bg-tunnels-dark text-white/70 rounded-lg text-sm"
