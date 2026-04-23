@@ -12,11 +12,11 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'Tunnels.ng | Distribution Systems for Modern Products',
+  title: 'Tunnels.ng | Growth Systems for Modern Products',
   description:
-    'We design and execute the systems that turn products into users. Distribution strategy, execution sprints, and partnerships for products ready to grow.',
+    'We design and execute the systems that turn products into users. Growth strategy, execution sprints, and partnerships for products ready to scale.',
   keywords:
-    'distribution operating system, user acquisition, conversion engine, distribution strategy, product distribution, growth systems, activation optimization, user acquisition partner',
+    'user acquisition, conversion engine, growth systems, growth strategy, startup growth, activation optimization, user acquisition partner, product growth',
   image: 'https://tunnels.ng/assets/og-image.png',
   url: 'https://tunnels.ng',
 };

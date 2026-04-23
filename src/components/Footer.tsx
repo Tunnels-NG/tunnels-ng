@@ -36,7 +36,7 @@ const Footer = () => {
           <div className="bg-tunnels-dark border border-tunnels-darkgray rounded-2xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
-                Distribution insights, weekly
+                Growth insights, weekly
               </h3>
               <p className="text-tunnels-lightgray max-w-md">
                 Join founders learning how to engineer real user acquisition. No fluff, just systems.

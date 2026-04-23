@@ -33,7 +33,7 @@ const Navbar = () => {
       path: '/services',
       dropdown: [
         { name: 'Growth Strategy', path: '/services#strategy', icon: Compass, description: 'Figure out how to reach your users' },
-        { name: 'Execution Sprints', path: '/services#sprints', icon: Zap, description: 'Get your first users in 4-12 weeks' },
+        { name: 'Execution Sprints', path: '/services#sprints', icon: Zap, description: 'Acquire users in 4-12 weeks' },
         { name: 'Growth Partnerships', path: '/venture-studio', icon: Rocket, description: 'Long-term embedded partnerships' },
       ]
     },
@@ -132,7 +132,7 @@ const Navbar = () => {
             <NavLink to="/contact">
               <Button className="btn-primary text-sm px-6 py-2.5 h-auto">
                 <span className="relative z-10 flex items-center gap-2">
-                  Get Your First Users
+                  Get More Users
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </Button>
@@ -220,7 +220,7 @@ const Navbar = () => {
               <NavLink to="/contact" onClick={() => setIsOpen(false)}>
                 <Button className="btn-primary w-full text-base py-4 h-auto">
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Get Your First Users
+                    Get More Users
                     <ArrowRight className="w-5 h-5" />
                   </span>
                 </Button>

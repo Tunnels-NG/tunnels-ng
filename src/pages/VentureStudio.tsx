@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
 const VentureStudio = () => {
-  const distributionStructuredData = {
+  const growthStructuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "TunnelsNG Growth Partnerships",
@@ -162,7 +162,7 @@ const VentureStudio = () => {
         description="Selective partnerships for products ready to grow. We embed as your growth partner to design, build, and operate user acquisition systems."
         keywords="growth partnership, embedded growth partner, user acquisition partner, growth partnerships, growth strategy consulting"
         url="https://tunnels.ng/venture-studio"
-        structuredData={distributionStructuredData}
+        structuredData={growthStructuredData}
       />
       <Navbar />
 
@@ -203,7 +203,7 @@ const VentureStudio = () => {
         </div>
       </section>
 
-      {/* Traditional Marketing Agencies vs Distribution Partnership */}
+      {/* Traditional Marketing Agencies vs Growth Partnership */}
       <section
         id="comparison-section"
         data-section
@@ -278,7 +278,7 @@ const VentureStudio = () => {
               Partnership <span className="text-tunnels-red">Models</span>
             </h2>
             <p className="text-white/60 max-w-3xl mx-auto">
-              Each structure is determined after evaluation of your product's stage, distribution gap, and growth potential.
+              Each structure is determined after evaluation of your product's stage, growth gap, and potential.
               We partner selectively. Qualification is required.
             </p>
           </div>

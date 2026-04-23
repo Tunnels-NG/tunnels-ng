@@ -112,7 +112,7 @@ const Careers = () => {
       <SEO
         title="Careers"
         description="Build conversion systems with us. Join Tunnels.ng to engineer user acquisition infrastructure for modern products. Remote-friendly with competitive benefits."
-        keywords="distribution jobs, growth jobs, user acquisition careers, remote tech jobs, startup careers, Lagos tech jobs"
+        keywords="growth jobs, user acquisition careers, remote tech jobs, startup careers, Lagos tech jobs, product growth jobs"
         url="https://tunnels.ng/careers"
       />
       <Navbar />
