@@ -57,28 +57,21 @@ const About = () => {
     { label: "Avg. Activation Lift", value: "3.2x" }
   ];
 
-  const partners = [
+    const partners = [
     { name: 'Jaycolinks', src: '/assets/Jayco.png' },
-    { name: 'Ndonu', src: '/assets/Ndonu.png' },
     { name: 'Rendezvouscare', src: '/assets/Rendezvouscare.png' },
     { name: 'Symbi', src: '/assets/symbi.png' },
     { name: 'Taskpadi', src: '/assets/Taskpadi.jpg' },
     { name: 'Listdem', src: '/assets/Listdem.jpg' },
     { name: 'Payrendr', src: '/assets/Payrendr.png' },
-    { name: 'AWS', src: '/assets/AWS.png' },
-    { name: 'GCP', src: '/assets/GCP.png' },
-    { name: 'Azure', src: '/assets/Azure.png' },
-    { name: 'Google', src: '/assets/Google.png' },
-    { name: 'Oracle', src: '/assets/Oracle.png' },
-    { name: 'Jetbrain', src: '/assets/JetBrains.png' },
     { name: 'Okaneats', src: '/assets/OkanEats.png' },
     { name: 'Educential', src: '/assets/Educential.png' },
     { name: 'Fenypay', src: '/assets/Fenypay.jpg' },
-    { name: 'Jayrify', src: '/assets/Jayrify.png' },
-    { name: 'VTB', src: '/assets/VTB.png' },
     { name: 'Moniepoint', src: '/assets/Moniepoint.png' },
-    { name: 'Meta', src: '/assets/Meta.png' },
     { name: 'Kaart247', src: '/assets/Kaart247.png' },
+    { name: 'Zura', src: '/assets/zura-logo.png' },
+    {name: 'Postject', src: '/assets/Postject-logo.png' },
+    {name: 'Drawra', src: '/assets/drawra-logo.png' },
   ];
 
   // Split partners into two rows
