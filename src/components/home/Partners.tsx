@@ -18,7 +18,7 @@ const Partners = () => {
     { name: 'Zura', src: '/assets/zura-logo.png' },
     {name: 'Postject', src: '/assets/Postject-logo.png' },
     {name: 'Inscrape', src: '/assets/inscrape-logo2.png' },
-    {name: 'Drawra', src: '/assets/drawra-logo.png' },
+    {name: 'Drawra', src: '/assets/drawra-logo2.png' },
   ];
 
   // Split partners into two rows

@@ -70,15 +70,19 @@ const Footer = () => {
       <div className="relative container mx-auto px-6 md:px-10 lg:px-16 py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link to="/" className="inline-block mb-6">
+            <Link to="/" className="inline-flex items-center gap-1.5 mb-6 group">
               <img
-                src="/assets/Tunnels-Logo-White.png"
+                src="/assets/tunnels-icon-nobg.png"
                 alt="Tunnels.ng"
-                className="h-16 md:h-20 w-auto"
+                className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
+              <span className="text-xl md:text-2xl font-display font-medium tracking-wide">
+                <span className="text-white">Tunnels</span>
+                <span className="text-tunnels-red">NG</span>
+              </span>
             </Link>
             <p className="text-tunnels-lightgray mb-6 max-w-sm leading-relaxed">
-              We help products get to real users.
+              We design and execute growth systems that turn working products into products people actually use. From strategy to hands-on execution, we're the growth partner for products ready to scale.
             </p>
             
             <div className="flex items-center gap-3">

@@ -52,15 +52,19 @@ const Navbar = () => {
         )}
       >
         <div className="container mx-auto px-6 md:px-10 lg:px-16 flex justify-between items-center">
-          <NavLink to="/" className="flex items-center group">
+          <NavLink to="/" className="flex items-center gap-1.5 group">
             <div className="relative">
-              <img 
-                src="/assets/Tunnels-Logo-White.png" 
-                alt="Tunnels.ng" 
-                className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              <img
+                src="/assets/tunnels-icon-nobg.png"
+                alt="Tunnels.ng"
+                className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-tunnels-red/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
+            <span className="text-lg md:text-xl font-display font-medium tracking-wide">
+              <span className="text-white">Tunnels</span>
+              <span className="text-tunnels-red">NG</span>
+            </span>
           </NavLink>
 
           <div className="hidden lg:flex items-center gap-1">

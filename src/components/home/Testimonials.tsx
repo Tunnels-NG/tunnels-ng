@@ -9,40 +9,58 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Chen',
-      role: 'CEO & Founder',
-      company: 'FinFlow',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80',
-      quote: "We had the product but couldn't get users. Tunnels engineered our entire user acquisition system - in 8 weeks, we went from invisible to processing $2M monthly. They understand growth at a system level.",
+      name: 'Isioma Richards',
+      role: 'Founder & CEO',
+      company: 'FenyPay',
+      logo: '/assets/Fenypay2.png',
+      quote: "Tunnels transformed how we think about user acquisition in fintech. They built the growth infrastructure that took us from 0 to 100K+ transactions across 12 African countries. Real systems, real results.",
       rating: 5,
-      results: '$2M+ monthly volume'
+      results: '100K+ transactions, 12 countries'
     },
     {
-      name: 'Michael Okonkwo',
-      role: 'Co-Founder',
-      company: 'LogiTech Africa',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80',
-      quote: "Tunnels mapped our growth channels across 15 cities and built the activation systems that turned signups into active users. The 500% growth wasn't luck - it was engineered.",
-      rating: 5,
-      results: '15 cities, 500% growth'
-    },
-    {
-      name: 'Amara Williams',
-      role: 'Product Lead',
-      company: 'HealthBridge',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&q=80',
-      quote: "Our product worked, but adoption was painfully slow. Tunnels redesigned our entry points and built a growth system that drove 60% faster user onboarding in the first month.",
-      rating: 5,
-      results: '60% faster onboarding'
-    },
-    {
-      name: 'David Mensah',
+      name: 'C. Eko',
       role: 'Founder',
-      company: 'EduScale',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80',
-      quote: "From launch to 50,000 users in 6 months. Tunnels didn't just help us get users - they built the repeatable system that keeps acquiring them. It's growth infrastructure, not a campaign.",
+      company: 'Zura',
+      logo: '/assets/zura-logo.png',
+      quote: "We had social sellers but no system to convert them. Tunnels built the activation engine that turned our product into a merchant-acquisition machine. 5K+ merchants in 4 months wasn't magic, it was methodology.",
       rating: 5,
-      results: '50K users in 6 months'
+      results: '5K+ merchants, $2M+ GMV'
+    },
+    {
+      name: 'Kachi I.',
+      role: 'Co-Founder',
+      company: 'Postject',
+      logo: '/assets/Postject-logo.png',
+      quote: "Developer tools live or die by adoption velocity. Tunnels understood this deeply - they engineered our entire go-to-market strategy and execution. We went from invisible to processing 500K+ API calls monthly in 3 months.",
+      rating: 5,
+      results: '500K+ API calls/month'
+    },
+    {
+      name: 'Jessica Okan',
+      role: 'Founder',
+      company: 'OkansEat',
+      logo: '/assets/OkanEats.png',
+      quote: "Cloud kitchens are only viable with consistent order volume. Tunnels built the user acquisition systems that turned our concept into a thriving business. From launch to 25K+ orders in 6 months.",
+      rating: 5,
+      results: '25K+ orders, 4.8★ rating'
+    },
+    {
+      name: 'Karo O.',
+      role: 'CEO',
+      company: 'Educential',
+      logo: '/assets/Educential.png',
+      quote: "Education platforms need trust and scale simultaneously. Tunnels crafted our positioning, built our content engine, and designed conversion pathways that actually work. We're now the go-to platform for relocation-via-education in West Africa.",
+      rating: 5,
+      results: 'Market leader, 10K+ students'
+    },
+    {
+      name: 'Jay Abanum',
+      role: 'Managing Partner',
+      company: 'Jayco',
+      logo: '/assets/Jayco.png',
+      quote: "As investors, we've seen countless 'growth agencies.' Tunnels is different - they think like operators, not consultants. Every portfolio company we've referred has seen measurable traction. They're the growth partner we wish existed when we were building.",
+      rating: 5,
+      results: '3+ portfolio companies scaled'
     }
   ];
 
@@ -136,32 +154,47 @@ const Testimonials = () => {
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                   {/* Author info */}
                   <div className="flex-shrink-0">
-                    <div className="relative">
-                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-tunnels-red/30">
+                    <div className="relative mb-6">
+                      {/* Company Logo */}
+                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-white p-4 flex items-center justify-center border-2 border-tunnels-darkgray/30 hover:border-tunnels-red/30 transition-colors relative overflow-hidden">
                         <img
-                          src={testimonials[currentIndex].image}
-                          alt={testimonials[currentIndex].name}
-                          className="w-full h-full object-cover"
+                          src={testimonials[currentIndex].logo}
+                          alt={`${testimonials[currentIndex].company} logo`}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            // Fallback to initial if logo doesn't load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.classList.add('bg-gradient-to-br', 'from-tunnels-red', 'to-tunnels-red/70');
+                              parent.classList.remove('bg-white');
+                              const fallback = document.createElement('span');
+                              fallback.className = 'text-4xl md:text-5xl font-bold text-white';
+                              fallback.textContent = testimonials[currentIndex].company.charAt(0);
+                              parent.appendChild(fallback);
+                            }
+                          }}
                         />
                       </div>
                       {/* Glow effect */}
-                      <div className="absolute -inset-2 bg-tunnels-red/20 rounded-full blur-xl -z-10" />
+                      <div className="absolute -inset-2 bg-tunnels-red/10 rounded-2xl blur-xl -z-10" />
                     </div>
-                    
-                    <div className="mt-4 text-center md:text-left">
-                      <h4 className="text-xl font-semibold text-white">
+
+                    <div className="text-center md:text-left">
+                      <p className="text-tunnels-red font-bold text-lg mb-1">
+                        {testimonials[currentIndex].company}
+                      </p>
+                      <h4 className="text-xl font-semibold text-white mb-1">
                         {testimonials[currentIndex].name}
                       </h4>
-                      <p className="text-tunnels-red font-medium">
-                        {testimonials[currentIndex].role}
-                      </p>
                       <p className="text-tunnels-lightgray text-sm">
-                        {testimonials[currentIndex].company}
+                        {testimonials[currentIndex].role}
                       </p>
                     </div>
 
                     {/* Rating */}
-                    <div className="flex gap-1 mt-3 justify-center md:justify-start">
+                    <div className="flex gap-1 mt-4 justify-center md:justify-start">
                       {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-tunnels-red text-tunnels-red" />
                       ))}
@@ -221,36 +254,6 @@ const Testimonials = () => {
                 <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>
-          </div>
-
-          {/* Mini testimonial cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-            {testimonials.map((testimonial, index) => (
-              <button
-                key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`p-4 rounded-xl border transition-all duration-300 text-left ${
-                  index === currentIndex
-                    ? 'bg-tunnels-red/10 border-tunnels-red/50'
-                    : 'bg-tunnels-dark/30 border-tunnels-darkgray hover:border-tunnels-gray'
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-white text-sm font-medium truncate">{testimonial.name}</p>
-                    <p className="text-tunnels-lightgray text-xs truncate">{testimonial.company}</p>
-                  </div>
-                </div>
-                <p className={`text-xs font-medium ${index === currentIndex ? 'text-tunnels-red' : 'text-tunnels-lightgray'}`}>
-                  {testimonial.results}
-                </p>
-              </button>
-            ))}
           </div>
         </div>
       </div>
