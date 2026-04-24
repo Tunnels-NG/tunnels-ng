@@ -14,11 +14,10 @@ const Partners = () => {
     { name: 'Payrendr', src: '/assets/Payrendr.png' },
     { name: 'Okaneats', src: '/assets/OkanEats.png' },
     { name: 'Educential', src: '/assets/Educential.png' },
-    { name: 'Fenypay', src: '/assets/Fenypay.jpg' },
-    { name: 'Moniepoint', src: '/assets/Moniepoint.png' },
-    { name: 'Kaart247', src: '/assets/Kaart247.png' },
+    { name: 'Fenypay', src: '/assets/Fenypay2.png' },
     { name: 'Zura', src: '/assets/zura-logo.png' },
     {name: 'Postject', src: '/assets/Postject-logo.png' },
+    {name: 'Inscrape', src: '/assets/inscrape-logo2.png' },
     {name: 'Drawra', src: '/assets/drawra-logo.png' },
   ];
 
