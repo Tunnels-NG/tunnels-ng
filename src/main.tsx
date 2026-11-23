@@ -1,10 +1,14 @@
-import { createRoot } from 'react-dom/client'
-import { HelmetProvider } from 'react-helmet-async'
-import App from './App.tsx'
-import './index.css'
+import { createRoot, hydrateRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
-    <App />
-  </HelmetProvider>
-);
+const container = document.getElementById("root")!;
+const app = <App />;
+
+// Prerendered routes arrive with markup already in the container: hydrate it so
+// the static HTML is reused instead of thrown away. `vite dev` has no markup.
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}

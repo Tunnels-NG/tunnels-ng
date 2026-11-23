@@ -1,27 +1,28 @@
 {
-  "name": "Tunnels.ng - Technology Venture Studio",
-  "short_name": "Tunnels.ng",
-  "description": "Africa's leading technology venture studio. Build Now, Pay Later.",
+  "name": "Tunnels Global",
+  "short_name": "Tunnels",
+  "description": "Enterprise technology and engineering: AI, software, cloud platforms, security and technology advisory.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0A0A0A",
-  "theme_color": "#F97316",
+  "background_color": "#F7F5F0",
+  "theme_color": "#0D0D0E",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/assets/Tunnels-logo-mark.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "/assets/Tunnels-logo-mark.png",
-      "sizes": "512x512",
+      "src": "/assets/brand/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
-  "categories": ["business", "technology", "productivity"],
+  "categories": ["business", "technology"],
   "lang": "en",
   "dir": "ltr"
 }

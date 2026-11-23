@@ -1,80 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Homepage - Highest Priority -->
-  <url>
-    <loc>https://tunnels.ng/</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Core Pages -->
-  <url>
-    <loc>https://tunnels.ng/about</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/services</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/venture-studio</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/portfolio</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Secondary Pages -->
-  <url>
-    <loc>https://tunnels.ng/how-it-works</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/case-studies</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/careers</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/contact</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://tunnels.ng/faq</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://tunnelsng.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://tunnelsng.com/about</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tunnelsng.com/services/ai-intelligent-systems</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/services/enterprise-software</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/services/cloud-platform-infrastructure</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/services/cybersecurity-reliability</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/services/technology-advisory</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/enterprise-ai-implementation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/enterprise-systems-modernisation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/cloud-platform-transformation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/enterprise-systems-integration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/technology-reliability-security</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/solutions/strategic-engineering-partnerships</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/industries</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/insights</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/insights/why-enterprise-ai-pilots-stall</loc><lastmod>2026-10-14</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/legacy-modernisation-without-big-bang-rewrite</loc><lastmod>2026-09-02</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/what-your-cloud-platform-actually-costs</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/integration-layer-is-the-product</loc><lastmod>2026-06-05</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/designing-retrieval-that-holds-up</loc><lastmod>2026-04-16</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/reliability-is-an-engineering-discipline</loc><lastmod>2026-02-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/contact</loc><changefreq>yearly</changefreq><priority>0.9</priority></url>
 </urlset>

@@ -1,42 +1,54 @@
+import { Link } from "react-router-dom";
+import SEO from "@/components/site/SEO";
+import Action from "@/components/site/Action";
 
-import React, { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
-import SEO from "@/components/SEO";
+const links = [
+  { label: "Services", href: "/services", copy: "Five engineering divisions." },
+  { label: "Solutions", href: "/solutions", copy: "Six commercial engagements." },
+  { label: "Insights", href: "/insights", copy: "Engineering perspectives." },
+  { label: "Contact", href: "/contact", copy: "Discuss a project." },
+];
 
-const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
+export default function NotFound() {
   return (
-    <div className="min-h-screen bg-tunnels-black flex flex-col items-center justify-center px-4">
-      <SEO 
-        title="Page Not Found"
-        description="The page you're looking for doesn't exist or has been moved."
-        noindex={true}
+    <>
+      <SEO
+        title="Page not found"
+        description="The page you requested could not be found."
+        path="/404"
+        noindex
       />
-      <div className="max-w-md text-center">
-        <h1 className="text-6xl md:text-8xl font-bold text-tunnels-red mb-6">404</h1>
-        <p className="text-2xl md:text-3xl font-medium text-white mb-4">Page Not Found</p>
-        <p className="text-gray-400 mb-8">
-          We couldn't find the page you're looking for. It might have been moved or doesn't exist.
-        </p>
-        <Button asChild size="lg" className="bg-tunnels-red hover:bg-tunnels-red/80 text-white">
-          <Link to="/">
-            <Home className="mr-2 h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
-      </div>
-    </div>
-  );
-};
+      <section className="relative overflow-hidden bg-paper">
+        <div className="pointer-events-none absolute inset-0 grid-lines opacity-60" aria-hidden="true" />
+        <div className="shell relative py-24 md:py-32">
+          <p className="eyebrow">Error 404</p>
+          <h1 className="display-xl mt-6 max-w-2xl">
+            This page is not part of the system<span className="text-tunnels-red">.</span>
+          </h1>
+          <p className="lede mt-6 max-w-xl">
+            The address may be incorrect, or the page may have moved. These are the current entry points.
+          </p>
 
-export default NotFound;
+          <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="group bg-paper p-6 transition-colors hover:bg-paper-bright"
+              >
+                <span className="font-display text-lg group-hover:text-tunnels-red">{link.label}</span>
+                <span className="mt-1.5 block text-[13px] text-grey">{link.copy}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <Action to="/" variant="solid" withArrow>
+              Return to the homepage
+            </Action>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

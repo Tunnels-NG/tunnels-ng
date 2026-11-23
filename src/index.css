@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,238 +6,322 @@
 
 @layer base {
   :root {
-    --background: 240 6% 10%;
-    --foreground: 0 0% 98%;
+    --background: 40 27% 96%;
+    --foreground: 240 4% 5%;
 
-    --card: 240 5% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 40 27% 98%;
+    --card-foreground: 240 4% 5%;
 
-    --popover: 240 5% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 40 27% 98%;
+    --popover-foreground: 240 4% 5%;
 
-    --primary: 25 95% 53%;
+    --primary: 358 78% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 40 16% 92%;
+    --secondary-foreground: 240 4% 5%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 64%;
+    --muted: 40 16% 92%;
+    --muted-foreground: 40 5% 36%;
 
-    --accent: 0 0% 14%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 40 16% 92%;
+    --accent-foreground: 240 4% 5%;
 
-    --destructive: 25 95% 53%;
+    --destructive: 358 78% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 14%;
-    --input: 0 0% 14%;
-    --ring: 25 95% 53%;
+    --border: 40 15% 84%;
+    --input: 40 15% 84%;
+    --ring: 358 78% 52%;
 
-    --radius: 0.75rem;
+    --radius: 0.25rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   html {
     scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-tunnels-black text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
     text-rendering: optimizeLegibility;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-ink;
+    text-wrap: balance;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-tunnels-dark;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-tunnels-gray rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-tunnels-lightgray;
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
-    @apply bg-tunnels-red/20 text-white;
+    @apply bg-tunnels-red text-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold tracking-tight text-white;
+  :focus-visible {
+    outline: 2px solid #E52329;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
 @layer components {
-  .solid-card {
-    @apply bg-tunnels-dark border border-tunnels-darkgray/50 rounded-2xl;
-    transition: all 0.3s ease;
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 md:px-10;
   }
 
-  .solid-card:hover {
-    @apply border-tunnels-gray;
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-grey;
   }
 
-  .btn-primary {
-    @apply relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white 
-           bg-tunnels-red rounded-lg overflow-hidden
-           transition-all duration-300 ease-out
-           hover:bg-tunnels-red-light hover:shadow-lg hover:shadow-tunnels-red/20 active:scale-[0.98];
+  .display-xl {
+    @apply font-display text-[2.6rem] leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.6rem];
   }
 
-  .btn-secondary {
-    @apply relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white 
-           bg-transparent border border-tunnels-darkgray rounded-lg
-           transition-all duration-300 ease-out
-           hover:bg-tunnels-dark hover:border-tunnels-gray active:scale-[0.98];
+  .display-lg {
+    @apply font-display text-4xl leading-[1.05] tracking-[-0.025em] md:text-5xl lg:text-[3.4rem];
   }
 
-  .btn-ghost {
-    @apply relative inline-flex items-center justify-center px-6 py-3 font-medium text-white/80
-           transition-all duration-300 ease-out
-           hover:text-white;
+  .display-md {
+    @apply font-display text-3xl leading-[1.1] tracking-[-0.02em] md:text-4xl;
   }
 
-  .section-padding {
-    @apply py-24 md:py-32;
+  .lede {
+    @apply text-lg leading-relaxed text-graphite md:text-xl;
   }
 
-  .section-heading {
-    @apply text-center mb-16;
+  .body-copy {
+    @apply text-[15px] leading-relaxed text-graphite md:text-base;
   }
 
-  .section-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium 
-           text-tunnels-red bg-tunnels-red/10 border border-tunnels-red/20 
-           rounded-full;
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 whitespace-nowrap font-medium
+           transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50;
   }
 
-  .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6;
+  .btn-solid {
+    @apply btn bg-ink px-6 py-3.5 text-sm text-paper hover:bg-tunnels-red;
   }
 
-  .section-subtitle {
-    @apply text-lg md:text-xl text-tunnels-lightgray-soft max-w-2xl mx-auto leading-relaxed;
+  .btn-outline {
+    @apply btn border border-ink/25 px-6 py-3.5 text-sm text-ink hover:border-ink hover:bg-ink hover:text-paper;
   }
 
-  .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-tunnels-red to-tunnels-red-light;
+  .btn-light {
+    @apply btn bg-paper px-6 py-3.5 text-sm text-ink hover:bg-tunnels-red hover:text-white;
   }
 
-  .link-underline {
-    @apply relative;
+  .btn-outline-light {
+    @apply btn border border-paper/30 px-6 py-3.5 text-sm text-paper hover:border-paper hover:bg-paper hover:text-ink;
   }
 
-  .link-underline::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-0 h-px bg-tunnels-red transition-all duration-300;
+  .link-arrow {
+    @apply inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-tunnels-red;
   }
 
-  .link-underline:hover::after {
-    @apply w-full;
+  .field-label {
+    @apply mb-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-grey;
   }
 
-  .grid-bg {
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 80px 80px;
+  .field-input {
+    @apply w-full border border-line bg-paper-bright px-4 py-3 text-[15px] text-ink
+           placeholder:text-mist focus:border-ink focus:outline-none
+           focus-visible:outline-none aria-[invalid=true]:border-tunnels-red;
   }
 
-  .feature-card {
-    @apply solid-card p-8;
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(13, 13, 14, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(13, 13, 14, 0.055) 1px, transparent 1px);
+    background-size: 88px 88px;
   }
 
-  .feature-card:hover {
-    @apply shadow-glow-sm;
+  .grid-lines-dark {
+    background-image:
+      linear-gradient(to right, rgba(247, 245, 240, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(247, 245, 240, 0.055) 1px, transparent 1px);
+    background-size: 88px 88px;
   }
 
-  .stat-value {
-    @apply text-5xl md:text-6xl font-display font-bold text-white mb-2;
+  .prose-tunnels {
+    @apply text-[16px] leading-[1.75] text-graphite;
   }
-
-  .stat-label {
-    @apply text-tunnels-lightgray text-sm uppercase tracking-wider;
+  .prose-tunnels h2 {
+    @apply mt-12 mb-4 font-display text-2xl tracking-[-0.02em] text-ink md:text-[1.85rem];
+  }
+  .prose-tunnels h3 {
+    @apply mt-8 mb-3 font-display text-lg font-medium text-ink;
+  }
+  .prose-tunnels p {
+    @apply mb-5;
+  }
+  .prose-tunnels ul {
+    @apply mb-5 space-y-2.5 pl-0;
+  }
+  .prose-tunnels li {
+    @apply relative pl-5;
+  }
+  .prose-tunnels li::before {
+    content: "";
+    @apply absolute left-0 top-[0.62em] h-px w-2.5 bg-tunnels-red;
+  }
+  .prose-tunnels strong {
+    @apply font-semibold text-ink;
   }
 }
 
 @layer utilities {
-  .animate-delay-100 { animation-delay: 100ms; }
-  .animate-delay-200 { animation-delay: 200ms; }
-  .animate-delay-300 { animation-delay: 300ms; }
-  .animate-delay-400 { animation-delay: 400ms; }
-  .animate-delay-500 { animation-delay: 500ms; }
-  .animate-delay-600 { animation-delay: 600ms; }
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-  .text-balance {
-    text-wrap: balance;
+  /* Route transitions: content enters once per navigation; the top rule sweeps. */
+  .page-enter {
+    animation: page-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .route-sweep {
+    transform-origin: left center;
+    animation: route-sweep 0.75s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  /* Hero entrance, staggered with inline delays. */
+  .hero-rise {
+    animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Reference-architecture animation. pathLength="1" normalises the maths. */
+  .diagram-connector {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: diagram-draw 1.15s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  .diagram-trace {
+    stroke-dasharray: 0.3 0.7;
+    stroke-dashoffset: 0;
+    animation: diagram-flow 4.2s linear infinite;
+  }
+  .diagram-fade {
+    animation: diagram-fade 0.9s ease-out both;
+  }
+  .diagram-node {
+    animation: diagram-node 5s ease-in-out infinite;
+  }
+  .diagram-portal {
+    animation: diagram-portal 4.5s ease-in-out infinite;
   }
 }
 
-@keyframes fade-up {
+@keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes route-sweep {
+  from {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0;
+  }
 }
 
-@keyframes slide-up {
+@keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
-@keyframes scale-in {
+@keyframes diagram-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes diagram-flow {
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes diagram-fade {
   from {
     opacity: 0;
-    transform: scale(0.95);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s ease-out forwards;
+@keyframes diagram-node {
+  0%,
+  84%,
+  100% {
+    stroke: #C9C3B7;
+  }
+  90% {
+    stroke: #E52329;
+  }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+@keyframes diagram-portal {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
-.animate-slide-up {
-  animation: slide-up 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.5s ease-out forwards;
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

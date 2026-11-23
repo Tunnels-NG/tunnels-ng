@@ -1,51 +1,7 @@
-# Robots.txt for Tunnels.ng
-
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Specific crawler allowances
-User-agent: Googlebot
-Allow: /
+# Block nothing by default. Add private paths here if the site later
+# introduces authenticated or preview-only areas.
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: TelegramBot
-Allow: /
-
-# Disallow admin/api paths (if any exist in future)
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_/
-Disallow: /private/
-
-# Sitemap location
-Sitemap: https://tunnels.ng/sitemap.xml
-
-# Crawl-delay (optional, helps server performance)
-Crawl-delay: 1
+Sitemap: https://tunnelsng.com/sitemap.xml
