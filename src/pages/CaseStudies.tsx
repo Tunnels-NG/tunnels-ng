@@ -6,7 +6,7 @@ import PageHeader from "@/components/site/PageHeader";
 import CtaBand from "@/components/site/CtaBand";
 import Reveal from "@/components/site/Reveal";
 import CaseStudyCard from "@/components/site/CaseStudyCard";
-import { caseStudies, caseStudyCategories, featuredCaseStudies, type CaseStudyCategory } from "@/content/caseStudies";
+import { caseStudies, caseStudyCategories, type CaseStudyCategory } from "@/content/caseStudies";
 import { SITE } from "@/lib/site";
 
 type Filter = CaseStudyCategory | "All";
@@ -33,8 +33,6 @@ export default function CaseStudies() {
   const [filter, setFilter] = useState<Filter>("All");
   const filtered =
     filter === "All" ? caseStudies : caseStudies.filter((study) => study.category === filter);
-  const remaining = filtered.filter((study) => !study.featured);
-
   return (
     <>
       <SEO
@@ -65,8 +63,8 @@ export default function CaseStudies() {
 
       <PageHeader
         eyebrow="Selected Client Work"
-        title="Products we have engineered."
-        lede="Selected examples of technology products and business systems built by Tunnels. Each record covers the product, the business problem, the engineering approach and exactly what our role was."
+        title="Engineering products and platforms that solve real business problems."
+        lede="A selection of digital platforms, business systems and technology solutions across commerce, developer infrastructure and business operations."
         crumbs={[{ label: "Case Studies" }]}
         aside={
           <div className="border-l border-line pl-6">
@@ -82,9 +80,9 @@ export default function CaseStudies() {
         <div className="shell">
           <div className="flex flex-wrap items-baseline justify-between gap-5 border-t border-line pt-6">
             <p className="max-w-2xl text-sm leading-relaxed text-graphite">
-              {caseStudies.length} products in market, across commerce, developer tooling and business
-              operations. Every entry links to the live product, so the work can be seen rather than taken
-              on trust.
+              {caseStudies.length} documented engineering projects, across commerce, developer tooling and
+              business operations. Each entry links to the product so the work can be seen rather than taken
+              on trust; where a product is not yet publicly available, the record says so.
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-mist">
               Selected client work · 2018 to present
@@ -121,30 +119,12 @@ export default function CaseStudies() {
           {filter === "All" ? (
             <>
               <div className="mt-8 grid gap-px border border-line bg-line md:grid-cols-2">
-                {featuredCaseStudies.map((study, index) => (
+                {filtered.map((study, index) => (
                   <Reveal key={study.slug} delay={index * 40} className="bg-paper">
                     <CaseStudyCard study={study} variant="large" />
                   </Reveal>
                 ))}
               </div>
-
-              {remaining.length > 0 && (
-                <>
-                  <div className="mt-14 flex items-baseline justify-between gap-4 border-t border-line pt-6">
-                    <p className="eyebrow">More selected work</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-mist">
-                      {remaining.length} projects
-                    </p>
-                  </div>
-                  <div className="mt-6 grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
-                    {remaining.map((study) => (
-                      <div key={study.slug} className="bg-paper">
-                        <CaseStudyCard study={study} withSummary={false} />
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
             </>
           ) : (
             <div className="mt-8 grid gap-px border border-line bg-line md:grid-cols-2">

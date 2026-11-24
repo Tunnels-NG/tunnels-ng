@@ -4,7 +4,7 @@ import type { CaseStudy } from "@/content/caseStudies";
 
 interface RelatedCaseStudiesProps {
   studies: CaseStudy[];
-  /** Section label, e.g. "Selected client work". */
+  /** Section label, e.g. "Selected Client Work". */
   label?: string;
   title?: string;
   copy?: string;
@@ -16,7 +16,7 @@ interface RelatedCaseStudiesProps {
  */
 export default function RelatedCaseStudies({
   studies,
-  label = "Selected client work",
+  label = "Selected Client Work",
   title = "Related client work",
   copy,
 }: RelatedCaseStudiesProps) {
@@ -63,6 +63,11 @@ export default function RelatedCaseStudies({
                   </Link>
                 </h3>
                 <p className="mt-1.5 flex-1 text-[12.5px] leading-relaxed text-grey">{study.productLine}</p>
+                {study.productStatus !== "Live, publicly available" && (
+                  <span className="mt-3 font-mono text-[9px] uppercase tracking-[0.12em] text-tunnels-red">
+                    {study.productStatus}
+                  </span>
+                )}
                 <span className="mt-4 font-mono text-[9.5px] uppercase tracking-[0.12em] text-mist">
                   {study.role}
                 </span>

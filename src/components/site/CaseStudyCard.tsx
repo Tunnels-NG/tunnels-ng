@@ -43,6 +43,11 @@ export default function CaseStudyCard({
         <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.12em] text-mist">
           {study.productLine}
         </p>
+        {study.productStatus !== "Live, publicly available" && (
+          <p className="mt-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-tunnels-red">
+            {study.productStatus}
+          </p>
+        )}
         <h3
           className={`mt-2 font-display leading-snug tracking-[-0.02em] ${
             large ? "text-2xl md:text-[1.75rem]" : "text-xl"

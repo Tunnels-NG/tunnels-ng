@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -500,8 +501,15 @@ export default function ContactForm() {
           />
           <div>
             <label htmlFor="privacy" className="text-[13px] leading-relaxed text-graphite">
-              I have read the privacy notice and agree that Tunnels may use these details to respond to
-              this enquiry. <span className="text-tunnels-red">*</span>
+              I have read the{" "}
+              <Link
+                to="/privacy"
+                className="text-ink underline decoration-line underline-offset-4 hover:text-tunnels-red"
+              >
+                Privacy Policy
+              </Link>{" "}
+              and agree that Tunnels may use these details to respond to this enquiry.{" "}
+              <span className="text-tunnels-red">*</span>
             </label>
             {errors.privacy && (
               <p id="privacy-error" className="mt-1.5 text-xs text-tunnels-red">
@@ -530,6 +538,11 @@ export default function ContactForm() {
               <a href={`mailto:${SITE.email}`} className="text-ink underline decoration-line underline-offset-4">
                 {SITE.email}
               </a>
+              . The full policy, including the lawful basis for processing and the providers involved, is
+              set out in our{" "}
+              <Link to="/privacy" className="text-ink underline decoration-line underline-offset-4">
+                Privacy Policy
+              </Link>
               .
             </p>
           </div>

@@ -38,11 +38,11 @@ export interface CaseStudy {
   summary: string;
   website: string;
   websiteLabel: string;
+  /** Publication status of the product itself, stated precisely. */
+  productStatus: string;
   image: string;
   imageAlt: string;
   imageCaption: string;
-  /** True for the four projects presented first on the listing page. */
-  featured: boolean;
   sector: string;
   platform: string;
   /** Short, factual statement of Tunnels' role. */
@@ -62,6 +62,8 @@ export interface CaseStudy {
   decisions: CaseStudyDecision[];
   results: { measure: string; status: string }[];
   resultsNote: string;
+  /** Per-capability implementation state, where a product is not yet complete. */
+  capabilityStatus?: { capability: string; state: string }[];
   lessons: string[];
   serviceSlugs: string[];
   solutionSlugs: string[];
@@ -91,10 +93,10 @@ export const caseStudies: CaseStudy[] = [
       "A marketplace and seller operating system for African SMEs: buyers discover, compare and buy from multiple vendors in WhatsApp, and sellers run catalogue, orders and revenue from one dashboard.",
     website: "https://zura.africa",
     websiteLabel: "zura.africa",
+    productStatus: "Live, publicly available",
     image: "/assets/work/zura.jpg",
     imageAlt: "Zura home page describing AI-powered commerce for African SMEs",
     imageCaption: "Zura home page, captured from the live product.",
-    featured: true,
     sector: "Retail and SME commerce, Africa",
     platform: "Conversational marketplace, AI selling assistant and seller dashboard",
     role: "Product engineering and platform development",
@@ -271,10 +273,10 @@ export const caseStudies: CaseStudy[] = [
       "A developer-first email API with inbox placement visibility, enforced authentication, dedicated sending infrastructure and a delivery trace for every message.",
     website: "https://postject.com",
     websiteLabel: "postject.com",
+    productStatus: "Live, publicly available",
     image: "/assets/work/postject.jpg",
     imageAlt: "Postject home page with the headline that emails should reach the inbox",
     imageCaption: "Postject home page, captured from the live product.",
-    featured: true,
     sector: "Developer tooling and email infrastructure",
     platform: "Sending API, delivery trace and deliverability dashboard",
     role: "Product engineering and platform development",
@@ -455,10 +457,10 @@ export const caseStudies: CaseStudy[] = [
       "A classifieds marketplace for Nigeria where people post what they need or what they have, browse by category and city, and connect with each other directly.",
     website: "https://listdem.com",
     websiteLabel: "listdem.com",
+    productStatus: "Live, publicly available",
     image: "/assets/work/listdem.jpg",
     imageAlt: "Listdem marketplace home page with categories and recent listings",
     imageCaption: "Listdem marketplace, captured from the live product.",
-    featured: true,
     sector: "Classifieds and local marketplace, Nigeria",
     platform: "Category-driven listings, search and moderation",
     role: "Product engineering and platform development",
@@ -630,29 +632,29 @@ export const caseStudies: CaseStudy[] = [
     number: "04",
     category: "Developer & Productivity Tools",
     product: "Drawra",
-    productLine: "Document and collaboration platform",
-    title: "A permissioned workspace for assets, documents and credentials",
+    productLine: "Document and collaboration platform, pre-MVP",
+    title: "A permissioned workspace for assets, documents and credentials, in development",
     shortTitle: "Drawra",
     summary:
-      "A secure workspace where teams keep business assets, documents and credentials in structured drawers, with role-based access, an encrypted vault and a readable audit trail.",
+      "A workspace in development where teams organise business assets, documents and credentials in structured drawers, with role-based access, a credential vault and an audit trail. Pre-MVP and not publicly available.",
     website: "https://drawra-frontend.pages.dev",
     websiteLabel: "drawra-frontend.pages.dev",
+    productStatus: "Pre-MVP / In Development",
     image: "/assets/work/drawra.jpg",
     imageAlt: "Drawra home page describing secure asset management for modern teams",
-    imageCaption: "Drawra home page, captured from the live product.",
-    featured: true,
+    imageCaption: "Drawra product page, captured from its public preview.",
     sector: "Business operations and secure collaboration",
-    platform: "Multi-tenant asset workspace, encrypted vault and audit trail",
-    role: "Product engineering and platform development",
+    platform: "Multi-tenant workspace, credential vault and audit trail (pre-MVP)",
+    role: "Product engineering for a pre-MVP platform",
     roleSummary:
-      "Tunnels delivered the product engineering and platform development: the workspace and permission model, the encrypted credential vault, the audit trail and the tenant isolation that lets one product serve many organisations.",
+      "Tunnels is delivering the product engineering for Drawra: the workspace and permission model, the credential vault, the audit trail and the tenant isolation the design depends on. The product is at pre-MVP stage, so the capabilities below are described by implementation state rather than as shipped outcomes.",
     scopeNote:
-      "This record covers product engineering and platform development delivered by Tunnels. No security certification is claimed for Tunnels or for the product; the product's own security page is the source for its stated design position.",
+      "Drawra is at pre-MVP and is not publicly available. Nothing in this record is a production deployment, a live customer base or a security certification. Security properties remain design intentions until they are independently tested.",
     overview: {
       heading: "Project overview",
       paragraphs: [
-        "Drawra is a secure workspace for a team's business assets, documents and credentials. Assets live in structured drawers and folders, access is role-based, and secrets sit in an encrypted vault with controlled reveal.",
-        "Tunnels delivered the engineering behind that model, including the isolation guarantees that make the product safe to sell to more than one organisation.",
+        "Drawra is a workspace in development for a team's business assets, documents and credentials. The intended model places assets in structured drawers and folders, applies role-based access, and holds secrets in a separate vault with controlled reveal.",
+        "Tunnels is delivering the product engineering behind that model, including the tenant isolation the design depends on. The build is at pre-MVP stage and is not yet available to the public.",
       ],
     },
     context: {
@@ -677,44 +679,44 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
     constraints: [
-      "Secrets are stored through a separate path from ordinary documents.",
-      "Every reveal of a credential is an audited event.",
-      "Role and resource together determine access, with least privilege as the default.",
+      "Secrets must be stored through a separate path from ordinary documents.",
+      "Every reveal of a credential must be an audited event.",
+      "Role and resource together must determine access, with least privilege as the default.",
       "Search must run inside the caller's tenant and permission scope.",
       "Audit records must be append-only and readable by an administrator.",
     ],
     contribution: [
-      "Workspace model: drawers, nested folders, tags and metadata.",
-      "Permission model: owner, admin and member roles evaluated per resource.",
-      "Encrypted vault: storage, controlled reveal and reveal logging.",
-      "Audit trail covering create, update, view and delete events.",
-      "Tenant isolation across data access and search.",
-      "Product surfaces: onboarding, invitations, search and activity views.",
+      "Workspace model: drawers, nested folders, tags and metadata. In development.",
+      "Permission model: owner, admin and member roles evaluated per resource. Partially implemented.",
+      "Credential vault: separate storage path, controlled reveal and reveal logging. Partially implemented.",
+      "Audit trail for create, update, view and delete events. Partially implemented.",
+      "Tenant isolation across data access and search. In development.",
+      "Product surfaces: onboarding, invitations, search and activity views. In development.",
     ],
     architecture: [
       {
         title: "Tenant identity on every record",
-        body: "Every stored object belongs to an organisation, and access resolves from the authenticated session rather than a client-supplied identifier. Isolation is enforced in the data layer, not by filtering results afterwards.",
+        body: "The design places every stored object under an organisation, with access resolved from the authenticated session rather than a client-supplied identifier. Isolation is intended to be enforced in the data layer, not by filtering results afterwards.",
       },
       {
         title: "Permissions as policy, not conditionals",
-        body: "Role and resource combine into one explicit decision per action. New surfaces ask the same question, so a permission rule cannot be bypassed by a newer endpoint.",
+        body: "Role and resource combine into one explicit decision per action, so a new surface asks the same question rather than restating the rule.",
       },
       {
         title: "Secrets separated from documents",
-        body: "Credentials are stored through a distinct path with their own encryption and reveal flow. Reveal is an audited event, which is the difference between a vault and an encrypted file.",
+        body: "Credentials are designed to travel a distinct path with their own encryption and reveal flow, with reveal recorded as an event.",
       },
       {
         title: "Audit trail as a product surface",
-        body: "Access events are written as an append-only record and exposed to administrators, so logging is part of the asset model rather than an operational afterthought.",
+        body: "Access events are designed as an append-only record exposed to administrators, so logging is part of the asset model rather than an operational afterthought.",
       },
       {
         title: "Controlled sharing",
-        body: "External access is granted per resource with an expiry, so a partner can be given one drawer without visibility into the workspace.",
+        body: "External access is designed per resource with an expiry, so a partner can be given one drawer without visibility into the workspace.",
       },
       {
         title: "Scoped search",
-        body: "Search runs inside the caller's tenant and permission scope, so recall cannot become an access path.",
+        body: "Search is designed to run inside the caller's tenant and permission scope, so recall cannot become an access path.",
       },
     ],
     components: [
@@ -739,7 +741,8 @@ export const caseStudies: CaseStudy[] = [
         items: ["Tenant-scoped search across assets"],
       },
     ],
-    componentsNote,
+    componentsNote:
+      "Describes the intended component model for a pre-MVP product. Components sit at different stages of implementation, and none is presented here as independently verified or production-ready.",
     process: [
       {
         phase: "01",
@@ -748,23 +751,23 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         phase: "02",
-        title: "Vault",
-        body: "Encrypted storage, the reveal flow and reveal logging, tested against an administrator's audit view.",
+        title: "Vault path",
+        body: "Credential storage through a separate path, with the reveal flow and reveal logging in development.",
       },
       {
         phase: "03",
         title: "Workspace and search",
-        body: "Drawers, folders, metadata and scoped search, with permission checks applied to every read path.",
+        body: "Drawers, folders, metadata and scoped search, being built with permission checks on each read path.",
       },
       {
         phase: "04",
         title: "Audit and administration",
-        body: "Activity history, role management and external sharing, reviewed with the access model in front of us.",
+        body: "Activity history, role management and external sharing, in progress against the same access model.",
       },
       {
         phase: "05",
-        title: "Hardening and launch",
-        body: "Isolation testing across tenants, then onboarding and account management for the first organisations.",
+        title: "Testing and pre-MVP review",
+        body: "Isolation testing across tenants and a capability review before any public release. No launch date is claimed.",
       },
     ],
     decisions: [
@@ -784,17 +787,39 @@ export const caseStudies: CaseStudy[] = [
         tradeoff: "More permission interface to design, in exchange for scoped external access.",
       },
     ],
-    results: [
-      { measure: "Tenant-aware workspace with per-resource permissions", status: "Live" },
-      { measure: "Encrypted credential vault with logged reveal", status: "Live" },
-      { measure: "Administrator-visible audit trail", status: "Live" },
+    results: [],
+    resultsNote:
+      "Status reflects the pre-MVP build. No capability is presented as production-verified, and no security property has been independently tested. Certification readiness is a design position, not a certification.",
+    capabilityStatus: [
       {
-        measure: "Security certification",
-        status: "None claimed; the product describes its design as structured for SOC 2, GDPR and ISO readiness",
+        capability: "Tenant-aware workspace with per-resource permissions",
+        state: "Partially implemented; not independently verified",
+      },
+      {
+        capability: "Credential vault with controlled reveal",
+        state: "Partially implemented; encryption design not independently tested",
+      },
+      {
+        capability: "Administrator-visible audit trail",
+        state: "Partially implemented",
+      },
+      {
+        capability: "Tenant isolation across data access and search",
+        state: "In development; cross-tenant isolation testing outstanding",
+      },
+      {
+        capability: "External sharing scoped to individual resources",
+        state: "Planned",
+      },
+      {
+        capability: "Public availability and production readiness",
+        state: "Not available; pre-MVP",
+      },
+      {
+        capability: "Security certification",
+        state: "None claimed",
       },
     ],
-    resultsNote:
-      "Readiness is a design position, not a certification. Neither Tunnels nor Drawra is presented here as certified.",
     lessons: [
       "Isolation is a data-layer property. Filtering by tenant in the interface is a bug waiting for a new endpoint.",
       "Logging a reveal is what makes a secret vault defensible rather than convenient.",
@@ -803,9 +828,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     serviceSlugs: ["enterprise-software", "cybersecurity-reliability", "cloud-platform-infrastructure"],
     solutionSlugs: ["technology-reliability-security", "cloud-platform-transformation"],
-    metaTitle: "Drawra Case Study: Secure Asset and Credential Platform | Tunnels Global",
+    metaTitle: "Drawra Case Study: Pre-MVP Workspace Platform | Tunnels Global",
     metaDescription:
-      "How Tunnels engineered Drawra, a multi-tenant workspace for business assets, documents and credentials, with per-resource permissions, an encrypted vault and an append-only audit trail.",
+      "Tunnels' product engineering for Drawra, a pre-MVP workspace for business assets, documents and credentials, with a permission model, credential vault and audit trail in development.",
   },  {
     slug: "stitches-en-vogue",
     number: "05",
@@ -818,10 +843,10 @@ export const caseStudies: CaseStudy[] = [
       "A Lagos luxury fashion brand's online store: ready-to-wear collections, a bespoke couture enquiry path and styling consultation booking, built to carry the presentation standard of the house.",
     website: "https://sev.ng",
     websiteLabel: "sev.ng",
+    productStatus: "Live, publicly available",
     image: "/assets/work/sev.jpg",
     imageAlt: "Stitches En Vogue storefront with the brand's editorial hero image",
     imageCaption: "Stitches En Vogue storefront, captured from the live site.",
-    featured: false,
     sector: "Luxury fashion retail, Lagos",
     platform: "Brand storefront, collection commerce and bespoke enquiry",
     role: "Platform built by Tunnels for the client",
@@ -945,10 +970,10 @@ export const caseStudies: CaseStudy[] = [
       "A delivery-first restaurant platform: a menu built for home-style cooking, an ordering and checkout path, and delivery handled without a dining room to fall back on.",
     website: "https://okaneats.com.ng",
     websiteLabel: "okaneats.com.ng",
+    productStatus: "Live, publicly available",
     image: "/assets/work/okaneats.jpg",
     imageAlt: "okaneats home page showing a spread of Nigerian dishes",
     imageCaption: "okaneats storefront, captured from the live site.",
-    featured: false,
     sector: "Food service and delivery",
     platform: "Menu, ordering, checkout and delivery operations",
     role: "Platform built by Tunnels for the client",
@@ -1070,10 +1095,10 @@ export const caseStudies: CaseStudy[] = [
       "A business operations suite covering payroll processing, staff management and inventory, delivered through a technical partnership with co-founder involvement rather than a single contracted build.",
     website: "https://payrendr.com",
     websiteLabel: "payrendr.com",
+    productStatus: "Live, publicly available",
     image: "/assets/work/payrendr.jpg",
     imageAlt: "payrendr home page with payroll, staff management and supply chain sections",
     imageCaption: "payrendr home page, captured from the live product.",
-    featured: false,
     sector: "Payroll, HR and business operations",
     platform: "Payroll processing, staff administration and inventory",
     role: "Technical partnership with co-founder involvement",
@@ -1206,10 +1231,10 @@ export const caseStudies: CaseStudy[] = [
       "A luxury lifestyle and well-being platform bringing therapy, life coaching, travel and events together in one place, where Tunnels contributed to the main engineering over a 12-month period.",
     website: "https://rendezvouscare.com",
     websiteLabel: "rendezvouscare.com",
+    productStatus: "Live, publicly available",
     image: "/assets/work/rendezvouscare.jpg",
     imageAlt: "Rendezvouscare lifestyle imagery from the platform",
     imageCaption: "Rendezvouscare platform imagery, from the live site.",
-    featured: false,
     sector: "Wellness and luxury lifestyle services",
     platform: "Service catalogue, booking and affiliate platform",
     role: "Partial engineering contribution over a 12-month period",
@@ -1324,8 +1349,6 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export const getCaseStudy = (slug?: string) => caseStudies.find((study) => study.slug === slug);
-
-export const featuredCaseStudies = caseStudies.filter((study) => study.featured);
 
 export const caseStudiesForService = (serviceSlug: string) =>
   caseStudies.filter((study) => study.serviceSlugs.includes(serviceSlug));

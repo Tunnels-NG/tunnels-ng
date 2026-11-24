@@ -15,6 +15,7 @@ import EngagementModels from "./pages/EngagementModels";
 import Insights from "./pages/Insights";
 import InsightArticle from "./pages/InsightArticle";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ export const AppRoutes = () => (
       <Route path="/insights" element={<Insights />} />
       <Route path="/insights/:slug" element={<InsightArticle />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/privacy" element={<Privacy />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Layout>

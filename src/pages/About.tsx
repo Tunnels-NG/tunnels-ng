@@ -225,7 +225,7 @@ export default function About() {
                 to="/case-studies"
                 className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red"
               >
-                Selected client work
+                Selected Client Work
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
               </Link>
             </div>

@@ -134,6 +134,13 @@ export default function Contact() {
                   </Link>
                   .
                 </p>
+                <p className="text-[13px] leading-relaxed text-grey">
+                  For how we handle personal data, read our{" "}
+                  <Link to="/privacy" className="text-ink underline decoration-line underline-offset-4 hover:text-tunnels-red">
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
               </div>
             </div>
           </aside>

@@ -9,7 +9,7 @@ import Reveal from "@/components/site/Reveal";
 import { services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 import { industries } from "@/content/industries";
-import { featuredCaseStudies } from "@/content/caseStudies";
+import { caseStudies } from "@/content/caseStudies";
 import { insights, formatDate } from "@/content/insights";
 import CaseStudyCard from "@/components/site/CaseStudyCard";
 import { ENGAGEMENT_MODELS, LEAD_SERVICE_SLUGS, LEAD_SOLUTION_SLUGS, SITE } from "@/lib/site";
@@ -50,7 +50,7 @@ const problems = [
 const approach = [
   {
     step: "01",
-    name: "Assess",
+    name: "Discover",
     copy: "We establish the facts: code, infrastructure, data flows, delivery history and the commercial constraint behind the request.",
   },
   {
@@ -60,13 +60,23 @@ const approach = [
   },
   {
     step: "03",
-    name: "Build",
+    name: "Engineer",
     copy: "Senior engineers deliver in verifiable increments. Tests, observability and documentation are part of the work, not follow-up tasks.",
   },
   {
     step: "04",
-    name: "Operate & transfer",
-    copy: "Runbooks, rehearsed recovery and pairing so your team can own the system long after the engagement ends.",
+    name: "Validate",
+    copy: "Functional, performance, security and recovery behaviour tested against agreed acceptance criteria, with gaps stated.",
+  },
+  {
+    step: "05",
+    name: "Deploy",
+    copy: "Release through a repeatable pipeline, with a named decision maker, post-deployment verification and a rehearsed way back.",
+  },
+  {
+    step: "06",
+    name: "Operate & Improve",
+    copy: "Runbooks, rehearsed recovery and pairing so your team can own the system, measured against agreed service objectives.",
   },
 ];
 
@@ -243,14 +253,16 @@ export default function Home() {
           </div>
 
           <div className="mt-5 grid gap-px border border-line bg-line lg:grid-cols-3">
-            {leadSolutions.map((solution) => (
+            {leadSolutions.map((solution, index) => (
               <Link
                 key={solution.slug}
                 to={`/solutions/${solution.slug}`}
                 className="group relative flex min-h-[260px] flex-col bg-paper-deep p-7 transition-colors hover:bg-paper md:p-9"
               >
                 <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-mono text-[10px] tracking-[0.14em] text-mist">{solution.number}</span>
+                  <span className="font-mono text-[10px] tracking-[0.14em] text-mist">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span className="h-1.5 w-1.5 bg-tunnels-red" aria-hidden="true" />
                 </div>
                 <h3 className="mt-6 max-w-[18ch] font-display text-[1.55rem] leading-tight tracking-[-0.02em]">
@@ -294,14 +306,14 @@ export default function Home() {
       <section className="border-y border-line bg-paper py-16 md:py-24">
         <div className="shell">
           <SectionHeading
-            label="Selected client work"
-            title="Products we have engineered."
-            copy="Zura, Postject, Listdem and Drawra lead the portfolio, with four more client platforms behind them. Every record links to the live product."
+            label="Selected Client Work"
+            title="Engineering products and platforms that solve real business problems."
+            copy="A selection of digital platforms, business systems and technology solutions across commerce, developer infrastructure and business operations."
             link={{ label: "All client work", href: "/case-studies" }}
           />
 
           <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {featuredCaseStudies.map((study) => (
+            {caseStudies.map((study) => (
               <CaseStudyCard key={study.slug} study={study} withSummary={false} />
             ))}
           </div>
@@ -314,10 +326,10 @@ export default function Home() {
           <SectionHeading
             label="How we work"
             title="A delivery method built for systems that cannot stop."
-            copy="A named senior engineer is accountable for technical decisions on every engagement."
+            copy="A summary of the six-stage engineering approach used on every engagement, where each stage has a defined output and exit condition."
           />
 
-          <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {approach.map((phase, index) => (
               <Reveal key={phase.step} delay={index * 70}>
                 <div className="border-t-2 border-ink pt-5">
@@ -357,9 +369,9 @@ export default function Home() {
           <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-3">
             {ENGAGEMENT_MODELS.map((model, index) => (
               <div key={model.name} className="flex flex-col bg-paper p-7 md:p-8">
-                <span className="font-mono text-[10px] tracking-[0.14em] text-mist">
-                  0{index + 1}
-                </span>
+                                  <span className="font-mono text-[10px] tracking-[0.14em] text-mist">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 <h3 className="mt-6 font-display text-xl tracking-[-0.015em]">{model.name}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-grey">{model.summary}</p>
                 <p className="mt-7 border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-ink">

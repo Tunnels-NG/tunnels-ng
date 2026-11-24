@@ -114,7 +114,7 @@ export default function CaseStudyDetail() {
               className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-grey hover:text-ink"
             >
               <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-              Selected client work
+              Selected Client Work
             </Link>
 
             <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.12em]">
@@ -144,7 +144,7 @@ export default function CaseStudyDetail() {
                 { label: "Sector", value: study.sector },
                 { label: "Platform", value: study.platform },
                 { label: "Tunnels' role", value: study.role },
-                { label: "Product status", value: "Live, publicly available" },
+                { label: "Product status", value: study.productStatus },
               ].map((item) => (
                 <div key={item.label} className="bg-paper p-4">
                   <dt className="font-mono text-[9.5px] uppercase tracking-[0.14em] text-mist">
@@ -187,6 +187,20 @@ export default function CaseStudyDetail() {
                   <p className="eyebrow text-[10px]">Record contents</p>
                   <ol className="mt-4 space-y-2 border-l border-line pl-4">
                     {sectionList.map((item, index) => (
+                      // A pre-MVP record reports capability state rather than outcomes.
+                      item.id === "results" && study.capabilityStatus ? (
+                        <li key={item.id}>
+                          <a
+                            href="#results"
+                            className="block text-[12.5px] leading-snug text-grey transition-colors hover:text-ink"
+                          >
+                            <span className="mr-2 font-mono text-[9px] text-mist">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            Capability status
+                          </a>
+                        </li>
+                      ) : (
                       <li key={item.id}>
                         <a
                           href={`#${item.id}`}
@@ -198,6 +212,7 @@ export default function CaseStudyDetail() {
                           {item.label}
                         </a>
                       </li>
+                      )
                     ))}
                   </ol>
                 </div>
@@ -345,14 +360,22 @@ export default function CaseStudyDetail() {
                   </div>
                 </Section>
 
-                <Section id="results" number="10" title="Results and outcomes">
+                <Section
+                  id="results"
+                  number="10"
+                  title={study.capabilityStatus ? "Capability status" : "Results and outcomes"}
+                >
                   <div className="border border-line">
                     <table className="w-full border-collapse text-left">
-                      <caption className="sr-only">Outcome measures and publication status</caption>
+                      <caption className="sr-only">
+                        {study.capabilityStatus
+                          ? "Capability implementation status"
+                          : "Outcome measures and publication status"}
+                      </caption>
                       <thead>
                         <tr className="border-b border-line bg-paper-deep">
                           <th scope="col" className="px-4 py-3 font-mono text-[9.5px] uppercase tracking-[0.12em] text-grey">
-                            Measure
+                            {study.capabilityStatus ? "Capability" : "Measure"}
                           </th>
                           <th scope="col" className="px-4 py-3 font-mono text-[9.5px] uppercase tracking-[0.12em] text-grey">
                             Status
@@ -360,12 +383,16 @@ export default function CaseStudyDetail() {
                         </tr>
                       </thead>
                       <tbody>
-                        {study.results.map((row) => (
-                          <tr key={row.measure} className="border-b border-line last:border-b-0">
-                            <td className="px-4 py-3 text-[13px] leading-relaxed text-graphite">{row.measure}</td>
-                            <td className="px-4 py-3 text-[12px] leading-relaxed text-mist">{row.status}</td>
-                          </tr>
-                        ))}
+                        {(study.capabilityStatus ?? study.results).map((row) => {
+                          const label = "capability" in row ? row.capability : row.measure;
+                          const value = "state" in row ? row.state : row.status;
+                          return (
+                            <tr key={label} className="border-b border-line last:border-b-0">
+                              <td className="px-4 py-3 text-[13px] leading-relaxed text-graphite">{label}</td>
+                              <td className="px-4 py-3 text-[12px] leading-relaxed text-mist">{value}</td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
@@ -470,7 +497,7 @@ export default function CaseStudyDetail() {
 
       <RelatedCaseStudies
         studies={related}
-        label="Selected client work"
+        label="Selected Client Work"
         title="More of our work"
         copy="Each record follows the same structure, so the approach and our role can be compared across products."
       />

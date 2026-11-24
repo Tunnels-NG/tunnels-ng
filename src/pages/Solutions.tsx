@@ -6,7 +6,7 @@ import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { solutions } from "@/content/solutions";
-import { featuredCaseStudies } from "@/content/caseStudies";
+import { caseStudies } from "@/content/caseStudies";
 import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
 import { ENGAGEMENT_MODELS, LEAD_SOLUTION_SLUGS } from "@/lib/site";
 
@@ -94,7 +94,7 @@ export default function Solutions() {
       </section>
 
       <RelatedCaseStudies
-        studies={featuredCaseStudies}
+        studies={caseStudies}
         label="From problem to evidence"
         title="Solutions, applied in client work"
         copy="Each solution connects to the capability that delivers it and to the products it has been applied to. That path is deliberate: the problem, the engineering, the decisions, the evidence."
