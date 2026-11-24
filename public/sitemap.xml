@@ -16,6 +16,17 @@
   <url><loc>https://tunnelsng.com/solutions/technology-reliability-security</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tunnelsng.com/solutions/strategic-engineering-partnerships</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tunnelsng.com/industries</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/zura</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/postject</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/listdem</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/drawra</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/stitches-en-vogue</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/okaneats</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/payrendr</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/case-studies/rendezvouscare</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tunnelsng.com/engineering-approach</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tunnelsng.com/engagement-models</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tunnelsng.com/insights</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tunnelsng.com/insights/why-enterprise-ai-pilots-stall</loc><lastmod>2026-10-14</lastmod><priority>0.6</priority></url>
   <url><loc>https://tunnelsng.com/insights/legacy-modernisation-without-big-bang-rewrite</loc><lastmod>2026-09-02</lastmod><priority>0.6</priority></url>
@@ -23,5 +34,11 @@
   <url><loc>https://tunnelsng.com/insights/integration-layer-is-the-product</loc><lastmod>2026-06-05</lastmod><priority>0.6</priority></url>
   <url><loc>https://tunnelsng.com/insights/designing-retrieval-that-holds-up</loc><lastmod>2026-04-16</lastmod><priority>0.6</priority></url>
   <url><loc>https://tunnelsng.com/insights/reliability-is-an-engineering-discipline</loc><lastmod>2026-02-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/model-selection-is-an-engineering-decision</loc><lastmod>2025-06-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/data-contracts-between-teams</loc><lastmod>2025-03-11</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/operating-model-for-ai-in-production</loc><lastmod>2024-11-19</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/custom-reporting-estate-is-a-modernisation-problem</loc><lastmod>2024-04-23</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/incident-response-is-a-rehearsed-capability</loc><lastmod>2023-11-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://tunnelsng.com/insights/what-platform-engineering-actually-buys</loc><lastmod>2023-08-07</lastmod><priority>0.6</priority></url>
   <url><loc>https://tunnelsng.com/contact</loc><changefreq>yearly</changefreq><priority>0.9</priority></url>
 </urlset>

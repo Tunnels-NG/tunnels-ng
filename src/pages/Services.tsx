@@ -6,6 +6,7 @@ import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { services } from "@/content/services";
+import { LEAD_SERVICE_SLUGS } from "@/lib/site";
 
 export default function Services() {
   return (
@@ -50,6 +51,11 @@ export default function Services() {
                 </div>
 
                 <div className="md:col-span-4">
+                  {(LEAD_SERVICE_SLUGS as readonly string[]).includes(service.slug) && (
+                    <span className="mb-2 inline-block font-mono text-[9px] uppercase tracking-[0.14em] text-tunnels-red">
+                      Primary focus
+                    </span>
+                  )}
                   <h2 className="font-display text-2xl leading-tight tracking-[-0.02em] md:text-[2rem]">
                     <Link to={`/services/${service.slug}`} className="hover:text-tunnels-red">
                       {service.name}
@@ -111,10 +117,10 @@ export default function Services() {
               <Action to="/solutions" variant="solid" withArrow>
                 Explore Solutions
               </Action>
-              <Link
-                to="/contact"
-                className="btn-outline"
-              >
+              <Action to="/engineering-approach" variant="outline" withArrow>
+                Our Engineering Approach
+              </Action>
+              <Link to="/contact" className="btn-outline">
                 Discuss a Project
               </Link>
             </div>

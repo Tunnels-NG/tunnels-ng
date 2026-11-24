@@ -91,7 +91,7 @@ export function buildHead({
       "Technology transformation",
       "Cybersecurity and reliability engineering",
     ],
-    sameAs: [SITE.linkedin],
+    sameAs: SITE.socialLinks.map((link) => link.href),
   };
 
   const blocks = [

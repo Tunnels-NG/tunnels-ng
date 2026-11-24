@@ -8,6 +8,10 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Solutions from "./pages/Solutions";
 import SolutionDetail from "./pages/SolutionDetail";
 import Industries from "./pages/Industries";
+import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
+import EngineeringApproach from "./pages/EngineeringApproach";
+import EngagementModels from "./pages/EngagementModels";
 import Insights from "./pages/Insights";
 import InsightArticle from "./pages/InsightArticle";
 import Contact from "./pages/Contact";
@@ -26,6 +30,10 @@ export const AppRoutes = () => (
       <Route path="/solutions" element={<Solutions />} />
       <Route path="/solutions/:slug" element={<SolutionDetail />} />
       <Route path="/industries" element={<Industries />} />
+      <Route path="/case-studies" element={<CaseStudies />} />
+      <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+      <Route path="/engineering-approach" element={<EngineeringApproach />} />
+      <Route path="/engagement-models" element={<EngagementModels />} />
       <Route path="/insights" element={<Insights />} />
       <Route path="/insights/:slug" element={<InsightArticle />} />
       <Route path="/contact" element={<Contact />} />

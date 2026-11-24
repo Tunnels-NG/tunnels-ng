@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
+import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AlertCircle, CheckCircle2, Loader2, Mail } from "lucide-react";
@@ -27,10 +27,44 @@ const BUDGET_OPTIONS = [
 ];
 
 const ENGAGEMENT_OPTIONS = [
-  "Defined project",
-  "Embedded engineering team",
-  "Advisory partnership",
+  "Project-Based Engineering",
+  "Managed Engineering Services",
+  "Strategic Engineering Partnerships",
   "Not sure yet",
+];
+
+/**
+ * Maps inbound links (service, solution and case study pages) onto the enquiry
+ * form's service options, so a visitor arriving from a capability page does not
+ * have to restate their interest.
+ */
+const SERVICE_QUERY_MAP: Record<string, string> = {
+  "ai-intelligent-systems": "Enterprise AI Implementation",
+  "enterprise-software": "Enterprise Systems Modernisation",
+  "cloud-platform-infrastructure": "Cloud & Platform Transformation",
+  "cybersecurity-reliability": "Technology Reliability & Security",
+  "technology-advisory": "Strategic Engineering Partnership",
+  "enterprise-ai-implementation": "Enterprise AI Implementation",
+  "enterprise-systems-modernisation": "Enterprise Systems Modernisation",
+  "cloud-platform-transformation": "Cloud & Platform Transformation",
+  "enterprise-systems-integration": "Enterprise Systems Integration",
+  "technology-reliability-security": "Technology Reliability & Security",
+  "strategic-engineering-partnerships": "Strategic Engineering Partnership",
+  "Enterprise Software Engineering": "Enterprise Systems Modernisation",
+  "Cloud & Infrastructure Engineering": "Cloud & Platform Transformation",
+  "AI & Intelligent Systems": "Enterprise AI Implementation",
+};
+
+/** Order used when moving focus to the first invalid field. */
+const FIELD_ORDER: (keyof FormValues)[] = [
+  "name",
+  "email",
+  "company",
+  "jobTitle",
+  "country",
+  "service",
+  "description",
+  "privacy",
 ];
 
 const schema = z.object({
@@ -66,6 +100,7 @@ type Status = "idle" | "submitting" | "success" | "error" | "unconfigured";
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [invalidCount, setInvalidCount] = useState(0);
   const startedAt = useRef(Date.now());
   const [mailtoHref, setMailtoHref] = useState("");
 
@@ -73,6 +108,8 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -90,6 +127,23 @@ export default function ContactForm() {
       website: "",
     },
   });
+
+  // Prefill from inbound links: ?service=<slug or category>&engagement=<model>
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+    const engagement = params.get("engagement");
+
+    if (service) {
+      const mapped = SERVICE_QUERY_MAP[service] ?? SERVICE_OPTIONS.find((option) => option === service);
+      if (mapped) setValue("service", mapped);
+    }
+    if (engagement) {
+      const mapped = ENGAGEMENT_OPTIONS.find((option) => option === engagement);
+      if (mapped) setValue("engagement", mapped);
+    }
+  }, [setValue]);
 
   const buildMailto = (values: FormValues) => {
     const body = [
@@ -111,9 +165,20 @@ export default function ContactForm() {
   };
 
   const onSubmit = async (values: FormValues) => {
-    // Spam protection: hidden field plus a minimum completion time.
-    if (values.website || Date.now() - startedAt.current < 2500) {
+    setInvalidCount(0);
+
+    // Spam protection: a hidden field that only automated completion fills.
+    if (values.website) {
       setStatus("success");
+      return;
+    }
+
+    // A human who submits in under two seconds has most likely submitted twice.
+    if (Date.now() - startedAt.current < 2000) {
+      setStatus("error");
+      setErrorMessage(
+        "This form was submitted almost immediately after it loaded. Please check your details and submit again, or email us directly.",
+      );
       return;
     }
 
@@ -153,6 +218,13 @@ export default function ContactForm() {
     }
   };
 
+  const onInvalid = (formErrors: FieldErrors<FormValues>) => {
+    const firstInvalid = FIELD_ORDER.find((field) => formErrors[field]);
+    if (firstInvalid) setFocus(firstInvalid);
+    setInvalidCount(Object.keys(formErrors).filter((key) => key !== "website").length);
+    setStatus("idle");
+  };
+
   if (status === "success") {
     return (
       <div className="border border-line bg-paper-bright p-8 md:p-10" role="status" aria-live="polite">
@@ -175,7 +247,17 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-7">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="space-y-7" aria-busy={status === "submitting"}>
+      {invalidCount > 0 && (
+        <div className="border border-tunnels-red bg-paper-bright p-4" role="alert">
+          <p className="text-sm font-medium text-ink">
+            Please correct {invalidCount === 1 ? "the highlighted field" : `${invalidCount} highlighted fields`}.
+          </p>
+          <p className="mt-1 text-[13px] leading-relaxed text-grey">
+            Required fields are marked with an asterisk. Your details remain in the form.
+          </p>
+        </div>
+      )}
       {status === "unconfigured" && (
         <div className="border border-ink bg-paper-bright p-5" role="alert">
           <div className="flex items-start gap-3">
@@ -466,7 +548,7 @@ export default function ContactForm() {
           )}
         </Action>
         <p className="text-xs leading-relaxed text-mist">
-          We aim to respond within two business days.
+          We aim to respond within {SITE.responseTime}. Your details are used only to answer this enquiry.
         </p>
       </div>
     </form>

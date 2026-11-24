@@ -5,16 +5,19 @@ import SEO, { breadcrumbSchema } from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import CtaBand from "@/components/site/CtaBand";
 import Reveal from "@/components/site/Reveal";
-import { insights, insightCategories, formatDate, type InsightCategory } from "@/content/insights";
+import { insights, insightsByDate, insightCategories, formatDate, type InsightCategory } from "@/content/insights";
 
 type Filter = InsightCategory | "All";
 
 export default function Insights() {
   const [filter, setFilter] = useState<Filter>("All");
-  const featured = insights.find((article) => article.featured) ?? insights[0];
+  const featured = insights.find((article) => article.featured) ?? insightsByDate[0];
 
   const filtered = useMemo(
-    () => (filter === "All" ? insights : insights.filter((article) => article.category === filter)),
+    () =>
+      filter === "All"
+        ? insightsByDate
+        : insightsByDate.filter((article) => article.category === filter),
     [filter],
   );
 
@@ -42,6 +45,10 @@ export default function Insights() {
               We publish technical positions, not thought-leadership filler. No vendor promotion, no
               performance claims without measurement.
             </p>
+            <p className="mt-3 border-t border-line pt-3 text-[12px] leading-relaxed text-mist">
+              Written by the Tunnels engineering team. Articles are editorial perspectives, not client case
+              studies.
+            </p>
           </div>
         }
       />
@@ -67,7 +74,7 @@ export default function Insights() {
               <p className="text-sm leading-relaxed text-graphite">{featured.excerpt}</p>
               <div className="mt-6 flex items-center justify-between border-t border-line pt-4">
                 <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-mist">
-                  {formatDate(featured.date)} · {featured.readTime}
+                  {formatDate(featured.date)} · {featured.readTime} · {featured.author}
                 </span>
                 <ArrowUpRight
                   className="h-4 w-4 text-ink/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -120,8 +127,9 @@ export default function Insights() {
                     {article.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-grey">{article.excerpt}</p>
-                  <p className="mt-6 border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-mist">
-                    {formatDate(article.date)}
+                  <p className="mt-6 flex items-center justify-between gap-3 border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-mist">
+                    <span>{formatDate(article.date)}</span>
+                    <span>{article.author}</span>
                   </p>
                 </Link>
               </Reveal>

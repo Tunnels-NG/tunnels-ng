@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Linkedin, Mail } from "lucide-react";
 import SEO, { breadcrumbSchema } from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import ContactForm from "@/components/contact/ContactForm";
@@ -137,6 +137,62 @@ export default function Contact() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-paper-deep py-14">
+        <div className="shell">
+          <div className="flex flex-col justify-between gap-4 border-t border-line pt-6 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Before you send</p>
+              <h2 className="mt-3 font-display text-2xl tracking-[-0.02em] md:text-3xl">
+                Useful context, if you want it first.
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-grey">
+              None of this is required. It simply saves a round of questions if you are still assessing fit.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                label: "Engineering records",
+                copy: "How comparable engagements are structured, including the constraints and trade-offs.",
+                href: "/case-studies",
+              },
+              {
+                label: "Engineering approach",
+                copy: "The six stages, the outputs of each, and the disciplines applied throughout.",
+                href: "/engineering-approach",
+              },
+              {
+                label: "Engagement models",
+                copy: "Project, managed service or strategic partnership, and which fits your situation.",
+                href: "/engagement-models",
+              },
+              {
+                label: "Insights",
+                copy: "Technical positions on AI, cloud, architecture, modernisation and reliability.",
+                href: "/insights",
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                className="group flex h-full flex-col bg-paper p-6 transition-colors hover:bg-paper-bright"
+              >
+                <span className="flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.12em] text-tunnels-red">
+                  {item.label}
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 text-mist transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="mt-4 text-[13px] leading-relaxed text-grey">{item.copy}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </>

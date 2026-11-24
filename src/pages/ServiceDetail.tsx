@@ -8,6 +8,8 @@ import Reveal from "@/components/site/Reveal";
 import { getService, services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 import { insights, formatDate } from "@/content/insights";
+import { caseStudiesForService } from "@/content/caseStudies";
+import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
 import { ENGAGEMENT_MODELS } from "@/lib/site";
 import NotFound from "./NotFound";
 
@@ -65,7 +67,7 @@ export default function ServiceDetail() {
             <p className="eyebrow text-[10px]">The position</p>
             <p className="mt-3 font-display text-xl leading-snug tracking-[-0.02em]">{service.message}</p>
             <div className="mt-6">
-              <Action to="/contact" variant="solid" withArrow>
+              <Action to={`/contact?service=${service.slug}`} variant="solid" withArrow>
                 Discuss this work
               </Action>
             </div>
@@ -132,6 +134,11 @@ export default function ServiceDetail() {
               The method is consistent across divisions: establish evidence, make decisions explicit,
               deliver in reversible increments.
             </p>
+            <div className="mt-6">
+              <Action to="/engineering-approach" variant="link" withArrow>
+                The full engineering method
+              </Action>
+            </div>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <ol className="border-t border-line">
@@ -273,6 +280,12 @@ export default function ServiceDetail() {
           </div>
         </section>
       )}
+
+      <RelatedCaseStudies
+        studies={caseStudiesForService(service.slug)}
+        label="Division in practice"
+        title={`${service.shortName} engagements, documented`}
+      />
 
       <CtaBand
         title={`Need ${service.shortName.toLowerCase()} capability on a live problem?`}

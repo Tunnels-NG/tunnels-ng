@@ -6,7 +6,15 @@ import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { solutions } from "@/content/solutions";
-import { ENGAGEMENT_MODELS } from "@/lib/site";
+import { featuredCaseStudies } from "@/content/caseStudies";
+import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
+import { ENGAGEMENT_MODELS, LEAD_SOLUTION_SLUGS } from "@/lib/site";
+
+const isLead = (slug: string) => (LEAD_SOLUTION_SLUGS as readonly string[]).includes(slug);
+
+const orderedSolutions = [...solutions].sort(
+  (a, b) => Number(isLead(b.slug)) - Number(isLead(a.slug)) || Number(a.number) - Number(b.number),
+);
 
 export default function Solutions() {
   return (
@@ -44,13 +52,25 @@ export default function Solutions() {
 
       <section className="bg-paper">
         <div className="shell">
-          {solutions.map((solution, index) => (
+          <div className="flex items-center gap-4 border-b border-line py-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-tunnels-red">
+              Lead commercial offerings first
+            </p>
+            <span className="h-px flex-1 bg-line" aria-hidden="true" />
+          </div>
+
+          {orderedSolutions.map((solution, index) => (
             <Reveal key={solution.slug} delay={index * 40}>
               <article className="grid gap-6 border-b border-line py-12 md:grid-cols-12 md:gap-10 md:py-14">
                 <div className="md:col-span-1">
                   <span className="font-mono text-[11px] text-mist">{solution.number}</span>
                 </div>
                 <div className="md:col-span-4">
+                  {isLead(solution.slug) && (
+                    <span className="mb-2 inline-block font-mono text-[9px] uppercase tracking-[0.14em] text-tunnels-red">
+                      Primary focus
+                    </span>
+                  )}
                   <h2 className="font-display text-2xl leading-tight tracking-[-0.02em] md:text-[1.9rem]">
                     <Link to={`/solutions/${solution.slug}`} className="hover:text-tunnels-red">
                       {solution.name}
@@ -72,6 +92,13 @@ export default function Solutions() {
           ))}
         </div>
       </section>
+
+      <RelatedCaseStudies
+        studies={featuredCaseStudies}
+        label="From problem to evidence"
+        title="Solutions, applied in client work"
+        copy="Each solution connects to the capability that delivers it and to the products it has been applied to. That path is deliberate: the problem, the engineering, the decisions, the evidence."
+      />
 
       <section className="border-t border-line bg-paper-deep py-16 md:py-20">
         <div className="shell">

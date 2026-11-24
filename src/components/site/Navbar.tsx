@@ -76,7 +76,7 @@ export default function Navbar() {
                   key={item.href}
                   to={item.href}
                   className={({ isActive }) =>
-                    `relative px-3.5 py-2 text-[13.5px] transition-colors ${
+                    `relative px-2.5 py-2 text-[13px] transition-colors xl:px-3.5 xl:text-[13.5px] ${
                       isActive ? "text-ink" : "text-graphite hover:text-ink"
                     }`
                   }
@@ -97,7 +97,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   onClick={() => setOpenMenu(openMenu === key ? null : key)}
                   onMouseEnter={() => setOpenMenu(key)}
-                  className={`flex items-center gap-1 px-3.5 py-2 text-[13.5px] transition-colors ${
+                  className={`flex items-center gap-1 px-2.5 py-2 text-[13px] transition-colors xl:px-3.5 xl:text-[13.5px] ${
                     active || openMenu === key ? "text-ink" : "text-graphite hover:text-ink"
                   }`}
                 >
@@ -115,7 +115,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        {/* The enquiry CTA appears from xl; below that, Contact remains in the nav. */}
+        <div className="hidden items-center gap-5 xl:flex">
           <Link
             to="/contact"
             className="group inline-flex items-center gap-2 bg-ink px-5 py-3 text-[13px] font-medium text-paper transition-colors hover:bg-tunnels-red"

@@ -9,8 +9,10 @@ import Reveal from "@/components/site/Reveal";
 import { services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 import { industries } from "@/content/industries";
+import { featuredCaseStudies } from "@/content/caseStudies";
 import { insights, formatDate } from "@/content/insights";
-import { ENGAGEMENT_MODELS, SITE } from "@/lib/site";
+import CaseStudyCard from "@/components/site/CaseStudyCard";
+import { ENGAGEMENT_MODELS, LEAD_SERVICE_SLUGS, LEAD_SOLUTION_SLUGS, SITE } from "@/lib/site";
 
 const problems = [
   {
@@ -70,6 +72,13 @@ const approach = [
 
 export default function Home() {
   const latest = insights.slice(0, 3);
+  const leadSolutions = LEAD_SOLUTION_SLUGS.map((slug) => solutions.find((entry) => entry.slug === slug)).filter(
+    (entry): entry is (typeof solutions)[number] => Boolean(entry),
+  );
+  const otherSolutions = solutions.filter(
+    (entry) => !(LEAD_SOLUTION_SLUGS as readonly string[]).includes(entry.slug),
+  );
+  const isLeadService = (slug: string) => (LEAD_SERVICE_SLUGS as readonly string[]).includes(slug);
 
   return (
     <>
@@ -153,9 +162,16 @@ export default function Home() {
                   <span className="font-mono text-[10px] text-paper/30 md:col-span-1 md:pt-2">
                     {service.number}
                   </span>
-                  <h3 className="font-display text-2xl tracking-[-0.02em] text-paper transition-colors group-hover:text-tunnels-red md:col-span-4 md:text-[1.7rem]">
-                    {service.name}
-                  </h3>
+                  <div className="md:col-span-4">
+                    {isLeadService(service.slug) && (
+                      <span className="mb-2 inline-block font-mono text-[9px] uppercase tracking-[0.14em] text-tunnels-red">
+                        Primary focus
+                      </span>
+                    )}
+                    <h3 className="font-display text-2xl tracking-[-0.02em] text-paper transition-colors group-hover:text-tunnels-red md:text-[1.7rem]">
+                      {service.name}
+                    </h3>
+                  </div>
                   <p className="max-w-xl text-sm leading-relaxed text-paper/55 md:col-span-5">
                     {service.summary}
                   </p>
@@ -219,25 +235,74 @@ export default function Home() {
             link={{ label: "Explore solutions", href: "/solutions" }}
           />
 
-          <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
-            {solutions.map((solution) => (
+          <div className="mt-10 flex items-center justify-between gap-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-tunnels-red">
+              Lead commercial offerings
+            </p>
+            <span className="hidden h-px flex-1 bg-line md:block" aria-hidden="true" />
+          </div>
+
+          <div className="mt-5 grid gap-px border border-line bg-line lg:grid-cols-3">
+            {leadSolutions.map((solution) => (
               <Link
                 key={solution.slug}
                 to={`/solutions/${solution.slug}`}
-                className="group relative flex min-h-[240px] flex-col bg-paper-deep p-7 transition-colors hover:bg-paper md:p-8"
+                className="group relative flex min-h-[260px] flex-col bg-paper-deep p-7 transition-colors hover:bg-paper md:p-9"
               >
-                <span className="font-mono text-[10px] tracking-[0.14em] text-mist">{solution.number}</span>
-                <h3 className="mt-6 max-w-[18ch] font-display text-[1.45rem] leading-tight tracking-[-0.02em]">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-mono text-[10px] tracking-[0.14em] text-mist">{solution.number}</span>
+                  <span className="h-1.5 w-1.5 bg-tunnels-red" aria-hidden="true" />
+                </div>
+                <h3 className="mt-6 max-w-[18ch] font-display text-[1.55rem] leading-tight tracking-[-0.02em]">
                   {solution.name}
                 </h3>
                 <p className="mt-4 text-sm leading-relaxed text-grey">{solution.short}</p>
-                <span className="mt-auto pt-8">
+                <span className="mt-auto flex items-center justify-between pt-8">
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink">
+                    View solution
+                  </span>
                   <ArrowUpRight
                     className="h-5 w-5 text-ink/30 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-tunnels-red"
                     aria-hidden="true"
                   />
                 </span>
               </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-3">
+            {otherSolutions.map((solution) => (
+              <Link
+                key={solution.slug}
+                to={`/solutions/${solution.slug}`}
+                className="group flex items-center justify-between gap-4 bg-paper px-5 py-4 transition-colors hover:bg-paper-bright"
+              >
+                <span>
+                  <span className="block text-sm font-medium text-ink group-hover:text-tunnels-red">
+                    {solution.name}
+                  </span>
+                  <span className="mt-1 block text-xs leading-relaxed text-grey">{solution.short}</span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-mist" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case studies */}
+      <section className="border-y border-line bg-paper py-16 md:py-24">
+        <div className="shell">
+          <SectionHeading
+            label="Selected client work"
+            title="Products we have engineered."
+            copy="Zura, Postject, Listdem and Drawra lead the portfolio, with four more client platforms behind them. Every record links to the live product."
+            link={{ label: "All client work", href: "/case-studies" }}
+          />
+
+          <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {featuredCaseStudies.map((study) => (
+              <CaseStudyCard key={study.slug} study={study} withSummary={false} />
             ))}
           </div>
         </div>
@@ -272,8 +337,8 @@ export default function Home() {
               Programmes are structured so they can be paused, re-scoped or stopped without losing the
               investment made so far.
             </p>
-            <Action to="/about" variant="link" withArrow>
-              Our engineering principles
+            <Action to="/engineering-approach" variant="link" withArrow>
+              Our full engineering approach
             </Action>
           </div>
         </div>
@@ -286,6 +351,7 @@ export default function Home() {
             label="Engagement models"
             title="Three ways to work with us."
             copy="The model follows the problem. We will recommend the smallest engagement that can produce a defensible result."
+            link={{ label: "Compare models", href: "/engagement-models" }}
           />
 
           <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-3">

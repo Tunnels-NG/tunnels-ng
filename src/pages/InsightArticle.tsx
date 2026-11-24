@@ -3,8 +3,9 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "@/components/site/SEO";
 import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
-import { getInsight, insights, formatDate } from "@/content/insights";
+import { getInsight, insights, formatDate, editorialNote, EDITORIAL_ROLE } from "@/content/insights";
 import { getService } from "@/content/services";
+import { getSolution } from "@/content/solutions";
 import { SITE } from "@/lib/site";
 import NotFound from "./NotFound";
 
@@ -21,10 +22,14 @@ export default function InsightArticle() {
   if (!article) return <NotFound />;
 
   const service = getService(article.relatedService);
-  const related = insights
-    .filter((entry) => entry.slug !== article.slug)
-    .sort((a, b) => (a.category === article.category ? -1 : b.category === article.category ? 1 : 0))
+  const relatedSolutions = (article.relatedSolutions ?? []).map(getSolution).filter(Boolean);
+  const explicitRelated = (article.relatedSlugs ?? [])
+    .map((slug) => insights.find((entry) => entry.slug === slug))
+    .filter((entry): entry is (typeof insights)[number] => Boolean(entry));
+  const categoryRelated = insights
+    .filter((entry) => entry.slug !== article.slug && entry.category === article.category)
     .slice(0, 3);
+  const related = (explicitRelated.length > 0 ? explicitRelated : categoryRelated).slice(0, 3);
   const headings = article.sections.filter((section) => section.heading);
 
   return (
@@ -46,8 +51,9 @@ export default function InsightArticle() {
             headline: article.title,
             description: article.excerpt,
             datePublished: article.date,
-            dateModified: article.date,
+            dateModified: article.updated ?? article.date,
             author: { "@type": "Organization", name: article.author },
+            isAccessibleForFree: true,
             publisher: {
               "@type": "Organization",
               name: SITE.name,
@@ -74,6 +80,12 @@ export default function InsightArticle() {
               <span className="text-tunnels-red">{article.category}</span>
               <span className="h-3 w-px bg-line" aria-hidden="true" />
               <span className="text-grey">{formatDate(article.date)}</span>
+              {article.updated && (
+                <>
+                  <span className="h-3 w-px bg-line" aria-hidden="true" />
+                  <span className="text-grey">Updated {formatDate(article.updated)}</span>
+                </>
+              )}
               <span className="h-3 w-px bg-line" aria-hidden="true" />
               <span className="text-grey">{article.readTime}</span>
             </div>
@@ -109,6 +121,11 @@ export default function InsightArticle() {
                 <div className="mt-8 border-t border-line pt-4">
                   <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-mist">Author</p>
                   <p className="mt-2 text-[13px] text-ink">{article.author}</p>
+                  <p className="mt-1 text-[12px] text-grey">{article.authorRole ?? EDITORIAL_ROLE}</p>
+                  <p className="mt-3 border-t border-line pt-3 font-mono text-[9.5px] uppercase tracking-[0.1em] text-mist">
+                    Published {formatDate(article.date)}
+                    {article.updated ? ` · Updated ${formatDate(article.updated)}` : ""}
+                  </p>
                 </div>
               </div>
             </aside>
@@ -135,6 +152,13 @@ export default function InsightArticle() {
                     )}
                   </section>
                 ))}
+              </div>
+
+              <div className="mt-8 border border-line bg-paper-deep p-5">
+                <p className="font-mono text-[9.5px] uppercase tracking-[0.14em] text-tunnels-red">
+                  Editorial attribution
+                </p>
+                <p className="mt-2 text-[12.5px] leading-relaxed text-grey">{editorialNote}</p>
               </div>
 
               <div className="mt-12 border-t-2 border-ink pt-6">
@@ -174,6 +198,31 @@ export default function InsightArticle() {
                   </Link>
                 )}
               </div>
+
+              {relatedSolutions.length > 0 && (
+                <div className="mt-5 border border-line bg-paper-bright p-5">
+                  <p className="font-mono text-[9.5px] uppercase tracking-[0.14em] text-tunnels-red">
+                    Related solution
+                  </p>
+                  <ul className="mt-3 space-y-3">
+                    {relatedSolutions.map(
+                      (solution) =>
+                        solution && (
+                          <li key={solution.slug}>
+                            <Link
+                              to={`/solutions/${solution.slug}`}
+                              className="group flex items-start justify-between gap-2 text-xs font-medium text-ink hover:text-tunnels-red"
+                            >
+                              {solution.name}
+                              <ArrowUpRight className="mt-0.5 h-3 w-3 shrink-0" aria-hidden="true" />
+                            </Link>
+                            <p className="mt-1 text-[11px] leading-relaxed text-grey">{solution.short}</p>
+                          </li>
+                        ),
+                    )}
+                  </ul>
+                </div>
+              )}
             </aside>
           </div>
         </div>

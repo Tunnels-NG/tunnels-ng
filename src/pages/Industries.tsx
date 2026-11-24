@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
-import { industries } from "@/content/industries";
+import {
+  industries,
+  industryDisclaimer,
+  industryEvidenceLabels,
+} from "@/content/industries";
 
 export default function Industries() {
   return (
     <>
       <SEO
         title="Industries | Financial Services, Healthcare, Manufacturing & More"
-        description="Sectors where Tunnels applies enterprise engineering: financial services, healthcare, manufacturing, logistics, energy and professional services."
+        description="Sectors where Tunnels applies enterprise engineering: financial services, healthcare, manufacturing, logistics, energy and professional services. Capability relevance, stated honestly."
         path="/industries"
         structuredData={breadcrumbSchema([
           { name: "Home", path: "/" },
@@ -29,13 +34,29 @@ export default function Industries() {
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-tunnels-red">
               A note on claims
             </p>
-            <p className="mt-3 text-[13px] leading-relaxed text-grey">
-              The sectors below describe where our capabilities are relevant. We do not claim sector-specific
-              certifications, regulatory approvals or client engagements that we cannot evidence.
-            </p>
+            <p className="mt-3 text-[13px] leading-relaxed text-grey">{industryDisclaimer}</p>
           </div>
         }
       />
+
+      <section className="border-b border-line bg-paper-deep py-8">
+        <div className="shell">
+          <dl className="grid gap-px border border-line bg-line sm:grid-cols-3">
+            {[
+              { term: "Demonstrated experience", def: "A completed, verifiable engagement in the sector that the client has approved for disclosure." },
+              { term: "Relevant capability", def: "Engineering capability that applies directly to this sector's technical constraints." },
+              { term: "Potential application", def: "A plausible use of that capability, to be validated against the client's actual environment." },
+            ].map((item) => (
+              <div key={item.term} className="bg-paper p-4">
+                <dt className="font-mono text-[9.5px] uppercase tracking-[0.12em] text-tunnels-red">
+                  {item.term}
+                </dt>
+                <dd className="mt-2 text-[12.5px] leading-relaxed text-grey">{item.def}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
       <section className="bg-paper">
         <div className="shell">
@@ -45,17 +66,22 @@ export default function Industries() {
                 id={industry.slug}
                 className="grid scroll-mt-28 gap-8 border-b border-line py-12 md:grid-cols-12 md:gap-10 md:py-16"
               >
-                <div className="md:col-span-1">
-                  <span className="font-mono text-[11px] text-mist">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
                 <div className="md:col-span-4">
-                  <h2 className="font-display text-2xl leading-tight tracking-[-0.02em] md:text-[1.9rem]">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[11px] text-mist">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="h-px w-6 bg-line" aria-hidden="true" />
+                  </div>
+                  <h2 className="mt-4 font-display text-2xl leading-tight tracking-[-0.02em] md:text-[1.9rem]">
                     {industry.name}
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-grey">{industry.summary}</p>
+                  <p className="mt-5 inline-block border border-line px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-mist">
+                    {industryEvidenceLabels[industry.experience]}
+                  </p>
                 </div>
+
                 <div className="md:col-span-4">
                   <p className="eyebrow text-[10px]">Typical environment</p>
                   <ul className="mt-3 space-y-2.5">
@@ -67,11 +93,22 @@ export default function Industries() {
                     ))}
                   </ul>
                 </div>
-                <div className="md:col-span-3">
-                  <p className="eyebrow text-[10px]">Where we are relevant</p>
+
+                <div className="md:col-span-4">
+                  <p className="eyebrow text-[10px]">Relevant capability</p>
                   <ul className="mt-3 space-y-2">
-                    {industry.relevant.map((item) => (
+                    {industry.capability.map((item) => (
                       <li key={item} className="text-[13px] leading-relaxed text-ink">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <p className="eyebrow mt-6 text-[10px]">Potential applications</p>
+                  <ul className="mt-3 space-y-2">
+                    {industry.applications.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[12.5px] leading-relaxed text-grey">
+                        <ArrowUpRight className="mt-[0.35em] h-3 w-3 shrink-0 text-mist" aria-hidden="true" />
                         {item}
                       </li>
                     ))}
@@ -96,6 +133,13 @@ export default function Industries() {
               <Action to="/services" variant="outline" withArrow>
                 Explore Capabilities
               </Action>
+              <Link
+                to="/case-studies"
+                className="group inline-flex items-center gap-2 px-1 py-3.5 text-sm font-medium text-ink hover:text-tunnels-red"
+              >
+                Engineering records
+                <ArrowUpRight className="h-4 w-4 opacity-40" aria-hidden="true" />
+              </Link>
             </div>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
@@ -113,7 +157,8 @@ export default function Industries() {
               ))}
             </div>
             <p className="mt-6 text-xs leading-relaxed text-mist">
-              Industry pages describe capability relevance, not completed sector engagements.{" "}
+              We do not claim HIPAA, PCI DSS, SOC 2, ISO 27001 or other regulatory certification. Where a
+              sector requires attestation, we help scope the assessment and act on its findings.{" "}
               <Link to="/contact" className="text-ink underline decoration-line underline-offset-4 hover:text-tunnels-red">
                 Ask about relevant experience
               </Link>

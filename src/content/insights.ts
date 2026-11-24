@@ -14,11 +14,28 @@ export interface Insight {
   excerpt: string;
   dek: string;
   author: string;
+  /** Editorial role, shown next to the author attribution. */
+  authorRole?: string;
+  /** Present only when the article has been materially revised after publication. */
+  updated?: string;
   sections: { heading?: string; paragraphs: string[]; list?: string[] }[];
   takeaways: string[];
   relatedService?: string;
+  /** Explicit related reading. Falls back to category before recency. */
+  relatedSlugs?: string[];
+  relatedSolutions?: string[];
   featured?: boolean;
 }
+
+/**
+ * Editorial attribution. Insights are written by the engineering team from
+ * current work; they are not client case studies and are not presented as such.
+ */
+export const EDITORIAL_NAME = "Tunnels Engineering";
+export const EDITORIAL_ROLE = "Engineering editorial";
+
+export const editorialNote =
+  "Insights are written by the Tunnels engineering team from current client work and internal research. They are editorial perspectives, not client case studies. No confidential engagement detail, client identity or unverified performance claim is published.";
 
 export const insightCategories: InsightCategory[] = [
   "AI Implementation",
@@ -31,6 +48,8 @@ export const insightCategories: InsightCategory[] = [
 export const insights: Insight[] = [
   {
     slug: "why-enterprise-ai-pilots-stall",
+    relatedSlugs: ["operating-model-for-ai-in-production", "designing-retrieval-that-holds-up"],
+    relatedSolutions: ["enterprise-ai-implementation"],
     title: "Why enterprise AI pilots stall before production",
     category: "AI Implementation",
     date: "2026-10-14",
@@ -93,6 +112,8 @@ export const insights: Insight[] = [
   },
   {
     slug: "legacy-modernisation-without-big-bang-rewrite",
+    relatedSlugs: ["custom-reporting-estate-is-a-modernisation-problem", "integration-layer-is-the-product"],
+    relatedSolutions: ["enterprise-systems-modernisation"],
     title: "Legacy modernisation without a big-bang rewrite",
     category: "Modernisation",
     date: "2026-09-02",
@@ -148,6 +169,8 @@ export const insights: Insight[] = [
   },
   {
     slug: "what-your-cloud-platform-actually-costs",
+    relatedSlugs: ["what-platform-engineering-actually-buys", "reliability-is-an-engineering-discipline"],
+    relatedSolutions: ["cloud-platform-transformation"],
     title: "What your cloud platform actually costs",
     category: "Cloud & Infrastructure",
     date: "2026-07-21",
@@ -366,7 +389,411 @@ export const insights: Insight[] = [
       "Run security and reliability as one engineering programme.",
     ],
   },
+  {
+    slug: "operating-model-for-ai-in-production",
+    title: "An operating model for AI systems in production",
+    category: "AI Implementation",
+    date: "2024-11-19",
+    readTime: "11 min read",
+    excerpt:
+      "Launch is the point at which an AI system starts to change. What keeps it honest is an operating model: ownership, evaluation cadence, cost control and a defined path for change.",
+    dek:
+      "The engineering work to get a model into production is visible and funded. The work to keep it useful for the next two years usually is not, and that is where most programmes lose the value they built.",
+    author: "Tunnels Engineering",
+    relatedService: "ai-intelligent-systems",
+    sections: [
+      {
+        paragraphs: [
+          "An AI system in production is not a model with an endpoint. It is a pipeline of ingestion, retrieval or feature assembly, prompting, inference, post-processing, logging and human escalation, wrapped in a permission model and a cost budget. Every one of those parts can degrade independently, and most of them will.",
+          "The operating model is the set of decisions that determines how the system is watched, who can change it, how changes are validated and who answers for its output. Teams that skip it tend to discover the gap slowly: quality falls, nobody can say when it started, and the only available response is to rebuild something that was working six months ago.",
+        ],
+      },
+      {
+        heading: "Accountability has to be a person",
+        paragraphs: [
+          "\"The business owns the model\" is not an owner. Neither is a steering committee. A production AI system needs one named accountable person who can answer three questions without preparation: what is this system for, how do we know it is working, and what happens when it is wrong.",
+          "Ownership also needs a counterpart on the engineering side, because the failure modes are technical: retrieval drift after a content migration, a prompt that silently truncates long inputs, a provider changing default behaviour, a dependency upgrade altering output shape. These are ordinary operational concerns, and they are only managed if somebody is looking.",
+        ],
+      },
+      {
+        heading: "Three loops, running at different speeds",
+        paragraphs: [
+          "A healthy AI system runs three distinct feedback loops. The evaluation loop runs on every change and answers whether quality moved. The product loop runs weekly and answers whether people are using the output and correcting it. The change loop runs continuously and answers what is being altered, by whom, with what evidence.",
+          "Conflating them is a common mistake. Teams that only measure usage ship confident-sounding systems nobody trusts; teams that only measure offline quality optimise for a test set that no longer resembles production traffic. The loops have different owners, different cadences and different artefacts, and each needs to exist explicitly.",
+        ],
+        list: [
+          "Evaluation: a fixed set of representative cases, re-run on every model, prompt or retrieval change.",
+          "Product: accept, edit and reject rates on real work, reviewed with the people doing that work.",
+          "Change: a versioned record of prompts, model versions, retrieval configuration and the reason for each change.",
+        ],
+      },
+      {
+        heading: "Cost is a design constraint, not a finance surprise",
+        paragraphs: [
+          "Inference cost behaves unlike traditional infrastructure cost: it scales with usage, varies by input length, and can change under you when a provider re-prices or deprecates a model. A system whose unit economics were assumed at pilot scale can become unaffordable at adoption scale without any single decision being wrong.",
+          "Treating cost as a design constraint means knowing the cost per unit of work from the first release, setting a budget per workflow, and instrumenting the system so the number is visible to the engineers who can influence it. Routing routine cases to a smaller model, caching deterministic outputs, batching offline work and capping context are engineering decisions with a direct financial effect.",
+        ],
+      },
+      {
+        heading: "Interfaces that assume the model can be wrong",
+        paragraphs: [
+          "The most reliable production AI systems are designed around the expectation of error. They show their sources, they separate draft from decision, they make editing cheap and they never present a generated statement as verified fact. The interface absorbs uncertainty instead of hiding it.",
+          "This matters for adoption as much as for safety. People trust a system that is honest about its confidence and easy to correct far more than one that is confidently wrong. Designing for correction also produces the training signal that makes the next version better.",
+        ],
+      },
+      {
+        heading: "A ninety-day operating plan",
+        paragraphs: [
+          "The plan after launch is usually thinner than the plan before it. We ask for three things in the first ninety days: a baseline measurement of quality and cost on real traffic, a named owner with a weekly review, and a small set of changes shipped through the evaluation harness rather than directly to production.",
+          "That is deliberately modest. It establishes the muscle the system needs for its second year, when the interesting work begins: expanding coverage to harder cases, retiring the manual steps the pilot worked around, and proving the benefit in terms the finance function already understands. Programmes that skip this stage rarely reach it.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Name one accountable owner and one engineering owner before launch.",
+      "Run evaluation, product and change loops separately and on purpose.",
+      "Publish cost per unit of work from the first release.",
+      "Design interfaces that make correction cheap and confidence visible.",
+    ],
+  },
+  {
+    slug: "what-platform-engineering-actually-buys",
+    title: "What platform engineering actually buys you",
+    category: "Cloud & Infrastructure",
+    date: "2023-08-07",
+    readTime: "9 min read",
+    excerpt:
+      "A platform is worth building when it removes decisions, not when it adds tooling. The measure is how long it takes a team to ship something safely.",
+    dek:
+      "Most platform programmes start with a technology choice and end with an internal service nobody is required to use. The ones that work start from the queue of work teams are waiting on.",
+    author: "Tunnels Engineering",
+    relatedService: "cloud-platform-infrastructure",
+    sections: [
+      {
+        paragraphs: [
+          "Ask an engineering organisation what slows it down and the answers are rarely about compute. They are about waiting: waiting for an environment, a security review, a production access request, a database, a decision about which of four approved patterns to use. Platform engineering exists to remove that waiting, and everything else is secondary.",
+          "This reframing matters because it changes what gets built. A platform justified by consolidation builds one place to do everything. A platform justified by waiting builds the shortest safe path to production for the most common kind of service, then measures whether the queue got shorter.",
+        ],
+      },
+      {
+        heading: "Golden paths beat gates",
+        paragraphs: [
+          "A golden path is a supported, opinionated route from an empty repository to a running service with logging, secrets, deployment, alerting and ownership metadata already in place. Teams can leave it, but leaving costs them the support that comes with it.",
+          "Gates work in the opposite direction. They block until a checklist is satisfied, which produces compliance theatre and a queue. Golden paths make the correct thing the fastest thing, which is the only reliable way to get consistent practice across dozens of teams with different priorities.",
+        ],
+        list: [
+          "A repository template that produces a deployable service in under an hour.",
+          "Environments created from a definition, not a ticket.",
+          "Logging, metrics and tracing wired in by default rather than by effort.",
+          "Secrets and identity handled the same way for every service.",
+          "An obvious, documented way to request an exception.",
+        ],
+      },
+      {
+        heading: "Draw the ownership boundary explicitly",
+        paragraphs: [
+          "Platform programmes fail when nobody can say where the platform ends and the product team begins. Does the platform own the database or provision it? The network or the service mesh? The pipeline or the test suite? Vague boundaries produce duplicated work and quiet resentment in both directions.",
+          "A useful boundary is expressed as a contract: here is what you get, here is what you must do, here is what we will not do. Write it down, publish it, and revisit it when the support load changes. The document is less important than the argument it forces.",
+        ],
+      },
+      {
+        heading: "Measure the platform, not its adoption",
+        paragraphs: [
+          "Platform teams often report adoption because it is easy to count. Adoption says nothing about value. The measures that matter are the ones the platform is supposed to move: lead time from commit to production, deployment frequency, change failure rate and time to restore, split by team and by service tier.",
+          "Two supporting numbers are worth tracking alongside them: the proportion of new services that start on a golden path, and the time a team spends on work the platform was meant to remove. If that second number is not falling, the platform is a side project with a roadmap.",
+        ],
+      },
+      {
+        heading: "Staff it as a product team",
+        paragraphs: [
+          "A platform needs engineers who enjoy building for other engineers, a product owner who can prioritise a queue of internal requests, and a support rota with time budgeted for it. Without the last one, the team spends its capacity answering questions and never improves the path that generated them.",
+          "It also needs a way to hear from users that is not an escalation. Office hours, a public backlog and short interviews with the teams furthest from the golden path are cheap and consistently more informative than a survey.",
+        ],
+      },
+      {
+        heading: "Where these programmes go wrong",
+        paragraphs: [
+          "The predictable failures are worth naming. Building a platform before understanding the workload. Choosing a technology and reverse-engineering a rationale. Treating migration as the goal rather than the cost of getting to the goal. Measuring the platform by how much of the estate it controls.",
+          "The most common failure is subtler: the platform team is funded to build and not to operate, so the second year is spent firefighting the first year's abstractions. Budget the operating cost before the first commit, and the programme has a chance of surviving its own success.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Start from the queue of work teams are waiting on.",
+      "Prefer golden paths with a documented exception route to gates.",
+      "Write the platform contract down so ownership is arguable, not assumed.",
+      "Measure lead time, change failure and restore time, not adoption.",
+    ],
+  },
+  {
+    slug: "data-contracts-between-teams",
+    title: "Data contracts: making meaning explicit between teams",
+    category: "Enterprise Architecture",
+    date: "2025-03-11",
+    readTime: "10 min read",
+    excerpt:
+      "Most integration defects are semantic, not technical. A data contract turns an implicit assumption about a field into something a pipeline can test.",
+    dek:
+      "The expensive failures in a data estate are rarely schema mismatches. They are two teams holding different beliefs about what a value means, both of them reasonable, and nobody noticing for a quarter.",
+    author: "Tunnels Engineering",
+    relatedService: "enterprise-software",
+    sections: [
+      {
+        paragraphs: [
+          "A pipeline that runs successfully is not the same as a pipeline that is correct. The job can complete, the row count can look plausible, the dashboard can render, and the number can still be wrong because a field that used to contain a gross amount now contains a net one after a tax change nobody announced.",
+          "These defects are expensive for a structural reason: they are found by a human noticing an odd result, usually weeks later, and the investigation has to reconstruct history across systems that each believe they were behaving correctly.",
+        ],
+      },
+      {
+        heading: "What a contract actually contains",
+        paragraphs: [
+          "A data contract is an agreement between a producer and a consumer about a dataset: its fields and types, the meaning and units of each field, its keys and uniqueness, its freshness and completeness expectations, its null semantics, and the process for changing it. It lives with the producing system, not in a wiki that drifts.",
+          "The semantic clauses matter more than the schema. \"Amount in minor units, net of tax, excluding refunds, in the transaction currency\" is a contract. `amount: decimal` is a shape. Almost every painful defect lives in the gap between the two.",
+        ],
+        list: [
+          "Ownership: which team produces the dataset and who approves changes.",
+          "Semantics: units, currency, time zone, inclusion and exclusion rules.",
+          "Keys: what uniquely identifies a row and how late-arriving data is handled.",
+          "Freshness: expected latency and the threshold at which consumers should distrust the data.",
+          "Change policy: notice period, versioning and deprecation route.",
+        ],
+      },
+      {
+        heading: "A contract is only real if it is tested",
+        paragraphs: [
+          "Documented contracts become archaeology. Enforced contracts change behaviour. The enforcement point is the producer's pipeline: validation that the schema matches, that keys are unique, that required fields are present, and that distribution and volume sit inside an agreed range.",
+          "Distribution checks are the ones teams underrate. A field can be present, correctly typed and semantically wrong: an ID that suddenly contains a different prefix, a status that gains an unexpected value, a timestamp that shifts by an hour after a daylight-saving change. Statistical assertions catch these before a consumer does.",
+        ],
+      },
+      {
+        heading: "Governance without a committee",
+        paragraphs: [
+          "Data governance programmes often begin with a council, a catalogue and a policy. None of those prevent a defect. What prevents a defect is a producer who cannot publish a breaking change without going through a review that a consumer can see.",
+          "Keep the governance light and put it where the change happens: a pull request on the contract, a test that fails loudly, and a deprecation window agreed between the two teams. Central standards are useful for naming and cross-cutting conventions, not for approving individual fields.",
+        ],
+      },
+      {
+        heading: "Introducing contracts into an existing estate",
+        paragraphs: [
+          "Nobody starts with a clean estate. The practical approach is to begin where damage is expensive: the datasets feeding regulated reporting, financial reconciliation or customer-facing promises. Document those first, with the people who currently answer questions about them.",
+          "Expect the first pass to surface disagreement rather than to produce documentation. Two teams describing the same field differently is the finding, and resolving it is the value. Contracts introduced as paperwork rather than as conflict resolution tend to be abandoned within a quarter.",
+        ],
+      },
+      {
+        heading: "What changes when contracts exist",
+        paragraphs: [
+          "The visible benefit is fewer silent breakages. The structural benefit is that change becomes a conversation between named owners with an agreed process, instead of an incident. New consumers onboard faster because the meaning of the data is written down and tested rather than passed on verbally.",
+          "There is a second-order effect worth planning for: once meaning is explicit, duplicated datasets become obvious, and the organisation can start retiring the copies that exist only because nobody trusted the original. That is where data contracts start paying for themselves.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Contracts describe meaning and freshness, not just schema.",
+      "Enforce contracts in the producer's pipeline, including distribution checks.",
+      "Start with datasets that feed regulated or financial reporting.",
+      "Treat the first disagreement surfaced as the deliverable.",
+    ],
+  },
+  {
+    slug: "custom-reporting-estate-is-a-modernisation-problem",
+    title: "The custom reporting estate is a modernisation problem",
+    category: "Modernisation",
+    date: "2024-04-23",
+    readTime: "9 min read",
+    excerpt:
+      "Hundreds of reports, each with its own logic and its own owner, are an application estate. They need the same treatment as the systems they read from.",
+    dek:
+      "Reporting grows sideways because it is cheap to add and expensive to remove. Eventually the organisation cannot agree on a number, and the argument is really about whose query is authoritative.",
+    author: "Tunnels Engineering",
+    relatedService: "enterprise-software",
+    sections: [
+      {
+        paragraphs: [
+          "Every organisation has a set of reports that matter, a larger set that somebody asked for once, and an unknown number that run on a schedule because turning them off would require knowing who reads them. The first set is small. The other two consume most of the effort.",
+          "This is not a tooling problem, although it is usually framed as one. Moving the same reports to a newer platform preserves the logic, the duplication and the disagreement. The problem is that reporting has been treated as an output rather than as an application estate with owners, contracts and a lifecycle.",
+        ],
+      },
+      {
+        heading: "Two numbers, two definitions, one argument",
+        paragraphs: [
+          "When finance, operations and commercial each maintain a version of revenue, the organisation does not have a data quality issue. It has three products with the same name. Meetings about which number is right are a symptom of missing definitions rather than of bad engineering.",
+          "Making the definition explicit is unglamorous and slow, because it requires someone with authority to decide. But until it happens, every dashboard, extract and model built on the number inherits the ambiguity, and the cost compounds with each new consumer.",
+        ],
+      },
+      {
+        heading: "Separate metrics from reports",
+        paragraphs: [
+          "A metric is a definition with an owner, a grain, a set of inclusions and a documented lineage. A report is a presentation of one or more metrics for an audience. Most reporting estates confuse the two, so a change in a report requires re-deriving the logic and a change in a definition has to be chased through dozens of places.",
+          "Defining a small set of trusted metrics and building reports on top of them is the single highest-leverage move in this work. It reduces duplication, makes reconciliation a one-time exercise and gives the business a vocabulary that survives tool changes.",
+        ],
+        list: [
+          "Agree the definition with the accountable business owner, in writing.",
+          "Assign one implementation as authoritative and publish its lineage.",
+          "Test the metric against a known period before consumers migrate.",
+          "Deprecate competing implementations with a date, not a suggestion.",
+        ],
+      },
+      {
+        heading: "Retire by usage, not by decree",
+        paragraphs: [
+          "Attempts to clean up reporting usually start with an inventory and a mandate. The inventory is inaccurate within weeks and the mandate creates a shadow estate as teams export what they need before it disappears. Both outcomes are predictable.",
+          "Instrument usage first. Then move the reports people actually open onto the trusted metric layer, and let the rest expire with notice to their named consumers. Retirement works when the replacement is already better, not when the removal is enforced.",
+        ],
+      },
+      {
+        heading: "Sequence the work like any other migration",
+        paragraphs: [
+          "The pattern is the same as system modernisation: map what exists, find seams, replace incrementally, run old and new in parallel where the output is decision-critical, and define retirement conditions. Reporting is often the best place to start because it is lower risk than transactional systems and produces visible improvement quickly.",
+          "It is also a useful rehearsal for the harder work. A team that can agree a shared definition of a metric, test it and migrate consumers has demonstrated the organisational capability that a core system replacement will demand.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Treat reports as an application estate with owners and a lifecycle.",
+      "Resolve definitions before choosing a platform.",
+      "Build reports on a small set of trusted, tested metrics.",
+      "Retire by usage and replacement, not by inventory and mandate.",
+    ],
+  },
+  {
+    slug: "incident-response-is-a-rehearsed-capability",
+    title: "Incident response is a rehearsed capability",
+    category: "Security & Reliability",
+    date: "2023-11-30",
+    readTime: "8 min read",
+    excerpt:
+      "The difference between a bad hour and a bad week is rarely tooling. It is whether people already know their role, their channel and their authority.",
+    dek:
+      "Incident response is learned under pressure, which is exactly the wrong time to discover that nobody knows who can make the decision to fail over.",
+    author: "Tunnels Engineering",
+    relatedService: "cybersecurity-reliability",
+    sections: [
+      {
+        paragraphs: [
+          "During an incident an organisation reveals its real structure: who can act without approval, who has access, who is trusted to speak to customers, and which dependencies were never as independent as the diagram suggested. None of that is visible in a runbook that has not been exercised.",
+          "The usual response to a bad incident is to buy something. The more effective response is to practise, because most of the delay in a serious incident is coordination rather than diagnosis, and coordination is a skill that compounds.",
+        ],
+      },
+      {
+        heading: "Roles before tools",
+        paragraphs: [
+          "A functioning response needs three roles filled explicitly: someone directing the response and making trade-off decisions, someone investigating and communicating technical findings, and someone owning external communication. On small teams one person may hold two, but the roles still have to be named out loud.",
+          "Ambiguity here is expensive. Two engineers independently restarting services, nobody updating the status page and a decision-maker unavailable for approval are all failures of role clarity, not of engineering skill. They are also cheap to fix before an incident and nearly impossible to fix during one.",
+        ],
+      },
+      {
+        heading: "The first fifteen minutes",
+        paragraphs: [
+          "Early decisions set the tone: declare, assign, establish a channel, and start a timeline. Declaring an incident feels like an overreaction until it is obviously late, and the cost of declaring early is a short conversation. Many organisations optimise for not looking alarmist and pay for it in recovery time.",
+          "A written timeline is worth more than it appears. It gives the responder team a shared record, prevents repeated investigation of the same hypothesis, and produces the material for a review that is about the system rather than about people's recollections.",
+        ],
+        list: [
+          "Declare early, name a responder in charge, open one channel.",
+          "Record times and decisions as they happen, not afterwards.",
+          "Stabilise before diagnosing. Customer impact outranks root cause.",
+          "Give every stakeholder a cadence for updates, and keep it even when there is no news.",
+        ],
+      },
+      {
+        heading: "Communication is a control",
+        paragraphs: [
+          "Support, sales and leadership will find out something is wrong within minutes. If they do not hear it from the response team, they will construct their own explanation, and that explanation will reach customers. A predictable update cadence, even one that says nothing has changed, is a control against that.",
+          "For regulated or customer-facing services, the same discipline extends to legal and compliance obligations. Knowing in advance who must be notified and within what window turns a legal risk into a checklist item.",
+        ],
+      },
+      {
+        heading: "Learning without blame theatre",
+        paragraphs: [
+          "A review that ends with \"human error\" has taught nothing. The useful question is why the system made the error easy: why the console allowed a destructive action without confirmation, why the alert fired after the customer noticed, why the runbook assumed a step that no longer exists.",
+          "Blameless does not mean consequence-free; it means looking at the conditions that produced the outcome. Reviews should end with a small number of owned changes with dates, and those changes should be treated as reliability work rather than as a backlog afterthought.",
+        ],
+      },
+      {
+        heading: "Practise, then practise the awkward parts",
+        paragraphs: [
+          "A tabletop exercise costs an afternoon and exposes the gaps that matter: who has production access at 3am, whether the failover has been tested since the last change, whether the status page credentials live with someone on holiday. Run one per quarter, rotate participants, and vary the scenario.",
+          "Then rehearse the recovery procedures themselves. Restore a database, exercise the runbook, time the failover. The first attempt is always slower and more surprising than expected, which is exactly why it should not be the attempt that happens during an incident.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Name the three response roles before you need them.",
+      "Declare early and stabilise before diagnosing.",
+      "Keep a fixed update cadence, including when there is no news.",
+      "Run tabletop exercises and rehearse recovery quarterly.",
+    ],
+  },
+  {
+    slug: "model-selection-is-an-engineering-decision",
+    title: "Model selection is an engineering decision, not a leaderboard",
+    category: "AI Implementation",
+    date: "2025-06-17",
+    readTime: "10 min read",
+    excerpt:
+      "Public benchmarks measure tasks you do not have. Choosing a model means defining your task, your tolerance and your operational envelope, then testing against all three.",
+    dek:
+      "Teams routinely pick a model from a ranking, build around it, and discover months later that a smaller, cheaper model performs identically on their actual work.",
+    author: "Tunnels Engineering",
+    relatedService: "ai-intelligent-systems",
+    sections: [
+      {
+        paragraphs: [
+          "Benchmarks are useful for the research community and nearly useless for procurement. They measure performance on standardised tasks with standardised inputs, scored automatically. Your work has domain vocabulary, long context, messy formats, internal conventions and a definition of acceptable error that no leaderboard encodes.",
+          "This does not make model choice unimportant. It makes it an empirical question about your workload, which means the first deliverable is not a shortlist. It is a small, honest test set drawn from the work the system will actually do.",
+        ],
+      },
+      {
+        heading: "Define the task and the tolerance",
+        paragraphs: [
+          "Before comparing anything, write down what the system must do and how wrong it may be. Extracting a date from an invoice has a different tolerance from summarising a clinical note. Classification with a human reviewer downstream has a different tolerance from an automated decision.",
+          "Tolerance also has a shape. Is a wrong answer worse than no answer? Is a plausible but unsupported claim worse than an incomplete one? These distinctions determine the prompt, the retrieval design and the evaluation criteria, and they usually narrow the model choice far more than a benchmark table does.",
+        ],
+      },
+      {
+        heading: "Build a harness you can trust",
+        paragraphs: [
+          "A useful harness has fifty to two hundred real cases with expected outcomes, including the difficult minority that the business cares about most. Score it with a mix of exact checks and rubric-based review by someone who does the work. Keep the set fixed so results are comparable as you change things.",
+          "Resist the temptation to grow it endlessly. A modest set that is genuinely representative and consistently applied beats a large set that nobody has reviewed. The value comes from the stability of the measurement, not the volume.",
+        ],
+        list: [
+          "Sample cases from real traffic, including failures and near-misses.",
+          "Record a human baseline so you compare against current practice.",
+          "Score the output the business will see, not an intermediate artefact.",
+          "Re-run the same harness for every candidate and every prompt change.",
+        ],
+      },
+      {
+        heading: "The operational envelope decides more than quality",
+        paragraphs: [
+          "Quality differences between frontier models on a well-scoped task are often smaller than the differences in latency, cost, context limits, rate limits and data handling terms. A model that is two points better on your harness but twice as slow may be the wrong choice for an interactive workflow.",
+          "Add the commercial and legal envelope: where inference runs, what is retained, what the provider commits to on availability, and how much notice deprecation requires. These are procurement questions with engineering consequences, and they are much cheaper to resolve before the integration is built.",
+        ],
+      },
+      {
+        heading: "Design for replacement",
+        paragraphs: [
+          "Every model you choose will be superseded, re-priced or retired. The systems that survive this treat the model as one component behind an interface: prompt templates are versioned, provider-specific features are isolated, the harness runs in CI, and switching is a configuration change with a measurable outcome.",
+          "This is also a cost strategy. Routing easy cases to a smaller model, escalating hard ones, and caching deterministic outputs can reduce spend substantially without touching quality, but only if the architecture allows routing at all.",
+        ],
+      },
+      {
+        heading: "When the smaller model wins",
+        paragraphs: [
+          "In our experience the smaller model wins more often than teams expect, particularly for extraction, classification, formatting and retrieval-grounded answering. The gains from a larger model concentrate in open-ended reasoning and unusual inputs, which are often precisely the cases that need a human anyway.",
+          "The practical conclusion is unglamorous: test two or three candidates against your own cases, measure cost and latency alongside quality, and keep the harness so the next decision takes days rather than months.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Write the task and the error tolerance before shortlisting models.",
+      "Use a fixed harness of real cases with a human baseline.",
+      "Weigh latency, cost, context and data terms alongside quality.",
+      "Isolate the model behind an interface so replacement is routine.",
+    ],
+  },
 ];
+
+export const insightsByDate = [...insights].sort((a, b) => b.date.localeCompare(a.date));
 
 export const getInsight = (slug?: string) => insights.find((insight) => insight.slug === slug);
 

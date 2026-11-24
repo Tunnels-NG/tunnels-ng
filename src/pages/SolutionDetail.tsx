@@ -7,6 +7,8 @@ import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { getSolution, solutions } from "@/content/solutions";
 import { getService } from "@/content/services";
+import { caseStudiesForSolution } from "@/content/caseStudies";
+import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
 import { ENGAGEMENT_MODELS } from "@/lib/site";
 import NotFound from "./NotFound";
 
@@ -60,7 +62,7 @@ export default function SolutionDetail() {
               ))}
             </ul>
             <div className="mt-6">
-              <Action to="/contact" variant="solid" withArrow>
+              <Action to={`/contact?service=${solution.slug}`} variant="solid" withArrow>
                 Discuss this solution
               </Action>
             </div>
@@ -222,6 +224,11 @@ export default function SolutionDetail() {
                 permission and verified measurement. References are provided during a qualified
                 conversation.
               </p>
+              <div className="mt-4">
+                <Action to="/case-studies" variant="link" withArrow>
+                  Read the engineering records
+                </Action>
+              </div>
             </div>
           </div>
         </div>
@@ -254,6 +261,13 @@ export default function SolutionDetail() {
           </div>
         </div>
       </section>
+
+      <RelatedCaseStudies
+        studies={caseStudiesForSolution(solution.slug)}
+        label="Related evidence"
+        title="Engagements of this shape"
+        copy="Structured records of comparable work, including the constraints and the decisions taken."
+      />
 
       <CtaBand
         title="Scope this engagement with an engineer."
