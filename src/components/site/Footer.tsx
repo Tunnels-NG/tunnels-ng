@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Linkedin, Mail, MapPin } from "lucide-react";
 import { LogoLink } from "@/components/brand/Logo";
 import { SITE } from "@/lib/site";
+import { companyAddress } from "@/content/company";
 import { services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 
@@ -36,6 +37,19 @@ export default function Footer() {
                 LinkedIn
                 <ArrowUpRight className="h-3.5 w-3.5 text-paper/40" aria-hidden="true" />
               </a>
+              <address className="flex items-start gap-2.5 pt-1 text-sm not-italic leading-relaxed text-paper/75">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-tunnels-red" aria-hidden="true" />
+                <span>
+                  <span className="block font-mono text-[9.5px] uppercase tracking-[0.14em] text-paper/40">
+                    Registered office
+                  </span>
+                  <span className="mt-1 block">{companyAddress.line1}</span>
+                  <span className="block">
+                    {companyAddress.city}, {companyAddress.country}
+                  </span>
+                  <span className="block">{companyAddress.postcode}</span>
+                </span>
+              </address>
             </div>
           </div>
 
@@ -76,6 +90,9 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5">
               {[
                 { label: "About", href: "/about" },
+                { label: "Case Studies", href: "/case-studies" },
+                { label: "Engineering Approach", href: "/engineering-approach" },
+                { label: "Engagement Models", href: "/engagement-models" },
                 { label: "Industries", href: "/industries" },
                 { label: "Insights", href: "/insights" },
                 { label: "Contact", href: "/contact" },

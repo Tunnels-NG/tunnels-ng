@@ -160,16 +160,6 @@ export default function About() {
               <dd className="mt-1 text-sm text-ink">2018</dd>
             </div>
             <div>
-              <dt className="eyebrow text-[10px]">Registered office</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-ink">
-                {companyAddress.line1}
-                <br />
-                {companyAddress.city}, {companyAddress.country}
-                <br />
-                {companyAddress.postcode}
-              </dd>
-            </div>
-            <div>
               <dt className="eyebrow text-[10px]">Team</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink">
                 Distributed across locations and time zones
