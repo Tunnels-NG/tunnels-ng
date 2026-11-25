@@ -31,7 +31,7 @@ export const SITE = {
 export const PRIMARY_NAV = [
   { label: "Services", href: "/services" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Case Studies", href: "/case-studies" },
+  { label: "Challenges", href: "/engineering-scenarios" },
   { label: "Industries", href: "/industries" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },

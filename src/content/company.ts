@@ -1,90 +1,35 @@
 /**
- * Company and key personnel content.
+ * Company content.
  *
- * Confirmed facts only: founding year, registered office and the named key
- * personnel with their titles and areas of responsibility. Milestones that
- * have not been supplied with dates are described in sequence rather than
- * assigned a year. Do not add biographies, qualifications, previous employers
- * or client outcomes that the company has not confirmed.
+ * Confirmed facts only: founding year, registered office and collective
+ * experience. Milestones that have not been supplied with dates are described
+ * in sequence rather than assigned a year. Do not add biographies,
+ * qualifications, previous employers or client outcomes the company has not
+ * confirmed.
+ *
+ * Individual team members are not published. Personnel data lives in the
+ * internal record at `src/content/teamRecord.ts`, which is never imported by
+ * public UI code, and portraits are retained in `src/assets/team/` (not served).
  */
 
-export interface TeamMember {
-  slug: string;
-  name: string;
-  title: string;
-  /** Short responsibility statement, not a career biography. */
-  summary: string;
-  portrait: string | null;
-  portraitAlt: string;
-  initials: string;
-}
+/**
+ * Aggregate professional experience published on the site.
+ *
+ * Derivation (current team record): 11 + 6 + 4 + 4 + 4 + 6 = 35. Recalculate
+ * from `totalProfessionalExperience` in `src/content/teamRecord.ts` when the
+ * team grows. Do not describe the total as experience gained working together,
+ * nor as experience acquired at Tunnels.
+ */
+export const combinedExperienceYears = 35;
 
-/** Presented in this order; all six carry equal visual weight. */
-export const teamMembers: TeamMember[] = [
-  {
-    slug: "chris-fega",
-    name: "Chris Fega",
-    title: "Founder & CEO",
-    summary:
-      "Leads the company: corporate strategy, business direction and partnerships, with overall accountability for the standard of work Tunnels delivers.",
-    portrait: "/assets/team/chris-fega.jpg",
-    portraitAlt: "Portrait of Chris Fega, Founder and CEO of Tunnels Global",
-    initials: "CF",
-  },
-  {
-    slug: "sarah-obarhoro",
-    name: "Sarah Obarhoro",
-    title: "Chief Technology Officer",
-    summary:
-      "Owns technology leadership and engineering strategy: technical direction, architecture and the delivery of engineering work across engagements.",
-    portrait: "/assets/team/sarah-obarhoro.jpg",
-    portraitAlt: "Portrait of Sarah Obarhoro, Chief Technology Officer at Tunnels Global",
-    initials: "SO",
-  },
-  {
-    slug: "vamsi-priya",
-    name: "Vamsi Priya",
-    title: "Head of Platform Engineering",
-    summary:
-      "Leads platform engineering, cloud infrastructure and reliability, and the engineering of the scalable platforms our clients run on.",
-    portrait: "/assets/team/vamsi-priya.jpg",
-    portraitAlt: "Portrait of Vamsi Priya, Head of Platform Engineering at Tunnels Global",
-    initials: "VP",
-  },
-  {
-    slug: "isaac-moses",
-    name: "Isaac Moses",
-    title: "Product Design Lead",
-    summary:
-      "Directs product design and user experience, translating business and user requirements into interfaces and product experiences that hold up in use.",
-    portrait: "/assets/team/isaac-moses.jpg",
-    portraitAlt: "Portrait of Isaac Moses, Product Design Lead at Tunnels Global",
-    initials: "IM",
-  },
-  {
-    slug: "jessica-uboh",
-    name: "Jessica Uboh",
-    title: "Business Relations Lead",
-    summary:
-      "Owns business relationships and communication: client and partner contact, relationship management, and a consistent experience for the organisations we work with.",
-    portrait: "/assets/team/jessica-uboh.jpg",
-    portraitAlt: "Portrait of Jessica Uboh, Business Relations Lead at Tunnels Global",
-    initials: "JU",
-  },
-  {
-    slug: "kingsley-akposheri",
-    name: "Kingsley Akposheri",
-    title: "Legal Counsel",
-    summary:
-      "Provides legal guidance on contracts and commercial arrangements, and supports the company's legal and governance requirements.",
-    portrait: "/assets/team/kingsley-akposheri.jpg",
-    portraitAlt: "Portrait of Kingsley Akposheri, Legal Counsel at Tunnels Global",
-    initials: "KA",
-  },
+export const experienceHeading = "Decades of Experience. A Growing Global Team.";
+
+/** Public copy. The first paragraph carries the aggregate figure. */
+export const experienceIntro = [
+  `Tunnels Global brings together a multidisciplinary team of technology professionals with over ${combinedExperienceYears} years of combined professional experience.`,
+  "Our collective expertise spans software engineering, enterprise architecture, cloud and platform engineering and product development.",
+  "We bring together the right expertise to solve complex problems, engineer dependable systems and help organisations navigate technological change.",
 ];
-
-export const teamIntro =
-  "Technology is only as strong as the people responsible for its direction, design, delivery and operation. Our team brings together engineering, product, business relations and legal expertise under one shared standard of accountability.";
 
 export const companyAddress = {
   line1: "28 Stretton Road",

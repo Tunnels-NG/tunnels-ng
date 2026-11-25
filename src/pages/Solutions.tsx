@@ -6,8 +6,6 @@ import CtaBand from "@/components/site/CtaBand";
 import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { solutions } from "@/content/solutions";
-import { caseStudies } from "@/content/caseStudies";
-import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
 import { ENGAGEMENT_MODELS, LEAD_SOLUTION_SLUGS } from "@/lib/site";
 
 const isLead = (slug: string) => (LEAD_SOLUTION_SLUGS as readonly string[]).includes(slug);
@@ -92,13 +90,6 @@ export default function Solutions() {
           ))}
         </div>
       </section>
-
-      <RelatedCaseStudies
-        studies={caseStudies}
-        label="From problem to evidence"
-        title="Solutions, applied in client work"
-        copy="Each solution connects to the capability that delivers it and to the products it has been applied to. That path is deliberate: the problem, the engineering, the decisions, the evidence."
-      />
 
       <section className="border-t border-line bg-paper-deep py-16 md:py-20">
         <div className="shell">

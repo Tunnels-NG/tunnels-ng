@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "@/components/site/SEO";
 import PageHeader from "@/components/site/PageHeader";
 import CtaBand from "@/components/site/CtaBand";
@@ -195,13 +193,6 @@ export default function EngineeringApproach() {
               <Action to="/engagement-models" variant="outline" withArrow>
                 Engagement Models
               </Action>
-              <Link
-                to="/case-studies"
-                className="group inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-tunnels-red"
-              >
-                See the method applied
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
             </div>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">

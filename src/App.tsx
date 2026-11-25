@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/site/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -7,6 +7,8 @@ import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Solutions from "./pages/Solutions";
 import SolutionDetail from "./pages/SolutionDetail";
+import EngineeringScenarios from "./pages/EngineeringScenarios";
+import ScenarioDetail from "./pages/ScenarioDetail";
 import Industries from "./pages/Industries";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
@@ -30,6 +32,8 @@ export const AppRoutes = () => (
       <Route path="/services/:slug" element={<ServiceDetail />} />
       <Route path="/solutions" element={<Solutions />} />
       <Route path="/solutions/:slug" element={<SolutionDetail />} />
+      <Route path="/engineering-scenarios" element={<EngineeringScenarios />} />
+      <Route path="/engineering-scenarios/:slug" element={<ScenarioDetail />} />
       <Route path="/industries" element={<Industries />} />
       <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
@@ -39,6 +43,9 @@ export const AppRoutes = () => (
       <Route path="/insights/:slug" element={<InsightArticle />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/privacy" element={<Privacy />} />
+      {/* The public team page is retired; old links continue to the About page. */}
+      <Route path="/team" element={<Navigate to="/about" replace />} />
+      <Route path="/team/*" element={<Navigate to="/about" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Layout>

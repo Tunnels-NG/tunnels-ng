@@ -8,8 +8,6 @@ import Reveal from "@/components/site/Reveal";
 import { getService, services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 import { insights, formatDate } from "@/content/insights";
-import { caseStudiesForService } from "@/content/caseStudies";
-import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
 import { ENGAGEMENT_MODELS } from "@/lib/site";
 import NotFound from "./NotFound";
 
@@ -280,12 +278,6 @@ export default function ServiceDetail() {
           </div>
         </section>
       )}
-
-      <RelatedCaseStudies
-        studies={caseStudiesForService(service.slug)}
-        label="Division in practice"
-        title={`${service.shortName} engagements, documented`}
-      />
 
       <CtaBand
         title={`Need ${service.shortName.toLowerCase()} capability on a live problem?`}

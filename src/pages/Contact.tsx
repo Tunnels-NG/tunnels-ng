@@ -161,13 +161,8 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[
-              {
-                label: "Engineering records",
-                copy: "How comparable engagements are structured, including the constraints and trade-offs.",
-                href: "/case-studies",
-              },
               {
                 label: "Engineering approach",
                 copy: "The six stages, the outputs of each, and the disciplines applied throughout.",

@@ -9,9 +9,10 @@ import Reveal from "@/components/site/Reveal";
 import { services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 import { industries } from "@/content/industries";
-import { caseStudies } from "@/content/caseStudies";
+import { combinedExperienceYears } from "@/content/company";
 import { insights, formatDate } from "@/content/insights";
-import CaseStudyCard from "@/components/site/CaseStudyCard";
+import BrandReference from "@/components/site/BrandReference";
+import { homeScenarioSlugs, scenarios } from "@/content/scenarios";
 import { ENGAGEMENT_MODELS, LEAD_SERVICE_SLUGS, LEAD_SOLUTION_SLUGS, SITE } from "@/lib/site";
 
 const problems = [
@@ -89,6 +90,11 @@ export default function Home() {
     (entry) => !(LEAD_SOLUTION_SLUGS as readonly string[]).includes(entry.slug),
   );
   const isLeadService = (slug: string) => (LEAD_SERVICE_SLUGS as readonly string[]).includes(slug);
+  const homeScenarios = homeScenarioSlugs
+    .map((slug) => scenarios.find((entry) => entry.slug === slug))
+    .filter((entry): entry is (typeof scenarios)[number] => Boolean(entry));
+  const divisionLabel = (slug: string) =>
+    services.find((service) => service.slug === slug)?.shortName ?? slug;
 
   return (
     <>
@@ -140,6 +146,33 @@ export default function Home() {
                 delivering against one engineering standard.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Collective experience */}
+      <section className="border-t border-line bg-paper-deep py-14 md:py-16">
+        <div className="shell grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow">Collective experience</p>
+            <h2 className="mt-5 max-w-sm font-display text-[1.6rem] leading-snug tracking-[-0.02em] md:text-[1.8rem]">
+              Decades of Experience. A Growing Global Team.
+            </h2>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <div className="flex items-baseline gap-3 border-t border-ink pt-5">
+              <p className="font-display text-[2.5rem] leading-none tracking-[-0.03em]">
+                {combinedExperienceYears}
+                <span className="text-tunnels-red">+</span>
+              </p>
+              <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-graphite">
+                Years · Combined professional experience
+              </p>
+            </div>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-grey">
+              A multidisciplinary team of technology professionals spanning software engineering, enterprise
+              architecture, cloud and platform engineering and product development.
+            </p>
           </div>
         </div>
       </section>
@@ -302,21 +335,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case studies */}
-      <section className="border-y border-line bg-paper py-16 md:py-24">
+      <BrandReference />
+
+      {/* Engineering scenarios */}
+      <section className="border-t border-line bg-paper py-16 md:py-24">
         <div className="shell">
           <SectionHeading
-            label="Selected Client Work"
-            title="Engineering products and platforms that solve real business problems."
-            copy="A selection of digital platforms, business systems and technology solutions across commerce, developer infrastructure and business operations."
-            link={{ label: "All client work", href: "/case-studies" }}
+            label="Engineering challenges"
+            title="Problems We Are Equipped to Solve"
+            copy="Explore how we approach complex engineering challenges across enterprise systems, intelligent technologies and cloud infrastructure."
+            link={{ label: "All scenarios", href: "/engineering-scenarios" }}
           />
 
-          <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {caseStudies.map((study) => (
-              <CaseStudyCard key={study.slug} study={study} withSummary={false} />
+          <div className="mt-12 grid gap-px border border-line bg-line lg:grid-cols-3">
+            {homeScenarios.map((scenario) => (
+              <Link
+                key={scenario.slug}
+                to={`/engineering-scenarios/${scenario.slug}`}
+                className="group flex flex-col bg-paper p-7 transition-colors hover:bg-paper-bright md:p-8"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em]">
+                  <span className="text-tunnels-red">Scenario {scenario.number}</span>
+                  <span className="text-mist">{divisionLabel(scenario.division)}</span>
+                </div>
+                <h3 className="mt-6 font-display text-xl leading-snug tracking-[-0.015em] group-hover:text-tunnels-red">
+                  {scenario.title}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-grey">{scenario.summary}</p>
+                <span className="mt-7 flex items-center justify-between border-t border-line pt-4 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink">
+                  Explore scenario
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
             ))}
           </div>
+
+          <p className="mt-6 max-w-2xl text-xs leading-relaxed text-mist">
+            Illustrative engineering scenarios, not client engagements. Each one sets out how we take a
+            class of problem apart: the context we establish, the constraints we test, the decisions we
+            record and the trade-offs we accept. No client identity, data or result is disclosed.
+          </p>
         </div>
       </section>
 

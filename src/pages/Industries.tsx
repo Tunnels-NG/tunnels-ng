@@ -133,13 +133,6 @@ export default function Industries() {
               <Action to="/services" variant="outline" withArrow>
                 Explore Capabilities
               </Action>
-              <Link
-                to="/case-studies"
-                className="group inline-flex items-center gap-2 px-1 py-3.5 text-sm font-medium text-ink hover:text-tunnels-red"
-              >
-                Engineering records
-                <ArrowUpRight className="h-4 w-4 opacity-40" aria-hidden="true" />
-              </Link>
             </div>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">

@@ -8,13 +8,13 @@ import Action from "@/components/site/Action";
 import Reveal from "@/components/site/Reveal";
 import { SITE } from "@/lib/site";
 import {
+  combinedExperienceYears,
   companyAddress,
   companyTimeline,
+  experienceHeading,
+  experienceIntro,
   operatingModel,
-  teamIntro,
-  teamMembers,
   timelineNote,
-  type TeamMember,
 } from "@/content/company";
 
 const principles = [
@@ -77,40 +77,12 @@ const capabilities = [
   },
 ];
 
-function Portrait({ person, className }: { person: TeamMember; className: string }) {
-  if (!person.portrait) {
-    return (
-      <div
-        className={`${className} flex items-center justify-center border border-line bg-paper-deep`}
-        role="img"
-        aria-label={person.portraitAlt}
-      >
-        <span className="font-display text-2xl tracking-[-0.02em] text-mist" aria-hidden="true">
-          {person.initials}
-        </span>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={person.portrait}
-      alt={person.portraitAlt}
-      width={720}
-      height={900}
-      loading="lazy"
-      decoding="async"
-      className={`${className} object-cover object-top`}
-    />
-  );
-}
-
 export default function About() {
   return (
     <>
       <SEO
-        title="About Tunnels Global | Leadership, History and Engineering Standard"
-        description="Tunnels Global is an international technology and engineering company founded in 2018 and registered in Leicester, England. Our leadership, key personnel, company history and engineering standard."
+        title="About Tunnels Global | Company, Engineering Standard and Experience"
+        description={`Tunnels Global is an international technology and engineering company founded in 2018 and registered in Leicester, England. Our history, engineering standard and ${combinedExperienceYears}+ years of combined professional experience.`}
         path="/about"
         structuredData={[
           breadcrumbSchema([
@@ -123,7 +95,7 @@ export default function About() {
             name: "About Tunnels Global",
             url: `${SITE.url}/about`,
             description:
-              "Leadership, key personnel and company history of Tunnels Global, an international technology and engineering company founded in 2018 and registered in Leicester, England.",
+              "Company history, engineering standard and collective experience of Tunnels Global, an international technology and engineering company founded in 2018 and registered in Leicester, England.",
             mainEntity: {
               "@type": "Organization",
               name: SITE.name,
@@ -138,12 +110,8 @@ export default function About() {
                 postalCode: companyAddress.postcode,
                 addressCountry: "GB",
               },
-              employee: teamMembers.map((person) => ({
-                "@type": "Person",
-                name: person.name,
-                jobTitle: person.title,
-                ...(person.portrait ? { image: `${SITE.url}${person.portrait}` } : {}),
-              })),
+              description:
+                "A multidisciplinary team of technology professionals working across software engineering, enterprise architecture, cloud and platform engineering and product development.",
             },
           },
         ]}
@@ -162,7 +130,7 @@ export default function About() {
             <div>
               <dt className="eyebrow text-[10px]">Team</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink">
-                Distributed across locations and time zones
+                Multidisciplinary, distributed across locations and time zones
               </dd>
             </div>
             <div>
@@ -219,13 +187,6 @@ export default function About() {
                 className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red"
               >
                 Our engineering approach
-                <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
-              </Link>
-              <Link
-                to="/case-studies"
-                className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red"
-              >
-                Selected Client Work
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
               </Link>
             </div>
@@ -358,32 +319,55 @@ export default function About() {
         </div>
       </section>
 
-      {/* Leadership and key people */}
-      <section id="leadership" className="scroll-mt-24 border-t border-line bg-paper-deep py-16 md:py-24">
-        <div className="shell">
-          <SectionHeading
-            label="Leadership & key people"
-            title="The people behind the engineering."
-          />
-          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-grey md:ml-[25%]">{teamIntro}</p>
+      {/* Collective experience */}
+      <section id="experience" className="scroll-mt-24 border-t border-line bg-paper-deep py-16 md:py-24">
+        <div className="shell grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow">Collective experience</p>
+            <h2 className="display-md mt-5 max-w-md text-[1.8rem] leading-tight md:text-[2.1rem]">
+              {experienceHeading}
+            </h2>
 
-          <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((person, index) => (
-              <Reveal key={person.slug} delay={index * 40} className="bg-paper">
-                <article className="flex h-full flex-col bg-paper">
-                  <div className="overflow-hidden border-b border-line bg-paper-deep">
-                    <Portrait person={person} className="aspect-[4/5] w-full" />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6 md:p-7">
-                    <h3 className="font-display text-xl leading-snug tracking-[-0.01em]">{person.name}</h3>
-                    <p className="mt-1 font-mono text-[9.5px] uppercase leading-relaxed tracking-[0.1em] text-tunnels-red">
-                      {person.title}
-                    </p>
-                    <p className="mt-3 text-[13px] leading-relaxed text-grey">{person.summary}</p>
-                  </div>
-                </article>
-              </Reveal>
+            <div className="mt-10 border-t border-ink pt-6 md:mt-12">
+              <p className="flex items-baseline gap-3 font-display leading-none tracking-[-0.03em]">
+                <span className="text-[3.5rem] md:text-[4.25rem]">
+                  {combinedExperienceYears}
+                  <span className="text-tunnels-red">+</span>
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-graphite">Years</span>
+              </p>
+              <p className="mt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-grey">
+                Combined Professional Experience
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-7">
+            <p className="text-xl leading-relaxed tracking-[-0.01em] text-ink md:text-[1.4rem] md:leading-[1.5]">
+              {experienceIntro[0]}
+            </p>
+            {experienceIntro.slice(1).map((paragraph) => (
+              <p key={paragraph} className="body-copy mt-5">
+                {paragraph}
+              </p>
             ))}
+
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-5 text-sm">
+              <Link
+                to="/engineering-approach"
+                className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red"
+              >
+                Our engineering approach
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
+              </Link>
+              <Link
+                to="/engagement-models"
+                className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red"
+              >
+                Engagement models
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

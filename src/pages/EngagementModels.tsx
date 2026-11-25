@@ -171,10 +171,6 @@ export default function EngagementModels() {
                 Our engineering approach
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
               </Link>
-              <Link to="/case-studies" className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red">
-                Engineering case studies
-                <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
-              </Link>
               <Link to="/solutions" className="group inline-flex items-center gap-1.5 text-ink hover:text-tunnels-red">
                 Commercial solutions
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />

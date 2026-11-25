@@ -90,7 +90,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5">
               {[
                 { label: "About", href: "/about" },
-                { label: "Case Studies", href: "/case-studies" },
+                { label: "Challenges", href: "/engineering-scenarios" },
                 { label: "Engineering Approach", href: "/engineering-approach" },
                 { label: "Engagement Models", href: "/engagement-models" },
                 { label: "Industries", href: "/industries" },

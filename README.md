@@ -137,9 +137,12 @@ for server-side validation.
 - **Form delivery:** no backend is included. Enquiries require
   `VITE_CONTACT_ENDPOINT`.
 - **Analytics:** no data is collected until `VITE_ANALYTICS_DOMAIN` is set.
-- **Unverified content:** leadership profiles, client references, certifications
-  and case studies are deliberately absent. The About page marks the leadership
-  section as pending verified content.
+- **Unverified content:** client references, certifications
+  and case studies are deliberately absent. Team member names and photographs are
+  not published; the About page presents only the aggregate combined-experience
+  figure, derived from the internal record in `src/content/company.ts`. Team
+  photographs are retained in `src/assets/team/` (not served) for a possible
+  future leadership page.
 - **OG image:** `public/assets/brand/tunnels-share.jpg` is an abstract brand visual
   without text. Replace it with an approved share card if required; the default
   is declared once in `src/lib/head.ts`.
