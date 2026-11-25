@@ -171,7 +171,8 @@ export default function Home() {
             </div>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-grey">
               A multidisciplinary team of technology professionals spanning software engineering, enterprise
-              architecture, cloud and platform engineering and product development.
+              architecture, cloud and platform engineering and product development. Top engineers globally,
+              solving problems.
             </p>
           </div>
         </div>

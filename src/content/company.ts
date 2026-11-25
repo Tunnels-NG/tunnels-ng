@@ -15,12 +15,12 @@
 /**
  * Aggregate professional experience published on the site.
  *
- * Derivation (current team record): 11 + 6 + 4 + 4 + 4 + 6 = 35. Recalculate
- * from `totalProfessionalExperience` in `src/content/teamRecord.ts` when the
- * team grows. Do not describe the total as experience gained working together,
- * nor as experience acquired at Tunnels.
+ * Supplied by the company and covering the wider engineering group, so it is
+ * not derived from the individual record in `src/content/teamRecord.ts`. Do not
+ * describe the total as experience gained working together, nor as experience
+ * acquired at Tunnels.
  */
-export const combinedExperienceYears = 35;
+export const combinedExperienceYears = 55;
 
 export const experienceHeading = "Decades of Experience. A Growing Global Team.";
 
@@ -29,6 +29,7 @@ export const experienceIntro = [
   `Tunnels Global brings together a multidisciplinary team of technology professionals with over ${combinedExperienceYears} years of combined professional experience.`,
   "Our collective expertise spans software engineering, enterprise architecture, cloud and platform engineering and product development.",
   "We bring together the right expertise to solve complex problems, engineer dependable systems and help organisations navigate technological change.",
+  "Top engineers globally, solving problems.",
 ];
 
 export const companyAddress = {

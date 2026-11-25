@@ -7,10 +7,10 @@
  * figures are withheld from the website.
  *
  * The only published figure is the aggregate in `src/content/company.ts`
- * (`combinedExperienceYears`). Recalculate it from `totalProfessionalExperience`
- * here when the team changes, and update that constant in the same commit.
- * The aggregate must not be described as time spent working together, nor as
- * experience acquired at Tunnels.
+ * (`combinedExperienceYears`). That figure is set by the company and covers the
+ * wider engineering group, so it is not derived from `totalProfessionalExperience`
+ * here. The aggregate must not be described as time spent working together, nor
+ * as experience acquired at Tunnels.
  *
  * Portraits for a possible future leadership page are retained in
  * `src/assets/team/` (not served from `public/`).
